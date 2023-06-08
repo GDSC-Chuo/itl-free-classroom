@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../components/HomePage.vue'
 import TestPage from '../components/TestPage.vue'
 import Floor3rd from '../components/3rdFloor.vue'
+import FloorSelect from '../components/FloorSelect.vue'
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: '/3rd-floor',
     name: '3rdFloor',
     component: Floor3rd
+  },
+  {
+    path: '/floor-select',
+    name: 'FloorSelect',
+    component: FloorSelect
   },
 ]
 

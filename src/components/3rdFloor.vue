@@ -4,7 +4,7 @@
       <p>3F</p>
     </div>
     <img src="@/assets/3F.png" alt="3F" >
-    <button>フロア選択へ戻る</button>
+    <router-link to="/floor-select" class="back">フロア選択へ戻る</router-link>
   </div>
 </template>
 
@@ -38,7 +38,7 @@ img {
   max-width: calc(90vw - 32px);
   max-height: calc(90vh - 32px);
 }
-button {
+.back {
   position: absolute;
   right: 20px;
   bottom: 20px;
@@ -52,9 +52,10 @@ button {
   font-weight: 700;
   font-size: 16px;
   background-color: #fff;
+  text-decoration: none;
 }
 /* hoverとは、マウスカーソルを対象物に重ねた時の挙動のこと  */
-button:hover {
+.back:hover {
   background-color: #f5f5f5;
 }
 </style>
