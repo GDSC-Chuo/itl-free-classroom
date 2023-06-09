@@ -1,6 +1,6 @@
 <template>
   <div >
-    <h1>起動画面</h1>
+    <h1>iTL Free Classroom</h1>
   </div>
 </template>
 
