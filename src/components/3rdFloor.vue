@@ -7,7 +7,7 @@
       <div class="floor-info">
         <div v-if="currentClass">
           <h2>現在の授業</h2>
-          <p>{{ currentClass.subject }}</p>
+          <p>{{ currentClass.subject }} {{ currentClass.classroom }}</p>
         </div>
         <div v-else>
           <p>現在３Fで実施されている授業はありません。</p>
@@ -27,7 +27,9 @@ export default {
   name: '3rdFloor',
   data() {
     return {
+      // 授業の情報を保持する配列
       classes: [],
+      // 各授業時間の情報を保持する配列。startとendはそれぞれ授業開始時間と終了時間
       periods: [
         { start: '09:00', end: '10:40' },
         { start: '10:50', end: '12:30' },
@@ -38,6 +40,8 @@ export default {
       ],
     }
   },
+
+  // Firebase から授業情報を取得し、classes 配列に格納する
   created() {
     const classesRef = collection(db, 'class information');
     onSnapshot(classesRef, (snapshot) => {
@@ -45,6 +49,7 @@ export default {
       console.log(this.classes);
     });
   },
+
   computed: {
     currentDay() {
       // 現在の曜日を取得（0（日曜日）から6（土曜日）までの数値）
@@ -58,16 +63,16 @@ export default {
     },
     currentClass() {
       const now = new Date();
+      // 現在の時間がどの授業時間（period）に該当するかを見つける
       const currentPeriod = this.periods.find((period) => {
         const startTime = new Date(`${now.toISOString().split('T')[0]}T${period.start}`);
         const endTime = new Date(`${now.toISOString().split('T')[0]}T${period.end}`);
         return now >= startTime && now <= endTime;
       });
-
       if (!currentPeriod) return null;
-
       const periodIndex = this.periods.indexOf(currentPeriod);
-      console.log(this.classes.find((c) => c.period === periodIndex + 1));
+
+      // 時間割、曜日、フロアで授業情報を絞り込み
       return this.classes.find((c) => c.period === periodIndex + 1 && c.day === this.currentDay && c.classroom.startsWith('3'));
     },
   }
@@ -79,7 +84,6 @@ export default {
   position: absolute;
   left: 20px;
   top: 20px;
-
 }
 .title {
   padding-top: 10px;
