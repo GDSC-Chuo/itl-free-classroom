@@ -68,7 +68,7 @@ export default {
 
       const periodIndex = this.periods.indexOf(currentPeriod);
       console.log(this.classes.find((c) => c.period === periodIndex + 1));
-      return this.classes.find((c) => c.period === periodIndex + 1 && c.day === this.currentDay);
+      return this.classes.find((c) => c.period === periodIndex + 1 && c.day === this.currentDay && c.classroom.startsWith('3'));
     },
   }
 }
