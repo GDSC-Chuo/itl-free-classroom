@@ -6,8 +6,8 @@
       </div>
       <div class="floor-info">
         <div v-if="currentClass && currentClass.length > 0">
+          <h2>現在の授業</h2>
           <div v-for="classes in currentClass" :key="classes.id">
-            <h2>現在の授業</h2>
             <p class="current-class">{{ classes.subject }} ({{ classes.teacher }}) : {{ classes.classroom }}</p>
           </div>
         </div>
@@ -84,8 +84,8 @@ export default {
 <style scoped>
 .floor {
   position: absolute;
-  left: 20px;
-  top: 20px;
+  left: 25px;
+  top: 25px;
 }
 .title {
   padding-top: 10px;
@@ -109,16 +109,16 @@ export default {
 .current-class {
   font-weight: 400;
   font-size: 20px;
-  margin: 0;
+  margin: 15px 0;
 }
 img {
-  max-width: calc(90vw - 32px);
-  max-height: calc(90vh - 32px);
+  max-width: calc(90vw - 40px);
+  max-height: calc(90vh - 40px);
 }
 .back {
   position: absolute;
-  right: 20px;
-  bottom: 20px;
+  right: 25px;
+  bottom: 25px;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 40px;

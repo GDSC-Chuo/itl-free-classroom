@@ -35,7 +35,7 @@ body {
   height: 100%;
   display: flex;
   justify-content: center;
-  padding: 16px;
+  padding: 20px;
 }
 p {
   margin: 0;
