@@ -74,7 +74,7 @@ export default {
       if (!currentPeriod) return null;
       const periodIndex = this.periods.indexOf(currentPeriod);
 
-      // 時間割、曜日、フロアで授業情報を絞り込み
+      // 時間割、曜日、階数、前期後期で授業情報を絞り込み
       return this.classes.filter((c) => c.period === periodIndex + 1 && c.day === this.currentDay && c.classroom.startsWith('3') && c.semester === '前期');
     },
   }
