@@ -5,9 +5,11 @@
         <p>3F</p>
       </div>
       <div class="floor-info">
-        <div v-if="currentClass">
-          <h2>現在の授業</h2>
-          <p>{{ currentClass.subject }} {{ currentClass.classroom }}</p>
+        <div v-if="currentClass && currentClass.length > 0">
+          <div v-for="classes in currentClass" :key="classes.id">
+            <h2>現在の授業</h2>
+            <p class="current-class">{{ classes.subject }} ({{ classes.teacher }}) : {{ classes.classroom }}</p>
+          </div>
         </div>
         <div v-else>
           <p>現在３Fで実施されている授業はありません。</p>
@@ -73,7 +75,7 @@ export default {
       const periodIndex = this.periods.indexOf(currentPeriod);
 
       // 時間割、曜日、フロアで授業情報を絞り込み
-      return this.classes.find((c) => c.period === periodIndex + 1 && c.day === this.currentDay && c.classroom.startsWith('3'));
+      return this.classes.filter((c) => c.period === periodIndex + 1 && c.day === this.currentDay && c.classroom.startsWith('3') && c.semester === '前期');
     },
   }
 }
@@ -103,6 +105,11 @@ export default {
 }
 .floor-info {
   margin-top: 30px;
+}
+.current-class {
+  font-weight: 400;
+  font-size: 20px;
+  margin: 0;
 }
 img {
   max-width: calc(90vw - 32px);
