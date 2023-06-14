@@ -17,7 +17,7 @@ body {
   background-color: #3A3E3B;
 }
 .main-area {
-  position: absolute;
+  position: fixed;
   top: calc(50% - 45vh);
   left: calc(50% - 45vw);
   width: 90vw;
@@ -31,8 +31,8 @@ body {
   color: #3A3E3B;
 }
 .contents {
-  width: 100%;
-  height: 100%;
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
   display: flex;
   justify-content: center;
   padding: 20px;
