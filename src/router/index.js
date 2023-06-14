@@ -3,10 +3,10 @@ import HomePage from '../components/HomePage.vue'
 import TestPage from '../components/TestPage.vue'
 import Floor3rd from '../components/3rdFloor.vue'
 import Floor4th from '../components/4thFloor.vue'
-import FloorSelect from '../components/FloorSelect.vue'
 import Floor5th from '../components/5thFloor.vue'
 import Floor7th from '../components/7thFloor.vue'
-
+import Floor8th from '../components/8Floor.vue'
+import FloorSelect from '../components/FloorSelect.vue'
 
 const routes = [
   {
@@ -30,11 +30,6 @@ const routes = [
     component: Floor4th
   },
   {
-    path: '/floor-select',
-    name: 'FloorSelect',
-    component: FloorSelect
-  },
-  {
     path: '/5th-floor',
     name: '5thFloor',
     component: Floor5th
@@ -43,6 +38,19 @@ const routes = [
     path: '/7th-floor',
     name: '7thFloor',
     component: Floor7th
+  },
+  {
+    path: '/8Floor.vue'
+    name: 'Floor8th'
+    component: Floor8th
+  },
+  { path: '/9thfloor.vue'
+     name: 'Floor9th'
+   component: Floor9th
+  },
+    path: '/floor-select',
+    name: 'FloorSelect',
+    component: FloorSelect
   },
 ]
 
