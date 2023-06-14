@@ -31,8 +31,8 @@ body {
   color: #3A3E3B;
 }
 .contents {
-  width: 100%;
-  height: 100%;
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
   display: flex;
   justify-content: center;
   padding: 20px;
