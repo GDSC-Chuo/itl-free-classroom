@@ -3,15 +3,17 @@
     <h1>フロア選択</h1>
   </div> -->
 
-  <div class="floorchange">
-    <router-link to="/3rd-floor" class="floorbox">3F</router-link>
-    <router-link to="/4th-floor" class="floorbox">4F</router-link>
-    <router-link to="/5th-floor" class="floorbox">5F</router-link>
-    <router-link to="/7th-floor" class="floorbox">7F</router-link>
-    <router-link to="/8th-floor" class="floorbox">8F</router-link>
-    <router-link to="/9th-floor" class="floorbox">9F</router-link>
-    <router-link to="/10th-floor" class="floorbox">10F</router-link>
-    <router-link to="/11th-floor" class="floorbox">11F</router-link>
+  <div class="select-area">
+    <div class="floorchange">
+      <router-link to="/3rd-floor" class="floorbox">3F</router-link>
+      <router-link to="/4th-floor" class="floorbox">4F</router-link>
+      <router-link to="/5th-floor" class="floorbox">5F</router-link>
+      <router-link to="/7th-floor" class="floorbox">7F</router-link>
+      <router-link to="/8th-floor" class="floorbox">8F</router-link>
+      <router-link to="/9th-floor" class="floorbox">9F</router-link>
+      <router-link to="/10th-floor" class="floorbox">10F</router-link>
+      <router-link to="/11th-floor" class="floorbox">11F</router-link>
+    </div>
   </div>
 </template>
 
@@ -26,26 +28,19 @@ export default {
   overflow: auto;
 }
 
+.select-area {
+  width: 60vw;
+  margin: auto;
+}
+
 .floorchange {
   /* 折り返し */
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: left;
   text-align: center;
-}
-
-@media screen and (min-width: 1084px) {
-
-  .floorchange {
-    width: 70%;
-  }
-
-}
-
-@media screen and (min-width:1084px) and ( max-width:1162px) {
-  .floorchange {
-    width: 75%;
-  }
+  width: 732px;
+  margin: auto;
 }
 
 .floorbox {
