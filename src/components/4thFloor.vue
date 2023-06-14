@@ -82,10 +82,6 @@ export default {
 </script>
 
 <style scoped>
-* {
-  font-family: 
-}
-
 .floor {
   position: absolute;
   left: 25px;
