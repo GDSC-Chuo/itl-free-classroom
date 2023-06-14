@@ -17,7 +17,7 @@ body {
   background-color: #3A3E3B;
 }
 .main-area {
-  position: absolute;
+  position: fixed;
   top: calc(50% - 45vh);
   left: calc(50% - 45vw);
   width: 90vw;
