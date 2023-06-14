@@ -3,6 +3,9 @@ import HomePage from '../components/HomePage.vue'
 import TestPage from '../components/TestPage.vue'
 import Floor3rd from '../components/3rdFloor.vue'
 import FloorSelect from '../components/FloorSelect.vue'
+import Floor5th from '../components/5thFloor.vue'
+import Floor7th from '../components/7thFloor.vue'
+
 
 const routes = [
   {
@@ -24,6 +27,16 @@ const routes = [
     path: '/floor-select',
     name: 'FloorSelect',
     component: FloorSelect
+  },
+  {
+    path: '/5th-floor',
+    name: '5thFloor',
+    component: Floor5th
+  },
+  {
+    path: '/7th-floor',
+    name: '7thFloor',
+    component: Floor7th
   },
 ]
 
