@@ -1,3 +1,4 @@
+<!-- TODO: デザイン修正、3Fに合わせる -->
 <template>
   <div>
     <div class="floor">

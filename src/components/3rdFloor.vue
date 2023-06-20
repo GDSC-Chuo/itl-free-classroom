@@ -1,3 +1,4 @@
+<!-- TODO: デザイン修正-->
 <template>
   <div>
     <div class="floor">

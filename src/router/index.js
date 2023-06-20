@@ -42,12 +42,12 @@ const routes = [
     component: Floor7th
   },
   {
-    path: '/8Floor.vue',
-    name: 'Floor8th',
+    path: '/8th-floor',
+    name: '8thFloor',
     component: Floor8th
   },
-  { path: '/9thfloor.vue',
-     name: 'Floor9th',
+  { path: '/9th-floor',
+     name: '9thFloor',
    component: Floor9th
   },
   {
