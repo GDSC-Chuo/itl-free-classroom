@@ -8,7 +8,12 @@
         <div v-if="currentClass && currentClass.length > 0">
           <h2>現在の授業</h2>
           <div v-for="classes in currentClass" :key="classes.id">
-            <p class="current-class">{{ classes.subject }} ({{ classes.teacher }}) : {{ classes.classroom }}</p>
+            <p class="current-class">
+              <router-link :to="{ name: 'ClassInfo', params: { subject: classes.subject }, query: { classData: JSON.stringify(classes) } }">
+                {{ classes.subject }}
+              </router-link>
+              ({{ classes.teacher }}) : {{ classes.classroom }}
+            </p>
           </div>
         </div>
         <div v-else>
@@ -35,7 +40,7 @@ export default {
       periods: [
         { start: '09:00', end: '10:40' },
         { start: '10:50', end: '12:30' },
-        { start: '13:20', end: '15:00' },
+        { start: '13:20', end: '22:00' },
         { start: '15:10', end: '16:50' },
         { start: '17:00', end: '18:40' },
         { start: '18:50', end: '20:30' },
@@ -75,7 +80,10 @@ export default {
       const periodIndex = this.periods.indexOf(currentPeriod);
 
       // 時間割、曜日、階数、前期後期で授業情報を絞り込み
-      return this.classes.filter((c) => c.period === periodIndex + 1 && c.day === this.currentDay && c.classroom.startsWith('3') && c.semester === '前期');
+      return this.classes.filter((c) => {
+        const classroomStr = String(c.classroom);
+        return c.period === periodIndex + 1 && c.day === this.currentDay && classroomStr.startsWith('3') && c.semester === '前期';
+      });
     },
   }
 }
