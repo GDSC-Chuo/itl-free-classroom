@@ -1,18 +1,19 @@
 <template>
-  <!-- <div>
+  <div class="wrapper">
     <h1>フロア選択</h1>
-  </div> -->
 
-  <div class="select-area">
-    <div class="floorchange">
-      <router-link to="/3rd-floor" class="floorbox">3F</router-link>
-      <router-link to="/4th-floor" class="floorbox">4F</router-link>
-      <router-link to="/5th-floor" class="floorbox">5F</router-link>
-      <router-link to="/7th-floor" class="floorbox">7F</router-link>
-      <router-link to="/8th-floor" class="floorbox">8F</router-link>
-      <router-link to="/9th-floor" class="floorbox">9F</router-link>
-      <router-link to="/10th-floor" class="floorbox">10F</router-link>
-      <router-link to="/11th-floor" class="floorbox">11F</router-link>
+    <div class="select-area">
+      <div class="floor-change">
+        <router-link to="/3rd-floor" class="floor-box">3F</router-link>
+        <router-link to="/4th-floor" class="floor-box">4F</router-link>
+        <router-link to="/5th-floor" class="floor-box">5F</router-link>
+        <router-link to="/7th-floor" class="floor-box">7F</router-link>
+        <router-link to="/8th-floor" class="floor-box">8F</router-link>
+        <router-link to="/9th-floor" class="floor-box">9F</router-link>
+        <router-link to="/10th-floor" class="floor-box">10F</router-link>
+        <router-link to="/11th-floor" class="floor-box">11F</router-link>
+        <router-link to="/" class="return-top">Topへ戻る</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -28,24 +29,26 @@ export default {
   overflow: auto;
 }
 
-.select-area {
-  width: 60vw;
-  margin: auto;
+h1 {
+  margin: 30px;
+  font-size: 50px;
+  text-align: center;
+  color: #3A3B3E;
 }
 
-.floorchange {
+.floor-change {
   /* 折り返し */
   display: flex;
   flex-wrap: wrap;
-  justify-content: left;
+  justify-content: center;
   text-align: center;
-  width: 732px;
-  margin: auto;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.floorbox {
+.floor-box {
   position: relative;
-  margin: 20px;  /* 間隔 */
+  margin: 50px;
   width: 200px;
   height: 100px;
 
@@ -62,7 +65,38 @@ export default {
   line-height: 100px;
 }
 
-.floorbox:hover {
-  opacity: 0.6;
+.return-top {
+  position: relative;
+  margin: 50px;
+  width: 200px;
+  height: 100px;
+  border: 2px solid #747578;
+  border-radius: 80px;
+  color: #ff0000;
+  font-size: 28px;
+  line-height: 100px;
+  background-color: none;
+  text-decoration: none;
 }
+
+.floor-box:hover {
+  /* opacity: 0.6; */
+  background-color: #f5f5f5;
+}
+
+.return-top:hover {
+  background-color: #f5f5f5;
+}
+
+/* @media screen and (max-width: 400px) {
+  モバイル版対応させたい部分
+  * {
+    max-width: 300px;
+  }
+  .wrapper {
+    position: absolute;
+    overflow: hidden;
+  }
+} */
+
 </style>
