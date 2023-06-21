@@ -9,6 +9,7 @@ import Floor8th from '../components/8thFloor.vue'
 import Floor9th from '../components/9thFloor.vue'
 import FloorSelect from '../components/FloorSelect.vue'
 import ClassInfo from '../components/ClassInfo.vue'
+import SearchClass from '../components/SearchClass.vue'
 
 const routes = [
   {
@@ -60,6 +61,11 @@ const routes = [
     name: 'ClassInfo',
     component: ClassInfo,
     props: route => ({ id: route.params.id, classData: JSON.parse(route.query.classData) }),
+  },
+  {
+    path: '/search-class',
+    name: 'SearchClass',
+    component: SearchClass,
   }
 ]
 
