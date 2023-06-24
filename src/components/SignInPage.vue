@@ -17,12 +17,6 @@
   </form>
 </template>
 
-<script>
-export default {
-  name: "LoginPage",
-};
-</script>
-
 <style>
 * {
   display: flex;
@@ -112,34 +106,45 @@ body {
 </style>
 
 <script>
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+// import { initializeApp } from "firebase/app";
+// import { getAuth } from "firebase/auth";
 
-// TODO: Replace the following with your app's Firebase project configuration
-// See: https://firebase.google.com/docs/web/learn-more#config-object
-const firebaseConfig = {
-  // ...
-};
+// // TODO: Replace the following with your app's Firebase project configuration
+// // See: https://firebase.google.com/docs/web/learn-more#config-object
+// const firebaseConfig = {
+//   // ...
+// };
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
+// // Initialize Firebase Authentication and get a reference to the service
+// const auth = getAuth(app);
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
 
 
-// Initialize Firebase Authentication and get a reference to the service
-const auth = getAuth(app);
+// import { signInWithEmailAndPassword } from "firebase/auth";
+// signInWithEmailAndPassword(auth, email, password)
+//   .then((userCredential) => {
+//     // Signed in 
+//     const user = userCredential.user;
+//     // ...
+//   })
+//   .catch((error) => {
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//   });
 
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
-const auth = getAuth();
-createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-  });
+// import { onAuthStateChanged } from "firebase/auth";
+// onAuthStateChanged(auth, (user) => {
+//   if (user) {
+//     // User is signed in, see docs for a list of available properties
+//     // https://firebase.google.com/docs/reference/js/auth.user
+//     const uid = user.uid;
+//     // ...
+//   } else {
+//     // User is signed out
+//     // ...
+//   }
+// });
+
 </script>
