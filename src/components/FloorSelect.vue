@@ -30,7 +30,7 @@ export default {
 }
 
 h1 {
-  margin: 30px;
+  margin: 20px;
   font-size: 50px;
   text-align: center;
   color: #3A3B3E;
@@ -41,14 +41,20 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding-top: 100px;
   text-align: center;
   max-width: 1000px;
   margin: 0 auto;
 }
 
-.floor-box {
+@media screen and (max-width: 922px) {
+  .floor-change{
+    padding-top: 10px;
+  }
+}
+.floor-box, .return-top {
   position: relative;
-  margin: 50px;
+  margin: 30px;
   width: 200px;
   height: 100px;
 
@@ -66,17 +72,7 @@ h1 {
 }
 
 .return-top {
-  position: relative;
-  margin: 50px;
-  width: 200px;
-  height: 100px;
-  border: 2px solid #747578;
-  border-radius: 80px;
-  color: #ff0000;
   font-size: 28px;
-  line-height: 100px;
-  background-color: none;
-  text-decoration: none;
 }
 
 .floor-box:hover {
