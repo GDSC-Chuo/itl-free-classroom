@@ -41,7 +41,6 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding-top: 100px;
   text-align: center;
   max-width: 1000px;
   margin: 0 auto;
@@ -54,7 +53,7 @@ h1 {
 }
 .floor-box, .return-top {
   position: relative;
-  margin: 30px;
+  margin: 25px 30px;
   width: 200px;
   height: 100px;
 
@@ -70,7 +69,6 @@ h1 {
   text-align: center;
   line-height: 100px;
 }
-
 .return-top {
   font-size: 28px;
 }
