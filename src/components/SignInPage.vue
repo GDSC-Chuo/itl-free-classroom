@@ -1,60 +1,25 @@
 <template>
-  <div>
-    <h1>Sign in</h1>
-  </div>
-
-  <form>
-    <div class="info">
-      <p id="info">
-        <input class="login-id" type="email" id="login-id" placeholder="ログインID">
-        <sub style="color: red;" class="error-id"></sub>
-        <input class="login-password" type="password" id="login-password" placeholder="パスワード">
-        <sub style="color: red;" class="error-password"></sub>
-      </p>
+  <div >
+    <div>
+      <h1>Sign in</h1>
     </div>
-    <div class="btn"><input type="submit" id="button" class="button" value="ログイン"></div>
-    <router-link to="/" class="return-box">戻る</router-link>
-  </form>
+
+    <form>
+      <div class="info">
+        <p id="info">
+          <input class="login-id" type="email" id="login-id" placeholder="ログインID">
+          <sub style="color: red;" class="error-id"></sub>
+          <input class="login-password" type="password" id="login-password" placeholder="パスワード">
+          <sub style="color: red;" class="error-password"></sub>
+        </p>
+      </div>
+      <div class="btn"><input type="submit" id="button" class="button" value="ログイン"></div>
+      <router-link to="/" class="return-box">戻る</router-link>
+    </form>
+  </div>
 </template>
 
 <style>
-* {
-  display: flex;
-  flex-wrap: wrap;
-  text-align: center;
-  overflow: auto;
-}
-
-body {
-  background-color: #3A3E3B;
-}
-
-.main-area {
-  text-align: center;
-  position: fixed;
-  top: 0 auto;
-  left: 0 auto;
-  /*top: calc(50% - 45vh);*/
-  /*left: calc(50% - 45vw);*/
-  width: 700px;
-  height: 750px;
-  background: #FFFFFF;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 30px;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #3A3E3B;
-}
-
-.contents {
-  width: calc(100% - 40px);
-  height: calc(100% - 40px);
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-}
-
 .info {
   position: relative;
 }
