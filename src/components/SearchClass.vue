@@ -44,7 +44,7 @@ export default {
     async search() {
       this.searchResults = [];
       try {
-        const q = query(collection(db, 'class information'), where('subject', '==', this.searchKeyword));
+        const q = query(collection(db, 'class information'), where('subject', '==', this.searchKeyword),where('teacher', '==', this.searchKeyword));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
           this.searchResults.push(doc.data());
