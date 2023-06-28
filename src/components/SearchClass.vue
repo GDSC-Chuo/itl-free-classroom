@@ -27,7 +27,7 @@
   </div>
 </template>
   
-  <script>
+<script>
 import { db } from '../firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 
@@ -38,17 +38,28 @@ export default {
       searchKeyword: '',
       searchResults: [],
       isSearchExecuted: false,
-    }
+    };
   },
   methods: {
     async search() {
       this.searchResults = [];
       try {
-        const q = query(collection(db, 'class information'), where('subject', '==', this.searchKeyword),where('teacher', '==', this.searchKeyword));
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
+        // 'subject'について検索
+        const q1 = query(collection(db, 'class information'), where('subject', '==', this.searchKeyword));
+        const querySnapshot1 = await getDocs(q1);
+        querySnapshot1.forEach((doc) => {
           this.searchResults.push(doc.data());
         });
+
+        // 'teacher' について検索
+        const q2 = query(collection(db, 'class information'), where('teacher', '==', this.searchKeyword));
+        const querySnapshot2 = await getDocs(q2);
+        querySnapshot2.forEach((doc) => {
+          if (!this.searchResults.some(result => result.id === doc.id)) {
+            this.searchResults.push(doc.data());
+          }
+        });
+
       } catch (error) {
         console.error("Error fetching documents: ", error);
         this.searchResults = [];
