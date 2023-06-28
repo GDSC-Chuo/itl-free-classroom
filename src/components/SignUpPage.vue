@@ -95,38 +95,38 @@
 <script>
 // import "../firebase.js";
 // import 'firebase/auth';
-import { getAuth, createUserWithEmailAndPassword } from '../firebase.js';
-const auth = getAuth();
+// import { getAuth, createUserWithEmailAndPassword } from '../firebase.js';
+// const auth = getAuth();
 
-export default {
-  data() {
-    return {
-      email: '',
-      password: '',
-    };
-  },
-  mounted() {
-    const registerButton = document.getElementById('register');
-    if (registerButton) {
-      registerButton.addEventListener('click', this.register);
-    }
-  },
-  beforeUnmount() {
-    const registerButton = document.getElementById('register');
-    if (registerButton) {
-      registerButton.removeEventListener('click', this.register);
-    }
-  },
-  methods: {
-    register(event) {
-      event.preventDefault();
-      const mailAddress = document.getElementById('mailAddress').value;
-      const password = document.getElementById('password').value;
-
-      createUserWithEmailAndPassword(auth, mailAddress, password)
-        .catch(function (error) {
-          alert('登録できません（' + error.message + ')');
-        });
+// export default {
+//  data() {
+//    return {
+//      email: '',
+//      password: '',
+//    };
+//  },
+//  mounted() {
+//    const registerButton = document.getElementById('register');
+//    if (registerButton) {
+//      registerButton.addEventListener('click', this.register);
+//    }
+//  },
+//  beforeUnmount() {
+//    const registerButton = document.getElementById('register');
+//    if (registerButton) {
+//      registerButton.removeEventListener('click', this.register);
+//    }
+//  },
+//  methods: {
+//    register(event) {
+//      event.preventDefault();
+//      const mailAddress = document.getElementById('mailAddress').value;
+//      const password = document.getElementById('password').value;
+//
+//      createUserWithEmailAndPassword(auth, mailAddress, password)
+//        .catch(function (error) {
+//          alert('登録できません（' + error.message + ')');
+//        });
       //   .then(() => {
       //     // Successful registration
       //     this.$router.push('/');
@@ -135,7 +135,7 @@ export default {
       //   // Failed registration
       //   alert('Registration failed (' + error.message + ')');
       // });
-    },
-  },
-};
+//    },
+//  },
+//};
 </script>
