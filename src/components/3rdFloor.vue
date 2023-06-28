@@ -10,10 +10,11 @@
           <h2>現在の授業</h2>
           <div v-for="classes in currentClass" :key="classes.id">
             <p class="current-class">
+              {{ classes.classroom }}:
               <router-link :to="{ name: 'ClassInfo', params: { subject: classes.subject }, query: { classData: JSON.stringify(classes) } }">
                 {{ classes.subject }}
               </router-link>
-              ({{ classes.teacher }}) : {{ classes.classroom }}
+              ({{ classes.teacher }}) 
             </p>
           </div>
         </div>
