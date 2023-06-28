@@ -1,11 +1,12 @@
 <!-- TODO: デザイン修正、ログインする/ログインせずに使うというリンクを用意する -->
 <template>
-  <div>
-    <h1>  iTL  </h1>
+  <div class="home">
+    
+    <h1> iTL </h1>
     <h1>Free Classroom</h1>
 
-    <p><router-link to="/3rd-floor" class="select">sign in</router-link></p>
-    <p><router-link to="/3rd-floor"  class="select">sign up</router-link></p>
+    <p><router-link to= '/signin' class="select">sign in</router-link></p>
+    <p><router-link to= '/signup' class="choice">sign up</router-link></p>
   </div>
 </template>
 
@@ -17,6 +18,7 @@ export default {
 </script>
 
 <style scoped>
+
 h1{color: #030000;
   font-weight: 700;
   font-size: 32px;
@@ -27,13 +29,32 @@ h1{color: #030000;
   width: 600px;
   height: 300px;
 
-  border: 2px solid #747578;
+  border: 2px solid #ff0000;
   border-radius: 80px;
-  color: #f6f1f1;
+  color: #ff0000;
   font-weight: 500;
   font-size: 62px;
   vertical-align: middle;
-  background-color: #e50c0c;
+  background-color: #ffffff;
+  text-decoration: none;
+
+  text-align: center;
+  line-height: 150px;
+
+}
+
+.choice{position: relative;
+  margin: 20px;  /* 間隔 */
+  width: 600px;
+  height: 300px;
+
+  border: 2px solid #ff0000;
+  border-radius: 80px;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 62px;
+  vertical-align: middle;
+  background-color: #ff0000;
   text-decoration: none;
 
   text-align: center;
