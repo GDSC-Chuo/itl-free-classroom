@@ -11,16 +11,17 @@ export default {
   name: 'App',
   data() {
     return {
-      componentToControl: 'SignIn', // 特別なstyleを当てるコンポーネント名
+      componentsToControl: ['SignIn', 'SignUp', 'Home'], // 特別なstyleを当てるコンポーネント名の配列
     };
   },
   computed: {
     isSpecificComponent() {
-      return this.$route.name === this.componentToControl; // routeNameっていうのは、index.jsで定義しているnameのこと！
+      return this.componentsToControl.includes(this.$route.name); // routeNameがcomponentsToControlに含まれているかをチェック
     },
   },
 }
 </script>
+
 
 <style>
 body {
