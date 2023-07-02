@@ -1,17 +1,18 @@
 <template>
   <div>
     <div>
-      <h1 class="signin">Sign Up</h1>
+      <h1 class="signup">Sign Up</h1>
     </div>
 
     <form>
       <div class="info">
         <p id="info">
-          <input class="mailAddress" type="email" id="mailAddress" autocomplete="username" placeholder="メールアドレス">
-          <input class="password" type="password" id="password" autocomplete="current-password" placeholder="パスワード">
+          <input class="id" type="email" id="signup-id" autocomplete="username" placeholder="メールアドレス">
+          <input class="password" type="password" id="signup-password" autocomplete="current-password"
+            placeholder="パスワード">
         </p>
       </div>
-      <div class="btn"><input type="button" id="register" class="button" value="登録"></div>
+      <div><input type="submit" id="button" class="register" value="登録"></div>
       <div class="return">
         <router-link to="/" class="return-box">戻る</router-link>
       </div>
@@ -20,7 +21,7 @@
 </template>
 
 <style>
-.signin {
+h1 {
   text-align: center;
   padding-top: 10px;
   font-size: 50px;
@@ -32,11 +33,11 @@
   text-align: center;
 }
 
-.mailAddress,
+.id,
 .password {
   position: relative;
-  font-size: 15px;
-  width: 80%;
+  font-size: 20px;
+  width: 300px;
   height: 30px;
   display: flex;
   border-radius: 30px;
@@ -48,94 +49,73 @@
   text-align: center;
 }
 
-.mailAddress {
+.id {
   margin-bottom: 50px;
 }
 
-.btn {
-  text-align: center;
-}
-
-.button {
-  font-size: 18px;
-  width: 250px;
+.register {
+  font-size: 22px;
+  width: 200px;
   height: 50px;
   border-radius: 30px;
   background-color: #FF0000;
   color: white;
   border-color: #FF0000;
   text-align: center;
-  margin-top: 100px;
+  margin-top: 120px;
+}
+
+.register:hover {
+  opacity: .8;
 }
 
 .return {
   text-align: center;
-  height: 40px;
-  width: 150px;
-  font-size: 18px;
-  padding-top: 10px;
-  border-radius: 30px;
-  background-color: black;
-  text-align: center;
-  margin-top: 50%;
-  margin-left: 50px;
+  margin-top: 50px;
 }
 
 .return-box {
-  text-decoration: none;
-  border-color: 2px solid white;
+  padding: 10px 50px 10px 50px;
+  border: 3px solid white;
+  border-radius: 30px;
   color: white;
-}
+  font-size: 22px;
+  vertical-align: middle;
+  background-color: none;
+  text-decoration: none;
 
-.return:hover {
-  color: #747578;
+  text-align: center;
+  line-height: 180px;
 }
 </style>
 
 <script>
-// import "../firebase.js";
-// import 'firebase/auth';
-// import { getAuth, createUserWithEmailAndPassword } from '../firebase.js';
-// const auth = getAuth();
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
-// export default {
-//  data() {
-//    return {
-//      email: '',
-//      password: '',
-//    };
-//  },
-//  mounted() {
-//    const registerButton = document.getElementById('register');
-//    if (registerButton) {
-//      registerButton.addEventListener('click', this.register);
-//    }
-//  },
-//  beforeUnmount() {
-//    const registerButton = document.getElementById('register');
-//    if (registerButton) {
-//      registerButton.removeEventListener('click', this.register);
-//    }
-//  },
-//  methods: {
-//    register(event) {
-//      event.preventDefault();
-//      const mailAddress = document.getElementById('mailAddress').value;
-//      const password = document.getElementById('password').value;
-//
-//      createUserWithEmailAndPassword(auth, mailAddress, password)
-//        .catch(function (error) {
-//          alert('登録できません（' + error.message + ')');
-//        });
-      //   .then(() => {
-      //     // Successful registration
-      //     this.$router.push('/');
-      //   })
-      // .catch((error) => {
-      //   // Failed registration
-      //   alert('Registration failed (' + error.message + ')');
-      // });
-//    },
-//  },
-//};
+const auth = getAuth();
+
+export default {
+  data() {
+    return {
+      email: '',
+      password: '',
+    };
+  },
+  methods: {
+    register() {
+      const mailAddress = this.email;
+      const password = this.password;
+
+      createUserWithEmailAndPassword(auth, mailAddress, password)
+        .then(() => {
+          // Successful registration
+          this.$router.push('/');
+        })
+        .catch(function (error) {
+          // Failed registration
+          alert('登録できません（' + error.message + ')');
+        });
+    },
+  },
+};
 </script>
