@@ -11,7 +11,7 @@
           <input class="password" type="password" id="signin-password" placeholder="パスワード">
         </p>
       </div>
-      <div><input type="submit" id="button" class="login" value="ログイン"></div>
+      <div><input type="submit" id="signin-button" class="login" value="ログイン"></div>
       <div class="return">
         <router-link to="/" class="return-box">戻る</router-link>
       </div>

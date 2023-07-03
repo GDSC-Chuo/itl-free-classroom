@@ -7,12 +7,12 @@
     <form>
       <div class="info">
         <p id="info">
-          <input class="id" type="email" id="signup-id" autocomplete="username" placeholder="メールアドレス">
-          <input class="password" type="password" id="signup-password" autocomplete="current-password"
+          <input v-model="email" class="id" type="email" id="signup-id" autocomplete="username" placeholder="メールアドレス">
+          <input v-model="password" class="password" type="password" id="signup-password" autocomplete="current-password"
             placeholder="パスワード">
         </p>
       </div>
-      <div><input type="submit" id="button" class="register" value="登録"></div>
+      <div><input type="submit" id="signup-button" class="register" value="登録"></div>
       <div class="return">
         <router-link to="/" class="return-box">戻る</router-link>
       </div>
@@ -91,31 +91,49 @@ h1 {
 
 <script>
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+let signin = document.getElementById("signup-button");
+signin.addEventListener("click", registerUser);
 
-const auth = getAuth();
 
-export default {
-  data() {
-    return {
-      email: '',
-      password: '',
-    };
-  },
-  methods: {
-    register() {
-      const mailAddress = this.email;
-      const password = this.password;
+const registerUser = function () {
+  const $email = document.getElementById("email");
+  const $password = document.getElementById("password");
+  const email = $email.value;
+  const password = $password.value;
+  createUserWithEmailAndPassword(getAuth(), email, password)
+    .then(() => {
+      //登録が成功した時の処理
+      this.$router.push('/floor-select');
+    })
+    .catch((error) => {
+      alert('登録できません（' + error.message + ')');
+    });
+}
 
-      createUserWithEmailAndPassword(auth, mailAddress, password)
-        .then(() => {
-          // Successful registration
-          this.$router.push('/');
-        })
-        .catch(function (error) {
-          // Failed registration
-          alert('登録できません（' + error.message + ')');
-        });
-    },
-  },
-};
+// const auth = getAuth();
+
+// export default {
+//   data() {
+//     return {
+//       email: '',
+//       password: '',
+//     };
+//   },
+//   methods: {
+//     register() {
+//       const mailAddress = this.email;
+//       const password = this.password;
+
+//       createUserWithEmailAndPassword(auth, mailAddress, password)
+//         .then(() => {
+//           // Successful registration
+//           this.$router.push('/floor-select');
+//         })
+//         .catch(function (error) {
+//           // Failed registration
+//           alert('登録できません（' + error.message + ')');
+//         });
+//     },
+//   },
+// };
 </script>
