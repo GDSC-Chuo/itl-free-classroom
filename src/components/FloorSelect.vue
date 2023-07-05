@@ -1,6 +1,9 @@
 <template>
   <div class="wrapper">
-    <h1>フロア選択</h1>
+      <div class="title">
+        <h1>フロア選択</h1>
+        <router-link to="/search-class">授業を検索</router-link>
+      </div>
 
     <div class="select-area">
       <div class="floor-change">
@@ -27,6 +30,13 @@ export default {
 <style scoped>
 * {
   overflow: auto;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 50px;
 }
 
 h1 {
