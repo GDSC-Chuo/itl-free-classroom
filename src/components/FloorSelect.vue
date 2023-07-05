@@ -36,6 +36,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 50px;
 }
 
 h1 {
