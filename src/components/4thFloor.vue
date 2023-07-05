@@ -1,4 +1,4 @@
-<!-- TODO: デザイン修正、3Fに合わせる -->
+<!-- TODO: デザイン修正、4Fに合わせる -->
 <template>
   <div>
     <div class="floor">
@@ -33,7 +33,7 @@ import { db } from '../firebase'
 import { onSnapshot, collection } from 'firebase/firestore';
 
 export default {
-  name: '3rdFloor',
+  name: '4thFloor',
   data() {
     return {
       // 授業の情報を保持する配列
@@ -84,7 +84,7 @@ export default {
       // 時間割、曜日、階数、前期後期で授業情報を絞り込み
       return this.classes.filter((c) => {
         const classroomStr = String(c.classroom);
-        return c.period === periodIndex + 1 && c.day === this.currentDay && classroomStr.startsWith('3') && c.semester === '前期';
+        return c.period === periodIndex + 1 && c.day === this.currentDay && classroomStr.startsWith('4') && c.semester === '前期';
       });
     },
   }
