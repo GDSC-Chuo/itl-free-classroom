@@ -28,7 +28,7 @@ h1{color: #030000;
 
 .select{
   position: relative;
-  width: 250px;
+  width: 200px;
   height: 50px;
   border: 2px solid #ff0000;
   border-radius: 30px;
@@ -39,12 +39,14 @@ h1{color: #030000;
   text-decoration: none;
   margin:40px ;
   text-align: center;
-  
+  display:inline-block;
+  line-height:50px
 
 }
 
-.choice{position: relative;
-  width: 250px;
+.choice{
+  position: relative;
+  width: 200px;
   height:50px;
   border: 2px solid #ff0000;
   border-radius: 30px;
@@ -55,7 +57,8 @@ h1{color: #030000;
   text-decoration: none;
   margin: 40px;
   text-align: center;
-  
+  display:inline-block;
+  line-height:50px
 
   
 }
