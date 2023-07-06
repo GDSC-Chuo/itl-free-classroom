@@ -2,7 +2,7 @@
   <div class="wrapper">
       <div class="title">
         <h1>フロア選択</h1>
-        <router-link to="/search-class">授業を検索</router-link>
+        <router-link to="/search-class" class="select">授業を検索</router-link>
       </div>
 
     <div class="select-area">
@@ -91,6 +91,33 @@ h1 {
 .return-top:hover {
   background-color: #f5f5f5;
 }
+
+.select{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ff0000;
+  color:#ffffff;
+  width: 200px;
+  height:70px;
+  font-weight: 100;
+  font-size: 31px;
+  border-radius: 80px;
+  background-color: hsl(0, 100%, 50%);
+  text-decoration: none;
+  
+  
+
+  text-align: center;
+
+
+}
+
+.select:hover {
+  background-color:#fb9090;
+}
+
+
 
 /* @media screen and (max-width: 400px) {
   モバイル版対応させたい部分
