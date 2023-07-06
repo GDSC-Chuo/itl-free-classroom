@@ -4,7 +4,7 @@
       <h1 class="signup">Sign Up</h1>
     </div>
 
-    <form>
+    <form @submit.prevent="registerUser">
       <div class="info">
         <p id="info">
           <input v-model="email" class="id" type="email" id="signup-id" autocomplete="username" placeholder="メールアドレス">
@@ -90,25 +90,29 @@ h1 {
 </style>
 
 <script>
+import { app } from '../firebase';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-let signin = document.getElementById("signup-button");
-signin.addEventListener("click", registerUser);
 
-
-const registerUser = function () {
-  const $email = document.getElementById("email");
-  const $password = document.getElementById("password");
-  const email = $email.value;
-  const password = $password.value;
-  createUserWithEmailAndPassword(getAuth(), email, password)
-    .then(() => {
-      //登録が成功した時の処理
-      this.$router.push('/floor-select');
-    })
-    .catch((error) => {
-      alert('登録できません（' + error.message + ')');
-    });
-}
+export default {
+  data() {
+    return {
+      email: '',
+      password: '',
+    };
+  },
+  methods: {
+    registerUser() {
+      const auth = getAuth(app);
+      createUserWithEmailAndPassword(auth, this.email, this.password)
+        .then(() => {
+          this.$router.push('/floor-select');
+        })
+        .catch((error) => {
+          alert('登録できません（' + error.message + ')');
+        });
+    },
+  },
+};
 
 // const auth = getAuth();
 
