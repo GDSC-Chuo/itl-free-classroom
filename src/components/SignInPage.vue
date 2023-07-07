@@ -1,10 +1,10 @@
 <template>
-  <div >
+  <div>
     <div>
       <h1 class="signin">Sign in</h1>
     </div>
 
-    <form>
+    <form @submit.prevent="loginUser">
       <div class="info">
         <p id="info">
           <input class="id" type="email" id="signin-id" placeholder="ログインID">
@@ -12,10 +12,10 @@
         </p>
       </div>
       <div><input type="submit" id="signin-button" class="login" value="ログイン"></div>
-      <div class="return">
-        <router-link to="/" class="return-box">戻る</router-link>
-      </div>
     </form>
+    <div class="return">
+      <router-link to="/" class="return-box">戻る</router-link>
+    </div>
   </div>
 </template>
 
@@ -33,15 +33,37 @@
 }
 
 .login:hover {
-  opacity: .8;
+  opacity: .7;
 }
-
 </style>
 
 
 <script>
+import { app } from '../firebase';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+
 export default {
-  name: 'SignIn'
-}
+  name: "SignIn",
+  data() {
+    return {
+      email: '',
+      password: '',
+    };
+  },
+  methods: {
+    loginUser() {
+      const auth = getAuth(app);
+      signInWithEmailAndPassword(auth, this.email, this.password)
+        .then(() => {
+          console.log("Success!");
+          this.$router.push('/floor-select');
+        })
+        .catch((error) => {
+          console.log("Failure...");
+          alert('Failure... (' + error.message + ')');
+        });
+    },
+  },
+};
 
 </script>

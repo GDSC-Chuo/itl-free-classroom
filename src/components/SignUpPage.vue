@@ -13,10 +13,10 @@
         </p>
       </div>
       <div><input type="submit" id="signup-button" class="register" value="登録"></div>
-      <div class="return">
-        <router-link to="/" class="return-box">戻る</router-link>
-      </div>
     </form>
+    <div class="return">
+      <router-link to="/" class="return-box">戻る</router-link>
+    </div>
   </div>
 </template>
 
@@ -85,7 +85,7 @@ h1 {
   text-decoration: none;
 
   text-align: center;
-  line-height: 180px;
+  line-height: 350px;
 }
 </style>
 
@@ -94,6 +94,7 @@ import { app } from '../firebase';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default {
+  name: "SignIn",
   data() {
     return {
       email: '',
@@ -108,36 +109,10 @@ export default {
           this.$router.push('/floor-select');
         })
         .catch((error) => {
-          alert('登録できません（' + error.message + ')');
+          alert('Failure...(' + error.message + ')');
         });
     },
   },
 };
 
-// const auth = getAuth();
-
-// export default {
-//   data() {
-//     return {
-//       email: '',
-//       password: '',
-//     };
-//   },
-//   methods: {
-//     register() {
-//       const mailAddress = this.email;
-//       const password = this.password;
-
-//       createUserWithEmailAndPassword(auth, mailAddress, password)
-//         .then(() => {
-//           // Successful registration
-//           this.$router.push('/floor-select');
-//         })
-//         .catch(function (error) {
-//           // Failed registration
-//           alert('登録できません（' + error.message + ')');
-//         });
-//     },
-//   },
-// };
 </script>
