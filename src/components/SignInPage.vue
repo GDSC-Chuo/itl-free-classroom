@@ -7,8 +7,8 @@
     <form @submit.prevent="loginUser">
       <div class="info">
         <p id="info">
-          <input class="id" type="email" id="signin-id" placeholder="ログインID">
-          <input class="password" type="password" id="signin-password" placeholder="パスワード">
+          <input class="id" type="email" v-model="email" id="signin-id" placeholder="ログインID">
+          <input class="password" type="password" v-model="password" id="signin-password" placeholder="パスワード">
         </p>
       </div>
       <div><input type="submit" id="signin-button" class="login" value="ログイン"></div>
