@@ -43,7 +43,7 @@ export default {
         { start: '09:00', end: '10:40' },
         { start: '10:50', end: '12:30' },
         { start: '13:20', end: '15:00' },
-        { start: '15:10', end: '16:50' },
+        { start: '15:10', end: '23:50' },
         { start: '17:00', end: '18:40' },
         { start: '18:50', end: '20:30' },
       ],
@@ -54,8 +54,16 @@ export default {
   created() {
     const classesRef = collection(db, 'class information');
     onSnapshot(classesRef, (snapshot) => {
-      this.classes = snapshot.docs.map((doc) => doc.data());
-      console.log(this.classes);
+      this.classes = snapshot.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data()
+        }
+      });
+
+      if (this.classData) {
+        this.classData = this.classes.find(x => x.subject === this.classData.subject) || this.classData;
+      }
     });
   },
 

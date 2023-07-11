@@ -54,8 +54,17 @@ export default {
   created() {
     const classesRef = collection(db, 'class information');
     onSnapshot(classesRef, (snapshot) => {
-      this.classes = snapshot.docs.map((doc) => doc.data());
+      this.classes = snapshot.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data()
+        }
+      });
       console.log(this.classes);
+
+      if (this.classData) {
+        this.classData = this.classes.find(x => x.id === this.classData.id) || this.classData;
+      }
     });
   },
 
