@@ -60,10 +60,9 @@ export default {
           ...doc.data()
         }
       });
-      console.log(this.classes);
 
       if (this.classData) {
-        this.classData = this.classes.find(x => x.id === this.classData.id) || this.classData;
+        this.classData = this.classes.find(x => x.subject === this.classData.subject) || this.classData;
       }
     });
   },
