@@ -43,7 +43,7 @@ export default {
         { start: '09:00', end: '10:40' },
         { start: '10:50', end: '12:30' },
         { start: '13:20', end: '15:00' },
-        { start: '15:10', end: '23:50' },
+        { start: '15:10', end: '16:50' },
         { start: '17:00', end: '18:40' },
         { start: '18:50', end: '20:30' },
       ],
