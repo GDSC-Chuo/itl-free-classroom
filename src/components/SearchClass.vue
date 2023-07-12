@@ -4,9 +4,10 @@
   <h1>Class&nbsp;Information</h1>
 
   <form @submit.prevent="search">
-  <div class="searchbox">  <input v-model="searchKeyword" type="text" name="subject" placeholder="       Input Keyword">
-    <img src="@/assets/serchpng.png" width="53" height="53" @click="search"></div>
-  </form>
+  <div class="searchbox">  <input v-model="searchKeyword" type="text" name="subject" placeholder="       「教員名」もしくは「授業名」で検索">
+    <img src="@/assets/serchpng.png" width="53" height="53" @click="search">
+  </div>
+</form>
 
   <div v-if="isSearchExecuted">
     <div v-if="searchResults.length">
@@ -21,12 +22,12 @@
       <p>{{ searchKeyword }}に一致する検索結果がありません。</p>
     </div>
   </div>
+<div v-if="isElementVisible">
+ <h3>Ex）教員名「飯尾淳」&nbsp;&nbsp;授業名「基礎演習」</h3>
+</div>
 
 
-
-  
-  <h3>Ex）教員名「飯尾淳」&nbsp;&nbsp;授業名「基礎演習」</h3>
-  <!--検索した時だけの表示はこれでしょうか。-->
+  <!--検索した時だけの表示はこれ-->
   <div v-if="isSearchExecuted"> 
     <p class="result">Subject&nbsp;&nbsp;&nbsp;&nbsp;Teacher&nbsp;&nbsp;&nbsp;&nbsp;Classroom&nbsp;&nbsp;&nbsp;&nbsp;Day&nbsp;&nbsp;&nbsp;&nbsp;Semester</p>
   </div>
@@ -44,7 +45,8 @@ export default {
       searchKeyword: '',
       searchResults: [],
       isSearchExecuted: false,
-    }
+      isElementVisible:true
+    };
   },
   methods: {
     async search() {
@@ -61,8 +63,9 @@ export default {
       } finally {
         this.isSearchExecuted = true;
       }
-    },
-  },
+      this.isElementVisible = false;
+    },  
+  }
 };
 
 
@@ -113,10 +116,10 @@ h3 {
 }
 
 ::placeholder {
-  font-size: 50px;
+  font-size: 30px;
   /* プレースホルダーテキストのフォントサイズを変更 */
   color: rgb(177, 169, 169);
-  transform: translateY(1px);
+  transform: translateY(0px);
   /* テキストを上方向に5px移動 */
   text-align: left;
 }
