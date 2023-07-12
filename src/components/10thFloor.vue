@@ -1,9 +1,9 @@
-<!-- TODO: デザイン修正、3Fに合わせる -->
+<!-- TODO: デザイン修正-->
 <template>
   <div>
     <div class="floor">
       <div class="title">
-        <p>9F</p>
+        <p>10F</p>
       </div>
       <div class="floor-info">
         <div v-if="currentClass && currentClass.length > 0">
@@ -19,11 +19,11 @@
           </div>
         </div>
         <div v-else>
-          <p>現在9Fで実施されている授業はありません。</p>
+          <p>現在10Fで実施されている授業はありません。</p>
         </div>
       </div>
     </div>
-    <img src="@/assets/9F.png" alt="9F" >
+    <img src="@/assets/10F.png" alt="10F" >
     <router-link to="/floor-select" class="back">フロア選択へ戻る</router-link>
   </div>
 </template>
@@ -33,7 +33,7 @@ import { db } from '../firebase'
 import { onSnapshot, collection } from 'firebase/firestore';
 
 export default {
-  name: '9thFloor',
+  name: '10thFloor',
   data() {
     return {
       // 授業の情報を保持する配列
@@ -90,9 +90,9 @@ export default {
       const periodIndex = this.periods.indexOf(currentPeriod);
 
       // 時間割、曜日、階数、前期後期で授業情報を絞り込み
-       return this.classes.filter((c) => {
+      return this.classes.filter((c) => {
         const classroomStr = String(c.classroom);
-        return c.period === periodIndex + 1 && c.day === this.currentDay && classroomStr.startsWith('9') && c.semester === '前期';
+        return c.period === periodIndex + 1 && c.day === this.currentDay && classroomStr.startsWith('10') && c.semester === '前期';
       });
     },
   }

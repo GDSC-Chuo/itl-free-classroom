@@ -10,10 +10,11 @@
           <h2>現在の授業</h2>
           <div v-for="classes in currentClass" :key="classes.id">
             <p class="current-class">
+              {{ classes.classroom }}:
               <router-link :to="{ name: 'ClassInfo', params: { subject: classes.subject }, query: { classData: JSON.stringify(classes) } }">
                 {{ classes.subject }}
               </router-link>
-              ({{ classes.teacher }}) : {{ classes.classroom }}
+              ({{ classes.teacher }}) 
             </p>
           </div>
         </div>
@@ -53,8 +54,16 @@ export default {
   created() {
     const classesRef = collection(db, 'class information');
     onSnapshot(classesRef, (snapshot) => {
-      this.classes = snapshot.docs.map((doc) => doc.data());
-      console.log(this.classes);
+      this.classes = snapshot.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data()
+        }
+      });
+
+      if (this.classData) {
+        this.classData = this.classes.find(x => x.subject === this.classData.subject) || this.classData;
+      }
     });
   },
 
