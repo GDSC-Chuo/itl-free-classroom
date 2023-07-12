@@ -5,18 +5,13 @@
 
   <form @submit.prevent="search">
   <div class="searchbox">  <input v-model="searchKeyword" type="text" name="subject" placeholder="       「教員名」もしくは「授業名」で検索">
-    <img src="@/assets/serchpng.png" width="53" height="53" @click="search">
+    <img src="@/assets/search-icon.svg" width="53" height="53" @click="search">
   </div>
 </form>
 
   <div v-if="isSearchExecuted">
     <div v-if="searchResults.length">
       <h2>Search Results</h2>
-      <ul>
-        <li v-for="(result, index) in searchResults" :key="index">
-          {{ result.subject }} :  {{ result.teacher }} {{ result.classroom }} {{ result.day }} {{ result.semester }}
-        </li>
-      </ul>
     </div>
     <div v-else>
       <p>{{ searchKeyword }}に一致する検索結果がありません。</p>
@@ -29,7 +24,22 @@
 
   <!--検索した時だけの表示はこれ-->
   <div v-if="isSearchExecuted"> 
-    <p class="result">Subject&nbsp;&nbsp;&nbsp;&nbsp;Teacher&nbsp;&nbsp;&nbsp;&nbsp;Classroom&nbsp;&nbsp;&nbsp;&nbsp;Day&nbsp;&nbsp;&nbsp;&nbsp;Semester</p>
+    <table class="result">
+      <tr>
+        <th>Subject</th>
+        <th>Teacher</th>
+        <th>Class</th>
+        <th>Day</th>
+        <th>Semester</th>
+      </tr>
+      <tr v-for="(result, index) in searchResults" :key="index">
+        <td>{{ result.subject }}</td>
+        <td>{{ result.teacher }}</td>
+        <td>{{ result.classroom }}</td>
+        <td>{{ result.day }}</td>
+        <td>{{ result.semester }}</td>
+      </tr>
+    </table>
   </div>
 </div>
 </template>
@@ -87,8 +97,12 @@ export default {
 .searchbox {
   /*検索ボタンと一緒に移動するようにrelativeにする*/
   position: relative;
+  width: 100%;
 }
 
+input {
+  width: 100%;
+}
 /*小久保さんがやってくれた部分、要素を縦に並べる*/
 .search-area {
   
@@ -123,7 +137,15 @@ h3 {
   color:black;
   border: 2px solid black; /* 黒い2pxの実線の枠 */
   border-radius: 15px; /* 入力フィールドの縁取りを丸くする */
-  height: 380px;
+  width: 100%;
+}
+.result td {
+  padding: 8px;
+  text-align: center;
+}
+
+li {
+  list-style: none;
 }
 
 ::placeholder {
@@ -136,7 +158,7 @@ h3 {
 }
 
 input[type="text"] {
-  width: 674px;
+  width: 65vw;
   /* 入力フィールドの幅を変更 */
   height: 60px;
   /* 入力フィールドの高さを変更 */
