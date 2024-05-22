@@ -8,8 +8,9 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@firebase/auth": "^1.7.3",
     "core-js": "^3.8.3",
-    "firebase": "^9.22.1",
+    "firebase": "^9.23.0",
     "vue": "^3.2.13",
     "vue-router": "^4.0.13"
   },
@@ -41,5 +42,6 @@
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ]
+  ],
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
