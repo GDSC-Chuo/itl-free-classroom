@@ -18,7 +18,7 @@
           <span v-if="!passwordsMatch" class="error-message">パスワードが一致しません</span>
         </p>
       </div>
-      <div><input type="submit" id="signup-button" class="register" value="登録" :disabled="!passwordsMatch || emailError"></div>
+      <div><input type="submit" id="signup-button" class="register" value="登録" ></div>
     </form>
     <div class="return">
       <router-link to="/" class="return-box">戻る</router-link>
