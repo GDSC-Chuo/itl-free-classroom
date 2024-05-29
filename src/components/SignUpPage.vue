@@ -89,6 +89,7 @@ h1 {
 }
 </style>
 
+
 <script>
 import { app } from '../firebase';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
