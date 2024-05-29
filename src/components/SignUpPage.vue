@@ -21,6 +21,7 @@
 </template>
 
 <style>
+
 h1 {
   text-align: center;
   padding-top: 10px;
