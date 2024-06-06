@@ -4,15 +4,21 @@
       <h1 class="signup">Sign Up</h1>
     </div>
 
-    <form @submit.prevent="registerUser">
+    <form @submit.prevent="validateAndRegister">
       <div class="info">
         <p id="info">
-          <input v-model="email" class="id" type="email" id="signup-id" autocomplete="username" placeholder="メールアドレス">
-          <input v-model="password" class="password" type="password" id="signup-password" autocomplete="current-password"
-            placeholder="パスワード">
+
+          <input v-model="email" class="id" type="email" id="signup-id" autocomplete="username" placeholder="メールアドレス" :class="{ 'error': emailError }">
+          <span v-if="emailError" class="error-message">中央大学のメールアドレスで登録してください</span>
+
+          <input v-model="password1" class="password" type="password" id="signup-password1" autocomplete="current-password" placeholder="パスワード" :class="{ 'error': !passwordsMatch }">
+          
+          <input v-model="password2" class="password" type="password" id="signup-password2" autocomplete="current-password" placeholder="パスワード" :class="{ 'error': !passwordsMatch }">
+
+          <span v-if="!passwordsMatch" class="error-message">パスワードが一致しません</span>
         </p>
       </div>
-      <div><input type="submit" id="signup-button" class="register" value="登録"></div>
+      <div><input type="submit" id="signup-button" class="register" value="登録" ></div>
     </form>
     <div class="return">
       <router-link to="/" class="return-box">戻る</router-link>
@@ -55,6 +61,18 @@ h1 {
   margin-bottom: 50px;
 }
 
+.password.error,
+.id.error {
+  border-color: red;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  display: block;
+  margin-top: 10px;
+}
+
 .register {
   font-size: 22px;
   width: 200px;
@@ -71,13 +89,18 @@ h1 {
   opacity: .8;
 }
 
+.register:disabled {
+  background-color: #FF8888;
+  border-color: #FF8888;
+}
+
 .return {
   text-align: center;
   margin-top: 50px;
 }
 
 .return-box {
-  padding: 10px 50px 10px 50px;
+  padding: 10px 50px;
   border: 3px solid white;
   border-radius: 30px;
   color: white;
@@ -85,9 +108,7 @@ h1 {
   vertical-align: middle;
   background-color: none;
   text-decoration: none;
-
   text-align: center;
-  line-height: 350px;
 }
 </style>
 
@@ -101,13 +122,26 @@ export default {
   data() {
     return {
       email: '',
-      password: '',
+      password1: '',
+      password2: '',
+      emailError: false,
     };
   },
+  computed: {
+    passwordsMatch() {
+      return this.password1 === this.password2;
+    },
+  },
   methods: {
-    registerUser() {
+    validateAndRegister() {
+      this.emailError = !this.email.endsWith('@g.chuo-u.ac.jp');
+
+      if (!this.passwordsMatch || this.emailError) {
+        return;
+      }
+      
       const auth = getAuth(app);
-      createUserWithEmailAndPassword(auth, this.email, this.password)
+      createUserWithEmailAndPassword(auth, this.email, this.password1)
         .then(() => {
           this.$router.push('/floor-select');
         })
