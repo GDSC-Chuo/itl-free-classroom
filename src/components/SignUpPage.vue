@@ -49,7 +49,7 @@ h1 {
   border-radius: 30px;
   gap: 0 .7em;
   margin-bottom: .6em;
-  padding: .7em .9em;
+  padding: .9em .9em;
   border-color: #747578;
   background-color: white;
   text-align: center;
@@ -82,7 +82,7 @@ h1 {
   color: white;
   border-color: #FF0000;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 
 .register:hover {
