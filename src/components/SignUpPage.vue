@@ -82,7 +82,7 @@ h1 {
   color: white;
   border-color: #FF0000;
   text-align: center;
-  margin-top: 120px;
+  margin-top: 10px;
 }
 
 .register:hover {
