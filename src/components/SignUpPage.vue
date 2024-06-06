@@ -49,7 +49,7 @@ h1 {
   border-radius: 30px;
   gap: 0 .7em;
   margin-bottom: .6em;
-  padding: .7em .9em;
+  padding: .9em .9em;
   border-color: #747578;
   background-color: white;
   text-align: center;
