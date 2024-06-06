@@ -34,7 +34,7 @@ h1 {
 }
 
 .info {
-  padding-top: 80px;
+  /*padding-top: 80px;*/
   margin-left: 10px;
   text-align: center;
 }
@@ -99,9 +99,9 @@ h1 {
 
 .return-box {
   padding: 10px 50px;
-  border: 3px solid white;
+  border: 3px solid black;
   border-radius: 30px;
-  color: white;
+  color: black;
   font-size: 22px;
   vertical-align: middle;
   background-color: none;
