@@ -21,30 +21,27 @@ export default {
 
 <style scoped>
 
+html, body{
+  text-align: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+
+
+
+
+
+
 h1{color: #030000;
   font-weight: 700;
   font-size: 32px;
   margin: 0s;}
 
 .select{
-  position: relative;
-  width: 200px;
-  height: 50px;
-  border: 2px solid #ff0000;
-  border-radius: 30px;
-  color: #ff0000;
-  font-size: 32px;
-  vertical-align: middle;
-  background-color: #ffffff;
-  text-decoration: none;
-  margin:40px ;
-  text-align: center;
-  display:inline-block;
-  line-height:50px
 
-}
-
-.choice{
   position: relative;
   width: 200px;
   height:50px;
@@ -60,7 +57,39 @@ h1{color: #030000;
   display:inline-block;
   line-height:50px
 
+ 
+
+}
+.choice{
+  position: relative;
+  width: 200px;
+  height:50px;
+  border: 2px solid #ff0000;
+  border-radius: 30px;
+  color: #ff0101;
+  font-size: 32px;
+  vertical-align: middle;
+  background-color: #ffffff;
+  text-decoration: none;
+  margin: 40px;
+  text-align: center;
+  display:inline-block;
+  line-height:50px
+
   
 }
+@media (max-width: 400px) {
+  h1 {
+    font-size: 20px;
+  }
+  
+  .button {
+    width: 120px;
+    height: 35px;
+    font-size: 14px;
+    line-height: 35px;
+  }
+}
+
 
 </style>
