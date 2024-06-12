@@ -1,7 +1,7 @@
 <template>
-  <div :class="{'special-area': isSpecificComponent, 'main-area': !isSpecificComponent}">
+  <div :class="{ 'special-area': isSpecificComponent, 'main-area': !isSpecificComponent }">
     <div class="contents">
-      <router-view/>
+      <router-view />
     </div>
   </div>
 </template>
@@ -27,12 +27,13 @@ export default {
 body {
   background-color: #3A3E3B;
 }
+
 .main-area {
   position: fixed;
-  top: calc(50% - 45vh);
-  left: calc(50% - 45vw);
-  width: 90vw;
-  height: 90vh;
+  top: calc(50% - 225px);
+  left: calc(50% - 400px);
+  width: 800px;
+  height: 450px;
   background: #FFFFFF;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
@@ -40,14 +41,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #3A3E3B;
+  overflow: auto;
 }
+
 .special-area {
   text-align: center;
-  position: fixed;
-  top: 15%;
-  left: 30%;
-  width: 40%;
-  height: 70%;
+  position: absolute;
+  top: 5vh;
+  left: calc(50% - 250px);
+  width: 500px;
+  height: 550px;
   background: #FFFFFF;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
@@ -56,13 +59,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #3A3E3B;
 }
+
 .contents {
   width: calc(100% - 40px);
   height: calc(100% - 40px);
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 20px;
 }
+
 p {
   margin: 0;
 }
