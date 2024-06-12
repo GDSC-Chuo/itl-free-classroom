@@ -1,9 +1,9 @@
 <template>
   <div class="wrapper">
-      <div class="title">
-        <h1>フロア選択</h1>
-        <router-link to="/search-class" class="select">授業を検索</router-link>
-      </div>
+    <div class="title">
+      <h1>フロア選択</h1>
+      <router-link to="/search-class" class="select">授業を検索</router-link>
+    </div>
 
     <div class="select-area">
       <div class="floor-change">
@@ -57,11 +57,13 @@ h1 {
 }
 
 @media screen and (max-width: 922px) {
-  .floor-change{
+  .floor-change {
     padding-top: 10px;
   }
 }
-.floor-box, .return-top {
+
+.floor-box,
+.return-top {
   position: relative;
   margin: 25px 30px;
   width: 200px;
@@ -79,6 +81,7 @@ h1 {
   text-align: center;
   line-height: 100px;
 }
+
 .return-top {
   font-size: 28px;
 }
@@ -92,21 +95,21 @@ h1 {
   background-color: #f5f5f5;
 }
 
-.select{
+.select {
   display: flex;
   align-items: center;
   justify-content: center;
   border: 2px solid #ff0000;
-  color:#ffffff;
+  color: #ffffff;
   width: 200px;
-  height:70px;
+  height: 70px;
   font-weight: 100;
   font-size: 31px;
   border-radius: 80px;
   background-color: hsl(0, 100%, 50%);
   text-decoration: none;
-  
-  
+
+
 
   text-align: center;
 
@@ -114,7 +117,7 @@ h1 {
 }
 
 .select:hover {
-  background-color:#fb9090;
+  background-color: #fb9090;
 }
 
 
@@ -129,5 +132,4 @@ h1 {
     overflow: hidden;
   }
 } */
-
 </style>

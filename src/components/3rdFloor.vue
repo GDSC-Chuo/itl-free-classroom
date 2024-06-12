@@ -11,10 +11,11 @@
           <div v-for="classes in currentClass" :key="classes.id">
             <p class="current-class">
               {{ classes.classroom }}:
-              <router-link :to="{ name: 'ClassInfo', params: { subject: classes.subject }, query: { classData: JSON.stringify(classes) } }">
+              <router-link
+                :to="{ name: 'ClassInfo', params: { subject: classes.subject }, query: { classData: JSON.stringify(classes) } }">
                 {{ classes.subject }}
               </router-link>
-              ({{ classes.teacher }}) 
+              ({{ classes.teacher }})
             </p>
           </div>
         </div>
@@ -23,7 +24,7 @@
         </div>
       </div>
     </div>
-    <img src="@/assets/3F.png" alt="3F" >
+    <img src="@/assets/3F.png" alt="3F">
     <router-link to="/floor-select" class="back">フロア選択へ戻る</router-link>
   </div>
 </template>
@@ -105,6 +106,7 @@ export default {
   left: 25px;
   top: 25px;
 }
+
 .title {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -114,25 +116,30 @@ export default {
   border-radius: 80px;
   width: 38px;
 }
+
 /* titleというdivの中にあるpの設定  */
-.title > p {
+.title>p {
   color: #ff0000;
   font-weight: 700;
   font-size: 32px;
   margin: 0s;
 }
+
 .floor-info {
   margin-top: 30px;
 }
+
 .current-class {
   font-weight: 400;
   font-size: 20px;
   margin: 15px 0;
 }
+
 img {
   max-width: calc(90vw - 40px);
   max-height: calc(90vh - 40px);
 }
+
 .back {
   position: absolute;
   right: 25px;
@@ -149,6 +156,7 @@ img {
   background-color: #fff;
   text-decoration: none;
 }
+
 /* hoverとは、マウスカーソルを対象物に重ねた時の挙動のこと  */
 .back:hover {
   background-color: #f5f5f5;
