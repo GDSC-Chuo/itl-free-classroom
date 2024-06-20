@@ -23,12 +23,12 @@
 <style>
 h1 {
   text-align: center;
-  padding-top: 10px;
+  padding-top: 0px;
   font-size: 50px;
 }
 
 .info {
-  padding-top: 80px;
+  padding-top: 40px;
   margin-left: 10px;
   text-align: center;
 }
@@ -36,13 +36,13 @@ h1 {
 .id,
 .password {
   position: relative;
-  font-size: 20px;
+  font-size: 25px;
   width: 300px;
   height: 30px;
   display: flex;
   border-radius: 30px;
   gap: 0 .7em;
-  margin-bottom: .6em;
+  margin-bottom: .10em;
   padding: .7em .9em;
   border-color: #747578;
   background-color: white;
@@ -50,7 +50,7 @@ h1 {
 }
 
 .id {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .register {
@@ -62,7 +62,7 @@ h1 {
   color: white;
   border-color: #FF0000;
   text-align: center;
-  margin-top: 120px;
+  margin-top: 20px;
 }
 
 .register:hover {
@@ -71,21 +71,23 @@ h1 {
 
 .return {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .return-box {
   padding: 10px 50px 10px 50px;
-  border: 3px solid white;
+  /*border: 3px solid white;*/
   border-radius: 30px;
-  color: white;
   font-size: 22px;
   vertical-align: middle;
   background-color: none;
   text-decoration: none;
-
+  margin: 0 auto;
   text-align: center;
   line-height: 350px;
+  background-color: #FF0000;
+  color: white;
+  border-color: #FF0000;
 }
 </style>
 
