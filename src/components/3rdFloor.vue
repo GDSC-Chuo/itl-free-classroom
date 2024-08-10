@@ -1,6 +1,6 @@
 <!-- TODO: デザイン修正-->
 <template>
-  <div>
+  <div class="wrapper">
     <div class="floor">
       <div class="title">
         <p>3F</p>
@@ -15,7 +15,7 @@
                 {{ classes.subject }}
               </router-link>
               ({{ classes.teacher }}) 
-            </p>
+           </p>
           </div>
         </div>
         <div v-else>
@@ -100,19 +100,23 @@ export default {
 </script>
 
 <style scoped>
+.wrapper{
+  min-width: 375px;
+}
+
 .floor {
   position: absolute;
   left: 25px;
   top: 25px;
 }
 .title {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 53px;
+  padding-right: 53px;
   border: 2px solid #747578;
   border-radius: 80px;
-  width: 38px;
+  width: 50px;
 }
 /* titleというdivの中にあるpの設定  */
 .title > p {
@@ -137,10 +141,10 @@ img {
   position: absolute;
   right: 25px;
   bottom: 25px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 24px;
+  padding-right: 24px;
   border: 2px solid #747578;
   border-radius: 80px;
   color: #ff0000;
@@ -153,4 +157,42 @@ img {
 .back:hover {
   background-color: #f5f5f5;
 }
+
+/*375px * 667px*/
+@media(max-width: 1020px){
+  .floor{
+    position: absolute;
+    top: 25px;
+  }
+
+  .title{
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-right: 24px;
+  }
+
+  .title > p {
+    font-weight: 700;
+    font-size: 20px;
+  }
+
+  .back{
+    position: absolute;
+    top: 25px;
+    bottom: auto;
+  }
+
+  img{
+    margin-top: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 75%;
+  }
+}
+
+@media (max-width:414px){
+  
+}
+
+
 </style>
