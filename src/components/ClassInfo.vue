@@ -9,7 +9,7 @@
     <h3 class=“class-info”>
       曜日時限：{{ classDataCopy.day }}{{ classDataCopy.period }}時限
     </h3>
-    
+
     <router-link to=“/floor-select” class=“back” @click="goBack">戻る</router-link>
   </div>
 </template>
@@ -54,7 +54,8 @@ export default {
 .all {
   display: flex;
   flex-direction: column;
-  };
+}
+
 .class-info1 {
   display: flex;
   width: 526px;
@@ -69,19 +70,22 @@ export default {
   margin: 0;
   text-align: center;
 }
+
 .class-name {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .recommend {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 .heart-icon {
-  border:  2px solid #FF0000;
+  border: 2px solid #FF0000;
   border-radius: 22px;
   display: flex;
   align-items: center;
@@ -89,6 +93,7 @@ export default {
   width: 40px;
   height: 40px;
 }
+
 .class-info {
   display: flex;
   width: 515px;
@@ -105,17 +110,20 @@ export default {
   text-align: center;
   padding: 5px;
 }
+
 .year {
   color: #000;
   font-size: 20px;
   font-family: Zen Kaku Gothic Antique;
   text-align: left;
 }
+
 .button-container {
   position: fixed;
   bottom: 200px;
   right: 200px;
 }
+
 .back {
   position: absolute;
   right: 25px;

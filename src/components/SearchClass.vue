@@ -1,49 +1,50 @@
 <!-- TODO: デザイン修正、ログインする/ログインせずに使うというリンクを用意する -->
 <template>
   <div class="search-area">
-  <h1>Class&nbsp;Information</h1>
+    <h1>Class&nbsp;Information</h1>
 
-  <form @submit.prevent="search">
-  <div class="searchbox">  <input v-model="searchKeyword" type="text" name="subject" placeholder="       「教員名」もしくは「授業名」で検索">
-    <img src="@/assets/search-icon.svg" width="53" height="53" @click="search">
-  </div>
-</form>
+    <form @submit.prevent="search">
+      <div class="searchbox"> <input v-model="searchKeyword" type="text" name="subject"
+          placeholder="       「教員名」もしくは「授業名」で検索">
+        <img src="@/assets/search-icon.svg" width="53" height="53" @click="search">
+      </div>
+    </form>
 
-  <div v-if="isSearchExecuted">
-    <div v-if="searchResults.length">
-      <h2>Search Results</h2>
+    <div v-if="isSearchExecuted">
+      <div v-if="searchResults.length">
+        <h2>Search Results</h2>
+      </div>
+      <div v-else>
+        <p>{{ searchKeyword }}に一致する検索結果がありません。</p>
+      </div>
     </div>
-    <div v-else>
-      <p>{{ searchKeyword }}に一致する検索結果がありません。</p>
+    <div v-if="isElementVisible">
+      <h3>Ex）教員名「飯尾淳」&nbsp;&nbsp;授業名「基礎演習」</h3>
+    </div>
+
+
+    <!--検索した時だけの表示はこれ-->
+    <div v-if="isSearchExecuted">
+      <table class="result">
+        <tr>
+          <th>Subject</th>
+          <th>Teacher</th>
+          <th>Class</th>
+          <th>Day</th>
+          <th>Semester</th>
+        </tr>
+        <tr v-for="(result, index) in searchResults" :key="index">
+          <td>{{ result.subject }}</td>
+          <td>{{ result.teacher }}</td>
+          <td>{{ result.classroom }}</td>
+          <td>{{ result.day }}</td>
+          <td>{{ result.semester }}</td>
+        </tr>
+      </table>
     </div>
   </div>
-<div v-if="isElementVisible">
- <h3>Ex）教員名「飯尾淳」&nbsp;&nbsp;授業名「基礎演習」</h3>
-</div>
-
-
-  <!--検索した時だけの表示はこれ-->
-  <div v-if="isSearchExecuted"> 
-    <table class="result">
-      <tr>
-        <th>Subject</th>
-        <th>Teacher</th>
-        <th>Class</th>
-        <th>Day</th>
-        <th>Semester</th>
-      </tr>
-      <tr v-for="(result, index) in searchResults" :key="index">
-        <td>{{ result.subject }}</td>
-        <td>{{ result.teacher }}</td>
-        <td>{{ result.classroom }}</td>
-        <td>{{ result.day }}</td>
-        <td>{{ result.semester }}</td>
-      </tr>
-    </table>
-  </div>
-</div>
 </template>
-  
+
 <script>
 import { db } from '../firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
@@ -55,7 +56,7 @@ export default {
       searchKeyword: '',
       searchResults: [],
       isSearchExecuted: false,
-      isElementVisible:true
+      isElementVisible: true
     };
   },
   methods: {
@@ -85,13 +86,13 @@ export default {
         this.isSearchExecuted = true;
       }
       this.isElementVisible = false;
-    },  
+    },
   }
 };
 
 
 </script>
-  
+
 <style scoped>
 /*検索をする要素全体（inputのところで同じように設定した方が良いのでしょうか*/
 .searchbox {
@@ -103,19 +104,24 @@ export default {
 input {
   width: 100%;
 }
+
 /*小久保さんがやってくれた部分、要素を縦に並べる*/
 .search-area {
-  
-  display: flex; /*並べ方の指定*/
-  flex-direction: column; /*縦に並べる*/
+
+  display: flex;
+  /*並べ方の指定*/
+  flex-direction: column;
+  /*縦に並べる*/
 }
+
 /*Class Informationの設定*/
 h1 {
   margin: 50px auto;
   width: 100%;
   text-align: center;
-  
+
 }
+
 /*検索の虫眼鏡の画像の設定*/
 img {
   /*searchboxに合わせて位置を指定*/
@@ -123,22 +129,27 @@ img {
   top: 8px;
   right: 10px;
 }
+
 /*検索方法の例の設定*/
 h3 {
   top: 220px;
   text-align: center;
   color: black;
 }
+
 /*検索結果の要素の設定*/
 .result {
-  margin-top:50px;
+  margin-top: 50px;
   font-size: 25px;
   text-align: center;
-  color:black;
-  border: 2px solid black; /* 黒い2pxの実線の枠 */
-  border-radius: 15px; /* 入力フィールドの縁取りを丸くする */
+  color: black;
+  border: 2px solid black;
+  /* 黒い2pxの実線の枠 */
+  border-radius: 15px;
+  /* 入力フィールドの縁取りを丸くする */
   width: 100%;
 }
+
 .result td {
   padding: 8px;
   text-align: center;
@@ -174,16 +185,14 @@ input[type="text"] {
   text-align: center;
   font-size: 50px;
 }
- .search-area {
-    max-height: 100vh;
-    overflow-y: auto; /* スクロールできるようにするよ */
-  }
 
-  @media (max-width: 767px) {
-    
+.search-area {
+  max-height: 100vh;
+  overflow-y: auto;
+  /* スクロールできるようにするよ */
+}
 
-  }
-  @media (min-width: 769px) {
-    
-  }
+@media (max-width: 767px) {}
+
+@media (min-width: 769px) {}
 </style>

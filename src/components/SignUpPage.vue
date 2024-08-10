@@ -1,24 +1,29 @@
 <template>
   <div>
     <div>
-      <h1 class="signup">Sign Up</h1>
+      <h1 class="signup-title">Sign Up</h1>
     </div>
 
     <form @submit.prevent="validateAndRegister">
       <div class="info">
         <p id="info">
 
-          <input v-model="email" class="id" type="email" id="signup-id" autocomplete="username" placeholder="メールアドレス" :class="{ 'error': emailError }">
+          <input v-model="email" class="id" type="email" id="signup-id" autocomplete="username" placeholder="メールアドレス"
+            :class="{ 'error': emailError }">
           <span v-if="emailError" class="error-message">中央大学のメールアドレスで登録してください</span>
 
-          <input v-model="password1" class="password" type="password" id="signup-password1" autocomplete="current-password" placeholder="パスワード" :class="{ 'error': !passwordsMatch }">
-          
-          <input v-model="password2" class="password" type="password" id="signup-password2" autocomplete="current-password" placeholder="パスワード" :class="{ 'error': !passwordsMatch }">
+          <input v-model="password1" class="password" type="password" id="signup-password1"
+            autocomplete="current-password" placeholder="パスワード" :class="{ 'error': !passwordsMatch }">
+
+          <input v-model="password2" class="password" type="password" id="signup-password2"
+            autocomplete="current-password" placeholder="確認用パスワード" :class="{ 'error': !passwordsMatch }">
 
           <span v-if="!passwordsMatch" class="error-message">パスワードが一致しません</span>
         </p>
       </div>
-      <div><input type="submit" id="signup-button" class="register" value="登録" ></div>
+      <div>
+        <input type="submit" id="signup-button" class="register" value="登録">
+      </div>
     </form>
     <div class="return">
       <router-link to="/" class="return-box">戻る</router-link>
@@ -27,15 +32,17 @@
 </template>
 
 <style>
-h1 {
+.signup-title {
+  position: relative;
   text-align: center;
-  padding-top: 10px;
-  font-size: 50px;
+  padding-top: 15vh;
+  display: inline-block;
+  font-size: 40px;
+  line-height: 50px
 }
 
 .info {
-  padding-top: 80px;
-  margin-left: 10px;
+  padding-top: 30px;
   text-align: center;
 }
 
@@ -49,13 +56,12 @@ h1 {
   border-radius: 30px;
   gap: 0 .7em;
   margin-bottom: .6em;
-  padding: .9em .9em;
+  padding: .7em .9em;
   border-color: #747578;
   background-color: white;
   text-align: center;
+  display: inline-block;
 }
-
-
 
 .id {
   margin-bottom: 50px;
@@ -74,6 +80,7 @@ h1 {
 }
 
 .register {
+  position: relative;
   font-size: 22px;
   width: 200px;
   height: 50px;
@@ -82,7 +89,8 @@ h1 {
   color: white;
   border-color: #FF0000;
   text-align: center;
-  margin-top: 30px;
+  display: inline-block;
+  margin-top: 5vh;
 }
 
 .register:hover {
@@ -95,11 +103,14 @@ h1 {
 }
 
 .return {
+  position: relative;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 100px;
+  /* ログインボタン最下部からの距離 */
 }
 
 .return-box {
+  position: relative;
   padding: 10px 50px;
   border: 3px solid white;
   border-radius: 30px;
@@ -109,10 +120,9 @@ h1 {
   background-color: none;
   text-decoration: none;
   text-align: center;
+  display: inline-block;
 }
-
 </style>
-
 
 <script>
 import { app } from '../firebase';
@@ -140,7 +150,7 @@ export default {
       if (!this.passwordsMatch || this.emailError) {
         return;
       }
-      
+
       const auth = getAuth(app);
       createUserWithEmailAndPassword(auth, this.email, this.password1)
         .then(() => {
