@@ -65,7 +65,6 @@ export default {
     flex-shrink: 0;
     color: #000;
     font-size: 50px;
-    font-family: Zen Maru Gothic;
     font-weight: 700;
     margin: 0;
     text-align: center;
@@ -102,7 +101,6 @@ export default {
     flex-shrink: 0;
     color: #000;
     font-size: 36px;
-    font-family: Zen Kaku Gothic Antique;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -114,7 +112,6 @@ export default {
 .year {
     color: #000;
     font-size: 20px;
-    font-family: Zen Kaku Gothic Antique;
     text-align: left;
 }
 
