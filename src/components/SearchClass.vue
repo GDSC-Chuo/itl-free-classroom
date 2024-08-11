@@ -5,7 +5,7 @@
 
     <form @submit.prevent="search">
       <div class="searchbox"> <input v-model="searchKeyword" type="text" name="subject"
-          placeholder="       「教員名」もしくは「授業名」で検索">
+          placeholder="「教員名」もしくは「授業名」で検索">
         <img src="@/assets/search-icon.svg" width="53" height="53" @click="search">
       </div>
     </form>
@@ -94,37 +94,28 @@ export default {
 </script>
 
 <style scoped>
-/*検索をする要素全体（inputのところで同じように設定した方が良いのでしょうか*/
 .searchbox {
-  /*検索ボタンと一緒に移動するようにrelativeにする*/
   position: relative;
   width: 100%;
 }
 
 input {
-  width: 100%;
+  width: 80%;
 }
 
-/*小久保さんがやってくれた部分、要素を縦に並べる*/
 .search-area {
-
   display: flex;
-  /*並べ方の指定*/
   flex-direction: column;
-  /*縦に並べる*/
 }
 
 /*Class Informationの設定*/
 h1 {
   margin: 50px auto;
-  width: 100%;
   text-align: center;
-
 }
 
 /*検索の虫眼鏡の画像の設定*/
 img {
-  /*searchboxに合わせて位置を指定*/
   position: absolute;
   top: 8px;
   right: 10px;
@@ -144,9 +135,7 @@ h3 {
   text-align: center;
   color: black;
   border: 2px solid black;
-  /* 黒い2pxの実線の枠 */
   border-radius: 15px;
-  /* 入力フィールドの縁取りを丸くする */
   width: 100%;
 }
 
@@ -161,27 +150,19 @@ li {
 
 ::placeholder {
   font-size: 30px;
-  /* プレースホルダーテキストのフォントサイズを変更 */
   color: rgb(177, 169, 169);
   transform: translateY(0px);
-  /* テキストを上方向に5px移動 */
   text-align: left;
 }
 
 input[type="text"] {
-  width: 65vw;
-  /* 入力フィールドの幅を変更 */
+  width: 60vw;
   height: 60px;
-  /* 入力フィールドの高さを変更 */
   background-position: center;
   border-radius: 10px;
-  /* 入力フィールドの縁取りを丸くする */
   border: 2px solid rgb(198, 195, 195);
-  /* 入力フィールドの縁取りの色を変更 */
   padding: 2px;
-  /* 入力フィールド内の余白を指定 */
   top: 2px;
-  /* 上方向に50px移動 */
   text-align: center;
   font-size: 50px;
 }
@@ -189,10 +170,6 @@ input[type="text"] {
 .search-area {
   max-height: 100vh;
   overflow-y: auto;
-  /* スクロールできるようにするよ */
 }
 
-@media (max-width: 767px) {}
-
-@media (min-width: 769px) {}
 </style>
