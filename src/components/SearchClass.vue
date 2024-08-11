@@ -4,7 +4,7 @@
     <h1>Class&nbsp;Information</h1>
 
     <form @submit.prevent="search">
-      <div class="searchbox"> <input v-model="searchKeyword" type="text" name="subject"
+      <div class="search-box"> <input v-model="searchKeyword" type="text" name="subject"
           placeholder="「教員名」もしくは「授業名」で検索">
         <img src="@/assets/search-icon.svg" width="53" height="53" @click="search">
       </div>
@@ -94,9 +94,10 @@ export default {
 </script>
 
 <style scoped>
-.searchbox {
+.search-box {
   position: relative;
   width: 100%;
+  font-size: 24px;
 }
 
 input {
@@ -131,7 +132,7 @@ h3 {
 /*検索結果の要素の設定*/
 .result {
   margin-top: 50px;
-  font-size: 25px;
+  font-size: 24px;
   text-align: center;
   color: black;
   border: 2px solid black;
@@ -149,7 +150,7 @@ li {
 }
 
 ::placeholder {
-  font-size: 30px;
+  font-size: 32px;
   color: rgb(177, 169, 169);
   transform: translateY(0px);
   text-align: left;
@@ -164,7 +165,8 @@ input[type="text"] {
   padding: 2px;
   top: 2px;
   text-align: center;
-  font-size: 50px;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 32px;
 }
 
 .search-area {

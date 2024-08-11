@@ -62,13 +62,13 @@ export default {
 
 @media (max-width: 400px) {
   h1 {
-    font-size: 20px;
+    font-size: 24px;
   }
 
   .button {
     width: 120px;
     height: 35px;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 35px;
   }
 }
