@@ -29,19 +29,41 @@ body {
 }
 
 .main-area {
-  position: fixed;
-  top: calc(50% - 225px);
-  left: calc(50% - 400px);
-  width: 800px;
-  height: 450px;
-  background: #FFFFFF;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 30px;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #3A3E3B;
-  overflow: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1200px;
+    height: 1000px;
+    background: #FFFFFF;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #3A3E3B;
+    overflow: auto;
+}
+
+/* 画面が小さくなったときの調整 */
+@media (max-width: 1300px) {
+    .main-area {
+        width: 90%;
+        /* 画面幅の90% */
+        height: 80%;
+        /* 画面高さの80% */
+    }
+}
+
+/* スマホ版のスタイル */
+@media (max-width: 600px) {
+    .main-area {
+        width: 95%;
+        top: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-bottom: 5%;
+    }
 }
 
 .special-area {
