@@ -1,13 +1,12 @@
-<!-- TODO: デザイン修正、ログインする/ログインせずに使うというリンクを用意する -->
 <template>
   <div class="home">
-    
-    <h1> iTL </h1>
-    <h1>Free Classroom</h1>
+
+    <h1 class="home-title">iTL</h1>
+    <h1 class="home-title">Free Classroom</h1>
 
     <div class="name">
-      <P><router-link to= '/signin' class="select">sign in</router-link></P>
-      <router-link to= '/signup' class="choice">sign up</router-link>
+      <P><router-link to='/signin' class="select">sign in</router-link></P>
+      <router-link to='/signup' class="choice">sign up</router-link>
     </div>
   </div>
 </template>
@@ -20,13 +19,14 @@ export default {
 </script>
 
 <style scoped>
-
-h1{color: #030000;
+.home-title {
+  color: #030000;
   font-weight: 700;
   font-size: 32px;
-  margin: 0s;}
+  margin: 0s;
+}
 
-.select{
+.select {
   position: relative;
   width: 200px;
   height: 50px;
@@ -37,17 +37,16 @@ h1{color: #030000;
   vertical-align: middle;
   background-color: #ffffff;
   text-decoration: none;
-  margin:40px ;
+  margin: 40px;
   text-align: center;
-  display:inline-block;
-  line-height:50px
-
+  display: inline-block;
+  line-height: 50px
 }
 
-.choice{
+.choice {
   position: relative;
   width: 200px;
-  height:50px;
+  height: 50px;
   border: 2px solid #ff0000;
   border-radius: 30px;
   color: #ffffff;
@@ -57,10 +56,20 @@ h1{color: #030000;
   text-decoration: none;
   margin: 40px;
   text-align: center;
-  display:inline-block;
-  line-height:50px
-
-  
+  display: inline-block;
+  line-height: 50px
 }
 
+@media (max-width: 400px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  .button {
+    width: 120px;
+    height: 35px;
+    font-size: 16px;
+    line-height: 35px;
+  }
+}
 </style>
