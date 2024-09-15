@@ -1,7 +1,7 @@
 <!-- TODO: デザイン修正、ログインする/ログインせずに使うというリンクを用意する -->
 <template>
   <div class="search-area">
-    <h1>Class&nbsp;Information</h1>
+    <h1>授業情報検索</h1>
 
     <form @submit.prevent="search">
       <div class="search-box"> <input v-model="searchKeyword" type="text" name="subject"
@@ -27,11 +27,11 @@
     <div v-if="isSearchExecuted">
       <table class="result">
         <tr>
-          <th>Subject</th>
-          <th>Teacher</th>
-          <th>Class</th>
-          <th>Day</th>
-          <th>Semester</th>
+          <th>授業名</th>
+          <th>教員</th>
+          <th>クラス</th>
+          <th>曜日</th>
+          <th>学期</th>
         </tr>
         <tr v-for="(result, index) in searchResults" :key="index">
           <td>{{ result.subject }}</td>
@@ -173,5 +173,44 @@ input[type="text"] {
   max-height: 100vh;
   overflow-y: auto;
 }
+
+@media (max-width: 600px) {
+  h1 {
+     
+     font-size: 36px;
+     
+  }
+  
+ .search-area{
+    position:fixed; 
+    top:0%;
+    
+  }
+  .search-box {
+  text-align: center;
+  ;
+ }
+
+
+ h2{
+    text-align: center;
+    font-size: 30px;
+  }
+  h3{
+     font-size: 16px;
+  }
+ 
+}
+.result{
+  margin-top: 0px;
+  flex-direction: column;
+}
+
+  
+
+
+
+
+
 
 </style>
