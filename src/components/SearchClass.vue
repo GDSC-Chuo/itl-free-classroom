@@ -171,7 +171,7 @@ input[type="text"] {
 
 .search-area {
   max-height: 100vh;
-  overflow-y: auto;
+  
 }
 
 @media (max-width: 600px) {
