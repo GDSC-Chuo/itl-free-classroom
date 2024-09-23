@@ -1,16 +1,25 @@
 <template>
     <div class=“all”>
         <h1 class="class-info1">授業情報</h1>
-        <div class=“class-name”>
-            <h2 class=“class-info”>科目名：{{ classDataCopy.subject }}</h2>
+        <div class=class-name>
+            <h2 class=class-info2>科目名</h2>
+            <h2 class=class-info>{{ classDataCopy.subject }}</h2>
         </div>
-        <h2 class=“class-info”>担当教員：{{ classDataCopy.teacher }}</h2>
-        <h3 class=“class-info”>学期 ：{{ classDataCopy.semester }}</h3>
-        <h3 class=“class-info”>
-            曜日時限：{{ classDataCopy.day }}{{ classDataCopy.period }}時限
-        </h3>
+        <div class=class-name>
+            <h2 class=class-info2>担当教員</h2>
+            <h2 class=class-info>{{ classDataCopy.teacher }}</h2>
+        </div>
+        <div class=class-name>
+            <h2 class=class-info2>学期</h2>
+            <h2 class=class-info>{{ classDataCopy.semester }}</h2>
+        </div>
+        <div class=class-name>
+            <h2 class=class-info2>曜日時限</h2>
+            <h2 class=class-info>{{ classDataCopy.day }}{{ classDataCopy.period }}時限</h2>
+        </div>
+        
 
-        <router-link to=“/floor-select” class=“back” @click="goBack">戻る</router-link>
+        <router-link to=“/floor-select” class=back @click="goBack">戻る</router-link>
     </div>
 </template>
 <script>
@@ -58,7 +67,6 @@ export default {
 
 .class-info1 {
     display: flex;
-    width: 526px;
     height: 149px;
     flex-direction: column;
     justify-content: center;
@@ -74,6 +82,12 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 40px;
+    flex-direction: column;
+}
+
+.class-data-title {
+    font-weight: bold;
 }
 
 .recommend {
@@ -102,7 +116,23 @@ export default {
     color: #000;
     font-size: 36px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: normal;
+    line-height: normal;
+    margin: 0;
+    text-align: center;
+    padding: 5px;
+}
+
+.class-info2 {
+    display: flex;
+    width: 515px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #000;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 800;
     line-height: normal;
     margin: 0;
     text-align: center;
