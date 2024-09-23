@@ -138,6 +138,7 @@ h3 {
   border: 2px solid black;
   border-radius: 15px;
   width: 100%;
+  margin-bottom: 50px;
 }
 
 .result td {
@@ -175,10 +176,11 @@ input[type="text"] {
 }
 
 @media (max-width: 600px) {
+  
   h1 {
-     
+
      font-size: 36px;
-     
+
   }
   
  .search-area{
