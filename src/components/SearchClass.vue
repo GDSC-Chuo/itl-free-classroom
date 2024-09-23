@@ -170,7 +170,7 @@ input[type="text"] {
 }
 
 .search-area {
-  max-height: 100vh;
+  max-height: 80vh;
   
 }
 
