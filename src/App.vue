@@ -47,6 +47,17 @@ body {
   overflow: auto;
 }
 
+.main-area::-webkit-scrollbar {
+  background: white;
+  width: 10px;
+  border-radius: 30px;
+}
+
+.main-area::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 30px;
+}
+
 /* 画面が小さくなったときの調整 */
 /* @media (max-width: 1300px) {
   .main-area {

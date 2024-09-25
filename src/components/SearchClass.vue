@@ -19,7 +19,7 @@
       </div>
     </div>
     <div v-if="isElementVisible">
-      <h3>Ex）教員名「飯尾淳」&nbsp;&nbsp;授業名「基礎演習」</h3>
+      <h3>Ex: 飯尾淳 (教員名) / 基礎演習 (授業名)</h3>
     </div>
 
 
@@ -138,6 +138,7 @@ h3 {
   border: 2px solid black;
   border-radius: 15px;
   width: 100%;
+  margin-bottom: 50px;
 }
 
 .result td {
