@@ -24,7 +24,7 @@ export default {
 
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&family=Zen+Kaku+Gothic+New&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap');
 
 body {
   background-color: #3A3E3B;
