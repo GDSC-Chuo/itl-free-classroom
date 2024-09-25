@@ -89,7 +89,7 @@ h1 {
   border-radius: 80px;
   color: #ff0000;
   font-weight: 500;
-  font-size: 64px;
+  font-size: 56px;
   vertical-align: middle;
   background-color: #fff;
   text-decoration: none;
