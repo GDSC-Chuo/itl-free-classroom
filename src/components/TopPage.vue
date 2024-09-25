@@ -31,7 +31,7 @@ export default {
   border-radius: 80px;
   color: #ff0000;
   font-weight: 500;
-  font-size: 48px;
+  font-size: 40px;
   vertical-align: middle;
   background-color: #fff;
   text-decoration: none;

@@ -24,7 +24,7 @@ export default {
 
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&family=Zen+Kaku+Gothic+New&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap');
 
 body {
   background-color: #3A3E3B;
@@ -33,11 +33,11 @@ body {
 
 .main-area {
   position: absolute;
-  top: 50%;
+  top: 50vh;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 1200px;
-  height: 1000px;
+  width: 90vw;
+  height: 90vh;
   background: #FFFFFF;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
@@ -47,13 +47,24 @@ body {
   overflow: auto;
 }
 
+.main-area::-webkit-scrollbar {
+  background: white;
+  width: 10px;
+  border-radius: 30px;
+}
+
+.main-area::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 30px;
+}
+
 /* 画面が小さくなったときの調整 */
-@media (max-width: 1300px) {
+/* @media (max-width: 1300px) {
   .main-area {
     width: 90%;
     height: 80%;
   }
-}
+} */
 
 /* スマホ版のスタイル */
 @media (max-width: 600px) {

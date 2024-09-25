@@ -24,8 +24,10 @@
         </div>
       </div>
     </div>
-    <img src="@/assets/9F.png" alt="9F">
-    <router-link to="/floor-select" class="back">フロア選択へ戻る</router-link>
+    <div class="img-and-button">
+      <img src="@/assets/7F.png" alt="7F">
+      <router-link to="/floor-select" class="back">フロア選択へ戻る</router-link>
+    </div>
   </div>
 </template>
 
@@ -160,5 +162,65 @@ img {
 /* hoverとは、マウスカーソルを対象物に重ねた時の挙動のこと  */
 .back:hover {
   background-color: #f5f5f5;
+}
+
+@media (max-width: 1300px) {
+  .floor {
+    position: static;
+    margin-bottom: 20px;
+    margin-top: 50px;
+  }
+
+  .title {
+    display: block;
+    width: fit-content;
+  }
+
+  .floor-info {
+    text-align: center;
+  }
+
+  .image-and-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  img {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 80%;
+    margin-bottom: 200px;
+  }
+
+  .back {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  img {
+    width: 60%;
+  }
+
+  .title {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 24px;
+  }
+
+  .title>p {
+    font-weight: 500;
+    font-size: 24px;
+  }
+
+  .back {
+    font-weight: 500;
+  }
 }
 </style>

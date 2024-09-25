@@ -22,18 +22,18 @@ export default {
 .home-title {
   color: #030000;
   font-weight: 700;
-  font-size: 32px;
+  font-size: 40px;
   margin: 0s;
 }
 
 .select {
   position: relative;
   width: 200px;
-  height: 50px;
+  height: 60px;
   border: 2px solid #ff0000;
-  border-radius: 30px;
+  border-radius: 40px;
   color: #ff0000;
-  font-size: 32px;
+  font-size: 40px;
   vertical-align: middle;
   background-color: #ffffff;
   text-decoration: none;
@@ -46,11 +46,11 @@ export default {
 .choice {
   position: relative;
   width: 200px;
-  height: 50px;
+  height: 60px;
   border: 2px solid #ff0000;
-  border-radius: 30px;
+  border-radius: 40px;
   color: #ffffff;
-  font-size: 32px;
+  font-size: 40px;
   vertical-align: middle;
   background-color: #ff0000;
   text-decoration: none;
