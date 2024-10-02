@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="img-and-button">
-      <img src="@/assets/7F.png" alt="7F">
+      <img src="@/assets/8F.png" alt="8F">
       <router-link to="/floor-select" class="back">フロア選択へ戻る</router-link>
     </div>
   </div>

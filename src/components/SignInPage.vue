@@ -58,7 +58,7 @@
 .signin-return {
   position: relative;
   text-align: center;
-  margin-top: 200px;
+  margin-top: 150px;
   /* ログインボタン最下部からの距離 */
 }
 </style>
