@@ -5,7 +5,7 @@
 
     <form @submit.prevent="search">
       <div class="search-box"> <input v-model="searchKeyword" type="text" name="subject"
-          placeholder="「教員名」もしくは「授業名」を完全一致で検索">
+          placeholder="キーワードを入力し検索マークをクリック">
         <img src="@/assets/search-icon.svg" width="53" height="53" @click="search">
       </div>
     </form>
@@ -120,6 +120,7 @@ img {
   position: absolute;
   top: 8px;
   right: 10px;
+  width: 40px;
 }
 
 /*検索方法の例の設定*/
@@ -151,7 +152,7 @@ li {
 }
 
 ::placeholder {
-  font-size: 24px;
+  font-size: 16px;
   color: rgb(177, 169, 169);
   transform: translateY(0px);
   text-align: left;
@@ -167,51 +168,54 @@ input[type="text"] {
   top: 2px;
   text-align: center;
   font-family: "Zen Kaku Gothic New", sans-serif;
-  font-size: 32px;
+  font-size: 24px;
 }
 
 .search-area {
   max-height: 80vh;
-  
+
+}
+
+.result {
+  margin-top: 0px;
+  flex-direction: column;
+  font-size: 24px;
 }
 
 @media (max-width: 600px) {
   h1 {
-     
-     font-size: 36px;
-     
+    font-size: 32px;
   }
-  
- .search-area{
-    position:fixed; 
-    top:0%;
-    
+
+  .search-area {
+    position: fixed;
+    top: 0%;
   }
+
   .search-box {
-  text-align: center;
-  ;
- }
+    text-align: center;
+    font-size: 24px;
+  }
 
+  input[type="text"] {
+    font-size: 16px;
+  }
 
- h2{
+  img {
+    width: 32px;
+  }
+
+  h2 {
     text-align: center;
     font-size: 30px;
   }
-  h3{
-     font-size: 16px;
+
+  h3 {
+    font-size: 16px;
   }
- 
+
+  .result {
+    font-size: 16px;
+  }
 }
-.result{
-  margin-top: 0px;
-  flex-direction: column;
-}
-
-  
-
-
-
-
-
-
 </style>
