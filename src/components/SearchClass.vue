@@ -1,11 +1,11 @@
 <!-- TODO: デザイン修正、ログインする/ログインせずに使うというリンクを用意する -->
 <template>
   <div class="search-area">
-    <h1>Class&nbsp;Information</h1>
+    <h1>授業情報検索</h1>
 
     <form @submit.prevent="search">
       <div class="search-box"> <input v-model="searchKeyword" type="text" name="subject"
-          placeholder="「教員名」もしくは「授業名」で検索">
+          placeholder="「教員名」もしくは「授業名」を完全一致で検索">
         <img src="@/assets/search-icon.svg" width="53" height="53" @click="search">
       </div>
     </form>
@@ -15,11 +15,12 @@
         <h2>Search Results</h2>
       </div>
       <div v-else>
-        <p>{{ searchKeyword }}に一致する検索結果がありません。</p>
+        <p>「{{ searchKeyword }}」に一致する検索結果がありません。</p>
       </div>
     </div>
     <div v-if="isElementVisible">
-      <h3>Ex）教員名「飯尾淳」&nbsp;&nbsp;授業名「基礎演習」</h3>
+      <h3>Ex: 飯尾淳 (教員名) / 基礎演習 (授業名)</h3>
+      <h3>※完全一致での検索となります</h3>
     </div>
 
 
@@ -27,11 +28,11 @@
     <div v-if="isSearchExecuted">
       <table class="result">
         <tr>
-          <th>Subject</th>
-          <th>Teacher</th>
-          <th>Class</th>
-          <th>Day</th>
-          <th>Semester</th>
+          <th>授業名</th>
+          <th>教員</th>
+          <th>クラス</th>
+          <th>曜日</th>
+          <th>学期</th>
         </tr>
         <tr v-for="(result, index) in searchResults" :key="index">
           <td>{{ result.subject }}</td>
@@ -97,7 +98,6 @@ export default {
 .search-box {
   position: relative;
   width: 100%;
-  font-size: 24px;
 }
 
 input {
@@ -138,6 +138,7 @@ h3 {
   border: 2px solid black;
   border-radius: 15px;
   width: 100%;
+  margin-bottom: 50px;
 }
 
 .result td {
@@ -150,7 +151,7 @@ li {
 }
 
 ::placeholder {
-  font-size: 32px;
+  font-size: 24px;
   color: rgb(177, 169, 169);
   transform: translateY(0px);
   text-align: left;
@@ -170,8 +171,47 @@ input[type="text"] {
 }
 
 .search-area {
-  max-height: 100vh;
-  overflow-y: auto;
+  max-height: 80vh;
+  
 }
+
+@media (max-width: 600px) {
+  h1 {
+     
+     font-size: 36px;
+     
+  }
+  
+ .search-area{
+    position:fixed; 
+    top:0%;
+    
+  }
+  .search-box {
+  text-align: center;
+  ;
+ }
+
+
+ h2{
+    text-align: center;
+    font-size: 30px;
+  }
+  h3{
+     font-size: 16px;
+  }
+ 
+}
+.result{
+  margin-top: 0px;
+  flex-direction: column;
+}
+
+  
+
+
+
+
+
 
 </style>
