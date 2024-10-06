@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "itlfreeclassroom"
+  },
+  "targets": {
+    "itlfreeclassroom": {
+      "hosting": {
+        "default": [
+          "itlfreeclassroom"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
