@@ -14,6 +14,9 @@ import Floor11th from '../components/11thFloor.vue'
 import FloorSelect from '../components/FloorSelect.vue'
 import ClassInfo from '../components/ClassInfo.vue'
 import SearchClass from '../components/SearchClass.vue'
+import { isSignedIn } from '@/lib/auth'
+import Store from '../lib/localStore'
+import { LocalStorageKeys } from '@/const'
 
 const routes = [
   {
@@ -97,6 +100,33 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+})
+
+const store = new Store(LocalStorageKeys.auth);
+
+router.beforeEach((to, from, next) => {
+
+  try {
+    if (['Home', 'SignIn', 'SignUp', 'Test'].includes(to.name)) {
+      console.log("許可されたパスです！")
+      return next()
+    }
+
+    if (isSignedIn(store)) {
+      console.log("ログイン中")
+      return next()
+    } 
+    
+    throw new Error("サインアップ又はサインインが必要です");
+    
+
+  } catch (error) {
+    console.error(error.message); 
+    next({
+      name: "Home",
+      query: {error: error.message}
+    })
+  }
 })
 
 export default router
