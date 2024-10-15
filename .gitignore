@@ -2,7 +2,6 @@
 node_modules
 /dist
 
-
 # local env files
 .env
 .env.*.local
@@ -23,3 +22,6 @@ pnpm-debug.log*
 *.sw?
 
 yarn.lock
+
+# Firebase directory
+.firebase
