@@ -42,7 +42,7 @@ class Store {
             expired: new Date().toISOString()
         }
         this.save(logout, key);
-        throw new Error("もう一度サインインしてください")
+        throw new Error("サインアップ又はサインインが必要です")
     }
 
     save(body, key = this.#key) {
