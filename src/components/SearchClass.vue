@@ -1,49 +1,51 @@
 <!-- TODO: デザイン修正、ログインする/ログインせずに使うというリンクを用意する -->
 <template>
   <div class="search-area">
-  <h1>Class&nbsp;Information</h1>
+    <h1>授業情報検索</h1>
 
-  <form @submit.prevent="search">
-  <div class="searchbox">  <input v-model="searchKeyword" type="text" name="subject" placeholder="       「教員名」もしくは「授業名」で検索">
-    <img src="@/assets/search-icon.svg" width="53" height="53" @click="search">
-  </div>
-</form>
+    <form @submit.prevent="search">
+      <div class="search-box"> <input v-model="searchKeyword" type="text" name="subject"
+          placeholder="「教員名」もしくは「授業名」を完全一致で検索">
+        <img src="@/assets/search-icon.svg" width="53" height="53" @click="search">
+      </div>
+    </form>
 
-  <div v-if="isSearchExecuted">
-    <div v-if="searchResults.length">
-      <h2>Search Results</h2>
+    <div v-if="isSearchExecuted">
+      <div v-if="searchResults.length">
+        <h2>Search Results</h2>
+      </div>
+      <div v-else>
+        <p>「{{ searchKeyword }}」に一致する検索結果がありません。</p>
+      </div>
     </div>
-    <div v-else>
-      <p>{{ searchKeyword }}に一致する検索結果がありません。</p>
+    <div v-if="isElementVisible">
+      <h3>Ex: 飯尾淳 (教員名) / 基礎演習 (授業名)</h3>
+      <h3>※完全一致での検索となります</h3>
+    </div>
+
+
+    <!--検索した時だけの表示はこれ-->
+    <div v-if="isSearchExecuted">
+      <table class="result">
+        <tr>
+          <th>授業名</th>
+          <th>教員</th>
+          <th>クラス</th>
+          <th>曜日</th>
+          <th>学期</th>
+        </tr>
+        <tr v-for="(result, index) in searchResults" :key="index">
+          <td>{{ result.subject }}</td>
+          <td>{{ result.teacher }}</td>
+          <td>{{ result.classroom }}</td>
+          <td>{{ result.day }}</td>
+          <td>{{ result.semester }}</td>
+        </tr>
+      </table>
     </div>
   </div>
-<div v-if="isElementVisible">
- <h3>Ex）教員名「飯尾淳」&nbsp;&nbsp;授業名「基礎演習」</h3>
-</div>
-
-
-  <!--検索した時だけの表示はこれ-->
-  <div v-if="isSearchExecuted"> 
-    <table class="result">
-      <tr>
-        <th>Subject</th>
-        <th>Teacher</th>
-        <th>Class</th>
-        <th>Day</th>
-        <th>Semester</th>
-      </tr>
-      <tr v-for="(result, index) in searchResults" :key="index">
-        <td>{{ result.subject }}</td>
-        <td>{{ result.teacher }}</td>
-        <td>{{ result.classroom }}</td>
-        <td>{{ result.day }}</td>
-        <td>{{ result.semester }}</td>
-      </tr>
-    </table>
-  </div>
-</div>
 </template>
-  
+
 <script>
 import { db } from '../firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
@@ -55,7 +57,7 @@ export default {
       searchKeyword: '',
       searchResults: [],
       isSearchExecuted: false,
-      isElementVisible:true
+      isElementVisible: true
     };
   },
   methods: {
@@ -85,60 +87,60 @@ export default {
         this.isSearchExecuted = true;
       }
       this.isElementVisible = false;
-    },  
+    },
   }
 };
 
 
 </script>
-  
+
 <style scoped>
-/*検索をする要素全体（inputのところで同じように設定した方が良いのでしょうか*/
-.searchbox {
-  /*検索ボタンと一緒に移動するようにrelativeにする*/
+.search-box {
   position: relative;
   width: 100%;
 }
 
 input {
-  width: 100%;
+  width: 80%;
 }
-/*小久保さんがやってくれた部分、要素を縦に並べる*/
+
 .search-area {
-  
-  display: flex; /*並べ方の指定*/
-  flex-direction: column; /*縦に並べる*/
+  display: flex;
+  flex-direction: column;
 }
+
 /*Class Informationの設定*/
 h1 {
   margin: 50px auto;
-  width: 100%;
   text-align: center;
-  
 }
+
 /*検索の虫眼鏡の画像の設定*/
 img {
-  /*searchboxに合わせて位置を指定*/
   position: absolute;
   top: 8px;
   right: 10px;
 }
+
 /*検索方法の例の設定*/
 h3 {
   top: 220px;
   text-align: center;
   color: black;
 }
+
 /*検索結果の要素の設定*/
 .result {
-  margin-top:50px;
-  font-size: 25px;
+  margin-top: 50px;
+  font-size: 24px;
   text-align: center;
-  color:black;
-  border: 2px solid black; /* 黒い2pxの実線の枠 */
-  border-radius: 15px; /* 入力フィールドの縁取りを丸くする */
+  color: black;
+  border: 2px solid black;
+  border-radius: 15px;
   width: 100%;
+  margin-bottom: 50px;
 }
+
 .result td {
   padding: 8px;
   text-align: center;
@@ -149,41 +151,67 @@ li {
 }
 
 ::placeholder {
-  font-size: 30px;
-  /* プレースホルダーテキストのフォントサイズを変更 */
+  font-size: 24px;
   color: rgb(177, 169, 169);
   transform: translateY(0px);
-  /* テキストを上方向に5px移動 */
   text-align: left;
 }
 
 input[type="text"] {
-  width: 65vw;
-  /* 入力フィールドの幅を変更 */
+  width: 60vw;
   height: 60px;
-  /* 入力フィールドの高さを変更 */
   background-position: center;
   border-radius: 10px;
-  /* 入力フィールドの縁取りを丸くする */
   border: 2px solid rgb(198, 195, 195);
-  /* 入力フィールドの縁取りの色を変更 */
   padding: 2px;
-  /* 入力フィールド内の余白を指定 */
   top: 2px;
-  /* 上方向に50px移動 */
   text-align: center;
-  font-size: 50px;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 32px;
 }
- .search-area {
-    max-height: 100vh;
-    overflow-y: auto; /* スクロールできるようにするよ */
-  }
 
-  @media (max-width: 767px) {
-    
+.search-area {
+  max-height: 80vh;
+  
+}
 
+@media (max-width: 600px) {
+  h1 {
+     
+     font-size: 36px;
+     
   }
-  @media (min-width: 769px) {
+  
+ .search-area{
+    position:fixed; 
+    top:0%;
     
   }
+  .search-box {
+  text-align: center;
+  ;
+ }
+
+
+ h2{
+    text-align: center;
+    font-size: 30px;
+  }
+  h3{
+     font-size: 16px;
+  }
+ 
+}
+.result{
+  margin-top: 0px;
+  flex-direction: column;
+}
+
+  
+
+
+
+
+
+
 </style>

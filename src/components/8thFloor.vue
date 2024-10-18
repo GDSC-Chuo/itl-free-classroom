@@ -10,8 +10,9 @@
           <h2>現在の授業</h2>
           <div v-for="classes in currentClass" :key="classes.id">
             <p class="current-class">
-            {{ classes.classroom }}:
-              <router-link :to="{ name: 'ClassInfo', params: { subject: classes.subject }, query: { classData: JSON.stringify(classes) } }">
+              {{ classes.classroom }}:
+              <router-link
+                :to="{ name: 'ClassInfo', params: { subject: classes.subject }, query: { classData: JSON.stringify(classes) } }">
                 {{ classes.subject }}
               </router-link>
               ({{ classes.teacher }})
@@ -23,8 +24,10 @@
         </div>
       </div>
     </div>
-    <img src="@/assets/8F.png" alt="8F" >
-    <router-link to="/floor-select" class="back">フロア選択へ戻る</router-link>
+    <div class="img-and-button">
+      <img src="@/assets/7F.png" alt="7F">
+      <router-link to="/floor-select" class="back">フロア選択へ戻る</router-link>
+    </div>
   </div>
 </template>
 
@@ -105,6 +108,7 @@ export default {
   left: 25px;
   top: 25px;
 }
+
 .title {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -114,25 +118,30 @@ export default {
   border-radius: 80px;
   width: 38px;
 }
+
 /* titleというdivの中にあるpの設定  */
-.title > p {
+.title>p {
   color: #ff0000;
   font-weight: 700;
   font-size: 32px;
   margin: 0s;
 }
+
 .floor-info {
   margin-top: 30px;
 }
+
 .current-class {
   font-weight: 400;
   font-size: 20px;
   margin: 15px 0;
 }
+
 img {
   max-width: calc(90vw - 40px);
   max-height: calc(90vh - 40px);
 }
+
 .back {
   position: absolute;
   right: 25px;
@@ -149,8 +158,69 @@ img {
   background-color: #fff;
   text-decoration: none;
 }
+
 /* hoverとは、マウスカーソルを対象物に重ねた時の挙動のこと  */
 .back:hover {
   background-color: #f5f5f5;
+}
+
+@media (max-width: 1300px) {
+  .floor {
+    position: static;
+    margin-bottom: 20px;
+    margin-top: 50px;
+  }
+
+  .title {
+    display: block;
+    width: fit-content;
+  }
+
+  .floor-info {
+    text-align: center;
+  }
+
+  .image-and-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  img {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 80%;
+    margin-bottom: 200px;
+  }
+
+  .back {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  img {
+    width: 60%;
+  }
+
+  .title {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 24px;
+  }
+
+  .title>p {
+    font-weight: 500;
+    font-size: 24px;
+  }
+
+  .back {
+    font-weight: 500;
+  }
 }
 </style>
