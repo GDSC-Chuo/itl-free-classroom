@@ -37,7 +37,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90vw;
-  height: 80vh;
+  height: 90vh;
   background: #FFFFFF;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
