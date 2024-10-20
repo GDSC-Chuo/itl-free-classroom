@@ -1,8 +1,8 @@
-<!-- TODO: デザイン修正、3Fに合わせる -->
+<!-- スタイルは全て3thFloor.vueで設定 -->
 <template>
   <div>
-    <div class="floor">
-      <div class="title">
+    <div class="floor-wrap">
+      <div class="floor-title">
         <p>9F</p>
       </div>
       <div class="floor-info">
@@ -26,7 +26,7 @@
     </div>
     <div class="img-and-button">
       <img src="@/assets/9F.png" alt="9F">
-      <router-link to="/floor-select" class="back">フロア選択へ戻る</router-link>
+      <router-link to="/floor-select" class="floor-back">フロア選択へ戻る</router-link>
     </div>
   </div>
 </template>
@@ -101,126 +101,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.floor {
-  position: absolute;
-  left: 25px;
-  top: 25px;
-}
-
-.title {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 40px;
-  padding-right: 40px;
-  border: 2px solid #747578;
-  border-radius: 80px;
-  width: 38px;
-}
-
-/* titleというdivの中にあるpの設定  */
-.title>p {
-  color: #ff0000;
-  font-weight: 700;
-  font-size: 32px;
-  margin: 0s;
-}
-
-.floor-info {
-  margin-top: 30px;
-}
-
-.current-class {
-  font-weight: 400;
-  font-size: 20px;
-  margin: 15px 0;
-}
-
-img {
-  max-width: calc(90vw - 40px);
-  max-height: calc(90vh - 40px);
-}
-
-.back {
-  position: absolute;
-  right: 25px;
-  bottom: 25px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 40px;
-  padding-right: 40px;
-  border: 2px solid #747578;
-  border-radius: 80px;
-  color: #ff0000;
-  font-weight: 700;
-  font-size: 16px;
-  background-color: #fff;
-  text-decoration: none;
-}
-
-/* hoverとは、マウスカーソルを対象物に重ねた時の挙動のこと  */
-.back:hover {
-  background-color: #f5f5f5;
-}
-
-@media (max-width: 1300px) {
-  .floor {
-    position: static;
-    margin-bottom: 20px;
-    margin-top: 50px;
-  }
-
-  .title {
-    display: block;
-    width: fit-content;
-  }
-
-  .floor-info {
-    text-align: center;
-  }
-
-  .image-and-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  img {
-    display: block;
-    margin: 0 auto;
-    width: 80%;
-    max-width: 80%;
-    margin-bottom: 200px;
-  }
-
-  .back {
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-  }
-}
-
-@media (max-width: 600px) {
-  img {
-    width: 60%;
-  }
-
-  .title {
-    padding-top: 8px;
-    padding-bottom: 8px;
-    padding-left: 30px;
-    padding-right: 30px;
-    width: 24px;
-  }
-
-  .title>p {
-    font-weight: 500;
-    font-size: 24px;
-  }
-
-  .back {
-    font-weight: 500;
-  }
-}
-</style>
