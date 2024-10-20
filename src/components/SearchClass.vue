@@ -3,8 +3,7 @@
     <h1>授業情報検索</h1>
 
     <form @submit.prevent="search">
-      <div class="search-box"> <input v-model="searchKeyword" type="text" name="subject"
-          placeholder="キーワードを入力し検索マークをクリック">
+      <div class="search-box"> <input v-model="searchKeyword" type="text" name="subject" placeholder="キーワードを入力">
         <img src="@/assets/search-icon.svg" width="53" height="53" @click="search">
       </div>
     </form>
@@ -22,8 +21,6 @@
       <h3>※完全一致での検索となります</h3>
     </div>
 
-
-    <!--検索した時だけの表示はこれ-->
     <div v-if="isSearchExecuted">
       <table class="result">
         <tr>
@@ -89,8 +86,6 @@ export default {
     },
   }
 };
-
-
 </script>
 
 <style scoped>
@@ -106,6 +101,11 @@ input {
 .search-area {
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 10px;
+  box-sizing: border-box;
+  max-height: 90vh;
 }
 
 /*Class Informationの設定*/
@@ -117,7 +117,7 @@ h1 {
 /*検索の虫眼鏡の画像の設定*/
 img {
   position: absolute;
-  top: 8px;
+  top: 15px;
   right: 10px;
   width: 40px;
 }
@@ -138,7 +138,7 @@ h3 {
   border: 2px solid black;
   border-radius: 15px;
   width: 100%;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 
 .result td {
@@ -170,17 +170,6 @@ input[type="text"] {
   font-size: 24px;
 }
 
-.search-area {
-  max-height: 80vh;
-
-}
-
-.result {
-  margin-top: 0px;
-  flex-direction: column;
-  font-size: 24px;
-}
-
 @media (max-width: 600px) {
   h1 {
     font-size: 32px;
@@ -194,13 +183,16 @@ input[type="text"] {
   .search-box {
     text-align: center;
     font-size: 24px;
+    width: 100%;
   }
 
   input[type="text"] {
     font-size: 16px;
+    width: 100%
   }
 
   img {
+    top: 20px;
     width: 32px;
   }
 
