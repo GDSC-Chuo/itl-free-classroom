@@ -33,11 +33,11 @@ body {
 
 .main-area {
   position: absolute;
-  top: 50vh;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90vw;
-  height: 90vh;
+  height: 80vh;
   background: #FFFFFF;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
@@ -59,12 +59,13 @@ body {
 }
 
 .special-area {
-  text-align: center;
   position: absolute;
+  text-align: center;
   top: 5vh;
-  left: calc(50% - 250px);
+  left: 50%;
+  transform: translate(-50%, 20%);
   width: 500px;
-  height: 550px;
+  height: 500px;
   background: #FFFFFF;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
@@ -89,10 +90,8 @@ p {
 /* スマホ版のスタイル */
 @media (max-width: 600px) {
   .special-area {
-    top: 5vh;
-    left: 10%;
     width: 80%;
-    height: 90vh;
+    transform: translate(-50%, 0%);
   }
 }
 </style>

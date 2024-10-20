@@ -60,9 +60,9 @@ export default {
   line-height: 50px
 }
 
-@media (max-width: 400px) {
-  h1 {
-    font-size: 24px;
+@media (max-width: 600px) {
+  .home-title {
+    font-size: 32px;
   }
 
   .button {
