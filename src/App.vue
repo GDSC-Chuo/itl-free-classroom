@@ -47,7 +47,7 @@ body {
   overflow: auto;
 }
 
-.main-area::-webkit-scrollbar {
+/* .main-area::-webkit-scrollbar {
   background: white;
   width: 10px;
   border-radius: 30px;
@@ -56,7 +56,7 @@ body {
 .main-area::-webkit-scrollbar-thumb {
   background-color: gray;
   border-radius: 30px;
-}
+} */
 
 .special-area {
   position: absolute;
@@ -91,7 +91,8 @@ p {
 @media (max-width: 600px) {
   .special-area {
     width: 80%;
-    transform: translate(-50%, 0%);
+    transform: translate(-50%, 10%);
+    height: 450px;
   }
 }
 </style>
