@@ -33,7 +33,7 @@ body {
 
 .main-area {
   position: absolute;
-  top: 50vh;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90vw;
@@ -47,7 +47,7 @@ body {
   overflow: auto;
 }
 
-.main-area::-webkit-scrollbar {
+/* .main-area::-webkit-scrollbar {
   background: white;
   width: 10px;
   border-radius: 30px;
@@ -56,33 +56,16 @@ body {
 .main-area::-webkit-scrollbar-thumb {
   background-color: gray;
   border-radius: 30px;
-}
-
-/* 画面が小さくなったときの調整 */
-/* @media (max-width: 1300px) {
-  .main-area {
-    width: 90%;
-    height: 80%;
-  }
 } */
 
-/* スマホ版のスタイル */
-@media (max-width: 600px) {
-  .main-area {
-    width: 95%;
-    top: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
-
 .special-area {
-  text-align: center;
   position: absolute;
+  text-align: center;
   top: 5vh;
-  left: calc(50% - 250px);
+  left: 50%;
+  transform: translate(-50%, 20%);
   width: 500px;
-  height: 550px;
+  height: 500px;
   background: #FFFFFF;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
@@ -93,7 +76,7 @@ body {
 
 .contents {
   width: calc(100% - 40px);
-  height: calc(100% - 40px);
+  height: calc(100% - 100px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -102,5 +85,14 @@ body {
 
 p {
   margin: 0;
+}
+
+/* スマホ版のスタイル */
+@media (max-width: 600px) {
+  .special-area {
+    width: 80%;
+    transform: translate(-50%, 10%);
+    height: 450px;
+  }
 }
 </style>

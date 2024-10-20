@@ -1,8 +1,7 @@
-<!-- TODO: デザイン修正-->
 <template>
-  <div>
-    <div class="floor">
-      <div class="title">
+  <div class="floor-container">
+    <div class="floor-wrap">
+      <div class="floor-title">
         <p>3F</p>
       </div>
       <div class="floor-info">
@@ -26,7 +25,7 @@
     </div>
     <div class="img-and-button">
       <img src="@/assets/3F.png" alt="3F">
-      <router-link to="/floor-select" class="back">フロア選択へ戻る</router-link>
+      <router-link to="/floor-select" class="floor-back">フロア選択へ戻る</router-link>
     </div>
   </div>
 </template>
@@ -102,25 +101,28 @@ export default {
 }
 </script>
 
-<style scoped>
-.floor {
-  position: absolute;
-  left: 25px;
-  top: 25px;
+<style>
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.title {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 40px;
-  padding-right: 40px;
+.floor-wrap {
+  position: absolute;
+  margin-top: 100px;
+  left: 25px;
+}
+
+.floor-title {
+  padding: 10px 40px;
   border: 2px solid #747578;
   border-radius: 80px;
-  width: 38px;
+  width: fit-content;
 }
 
 /* titleの中にあるpタグの設定  */
-.title>p {
+.floor-title>p {
   color: #ff0000;
   font-weight: 700;
   font-size: 32px;
@@ -137,12 +139,23 @@ export default {
   margin: 15px 0;
 }
 
-img {
-  max-width: calc(90vw - 40px);
-  max-height: calc(90vh - 40px);
+.img-and-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  gap: 20px;
 }
 
-.back {
+img {
+  max-width: 80%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 100px;
+}
+
+.floor-back {
   position: absolute;
   right: 25px;
   bottom: 25px;
@@ -157,21 +170,21 @@ img {
   font-size: 16px;
   background-color: #fff;
   text-decoration: none;
+  z-index: 10;
 }
 
 /* hoverとは、マウスカーソルを対象物に重ねた時の挙動のこと  */
-.back:hover {
+.floor-back:hover {
   background-color: #f5f5f5;
 }
 
 @media (max-width: 1300px) {
-  .floor {
+  .floor-wrap {
     position: static;
-    margin-bottom: 20px;
-    margin-top: 50px;
+    margin-top: 10vh;
   }
 
-  .title {
+  .floor-title {
     display: block;
     width: fit-content;
   }
@@ -180,21 +193,16 @@ img {
     text-align: center;
   }
 
-  .image-and-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .img-and-button {
+    margin-top: 30px;
+
+    img {
+      max-width: 70%;
+      margin-bottom: 20px;
+    }
   }
 
-  img {
-    display: block;
-    margin: 0 auto;
-    width: 80%;
-    max-width: 80%;
-    margin-bottom: 200px;
-  }
-
-  .back {
+  .floor-back {
     display: block;
     margin: 0 auto;
     text-align: center;
@@ -202,24 +210,28 @@ img {
 }
 
 @media (max-width: 600px) {
-  img {
-    width: 60%;
+
+  .floor-wrap {
+    position: static;
+    margin-top: 5vh;
   }
 
-  .title {
-    padding-top: 8px;
-    padding-bottom: 8px;
-    padding-left: 30px;
-    padding-right: 30px;
-    width: 24px;
+  .img-and-button img {
+    max-width: 60%;
+    margin-bottom: 50px;
   }
 
-  .title>p {
-    font-weight: 500;
+  .floor-title {
+    padding: 8px 30px;
+  }
+
+  .floor-title>p {
     font-size: 24px;
+    font-weight: 500;
   }
 
-  .back {
+  .floor-back {
+    font-size: 14px;
     font-weight: 500;
   }
 }
