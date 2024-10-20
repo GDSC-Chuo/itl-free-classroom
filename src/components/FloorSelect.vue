@@ -36,7 +36,7 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin: 20px;
+  padding-top: 1vh;
 }
 
 h1 {
@@ -132,10 +132,6 @@ h1 {
 }
 
 @media (max-width: 600px) {
-
-  .wrapper {
-    padding: 20px;
-  }
 
   .floor-change {
     max-width: 800px;
