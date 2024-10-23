@@ -12,15 +12,12 @@
           <span v-if="emailError" class="error-message">{{ emailError }}</span>
 
           <input v-model="password1" class="password" type="password" id="signup-password1"
-            autocomplete="current-password" placeholder="パスワード" 
-            :class="{ 'error': passwordError || !passwordsMatch }">
+            autocomplete="current-password" placeholder="パスワード" :class="{ 'error': passwordError || !passwordsMatch }">
 
           <input v-model="password2" class="password" type="password" id="signup-password2"
-            autocomplete="current-password" placeholder="パスワード確認" 
-            :class="{ 'error': !passwordsMatch }">
+            autocomplete="current-password" placeholder="パスワード確認" :class="{ 'error': !passwordsMatch }">
 
-          <span v-if="!passwordsMatch" class="error-message">パスワードが一致しません</span>
-          <span v-if="passwordError" class="error-message">{{ passwordError }}</span>
+          <span v-if="!passwordsMatch || passwordError" class="error-message">{passwordError}</span>
         </p>
       </div>
       <div>
