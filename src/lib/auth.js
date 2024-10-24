@@ -59,8 +59,9 @@ export async function signin(email, password, store) {
         expired: new Date().toISOString()
     }
 
-    store.save(body);
-
+export async function verifyEmail(oobCode) {
+    const auth = getAuth(app);
+    await applyActionCode(auth, oobCode);
     return true
 }
 
