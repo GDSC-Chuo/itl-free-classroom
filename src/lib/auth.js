@@ -65,9 +65,11 @@ export async function verifyEmail(oobCode) {
     return true
 }
 
-export function isSignedIn(store) {
+export function isSignedIn() {
     
-    const user = store.get(LocalStorageKeys.auth);
+    const auth = getAuth(app)
+    return auth.currentUser && auth.currentUser.emailVerified
+}
 
     return user.state === authState.loggedIn
 }
