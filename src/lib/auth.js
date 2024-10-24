@@ -71,7 +71,9 @@ export function isSignedIn() {
     return auth.currentUser && auth.currentUser.emailVerified
 }
 
-    return user.state === authState.loggedIn
+export async function reloadAuth() {
+    const auth = getAuth(app);
+    await auth.currentUser.reload();
 }
 
 export async function signOut(store) {
