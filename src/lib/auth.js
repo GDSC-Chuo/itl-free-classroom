@@ -76,14 +76,7 @@ export async function reloadAuth() {
     await auth.currentUser.reload();
 }
 
-export async function signOut(store) {
-    const auth = getAuth();
+export async function signOut() {
+    const auth = getAuth(app);
     await Loggout(auth);
-
-    const state = {
-        state: authState.loggedOut,
-        expired: new Date().toISOString()
-    }
-
-    store.save(state, LocalStorageKeys.auth);
 }
