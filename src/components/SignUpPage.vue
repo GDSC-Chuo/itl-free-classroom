@@ -6,6 +6,12 @@
 
         <form @submit.prevent="validateAndRegister">
             <div class="info">
+                <small v-if="validationMessage" style="color: red;">
+                    {{ validationMessage }}
+                </small>
+                <small v-if="confirmMessage" style="color: blue;">
+                    {{ confirmMessage }}
+                </small>
                 <p id="info">
 
                     <input v-model="email" class="id" type="email" id="signup-id" autocomplete="username"
@@ -125,17 +131,18 @@
 </style>
 
 <script>
-import { app } from '../firebase';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { signup } from '@/lib/auth';
 
 export default {
-    name: "SignIn",
+    name: "SignUp",
     data() {
         return {
             email: '',
             password1: '',
             password2: '',
             emailError: false,
+            validationMessage: null,
+            confirmMessage: null
         };
     },
     computed: {
@@ -144,21 +151,37 @@ export default {
         },
     },
     methods: {
-        validateAndRegister() {
+        async validateAndRegister() {
             this.emailError = !this.email.endsWith('@g.chuo-u.ac.jp');
 
             if (!this.passwordsMatch || this.emailError) {
                 return;
             }
 
-            const auth = getAuth(app);
-            createUserWithEmailAndPassword(auth, this.email, this.password1)
-                .then(() => {
-                    this.$router.push('/floor-select');
-                })
-                .catch((error) => {
-                    alert('Failure...(' + error.message + ')');
-                });
+            try {
+                await signup(this.email, this.password1);
+                this.confirmMessage = "認証メールを送信しました。メールのリンクからアカウントを有効化してください。"
+            } catch (error) {
+                console.error(error);
+
+                switch (error.code) {
+                    case "auth/email-already-in-use":
+                        this.validationMessage = "既にこのメールアドレスは登録されています。"
+                        break;
+                
+                    case "auth/password-does-not-meet-requirements":
+                        this.validationMessage = "パスワードの形式が正しくありません。"
+                        break;
+                    
+                    case "auth/user-disabled":
+                        this.validationMessage = "このメールアドレスではサインアップができません。別のメールアドレスでお試しください"
+                        break;
+
+                    default:
+                        this.validationMessage = "サインアップに失敗しました。別のメールアドレスでお試しください"
+                        break;
+                }
+            }
         },
     },
 };
