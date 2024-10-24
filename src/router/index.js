@@ -16,8 +16,7 @@ import FloorSelect from '../components/FloorSelect.vue'
 import ClassInfo from '../components/ClassInfo.vue'
 import SearchClass from '../components/SearchClass.vue'
 import { isSignedIn } from '@/lib/auth'
-import Store from '../lib/localStore'
-import { LocalStorageKeys } from '@/const'
+import EmailVerificationPage from '@/components/EmailVerificationPage.vue'
 
 const routes = [
     {
@@ -39,6 +38,11 @@ const routes = [
         path: '/signup',
         name: 'SignUp',
         component: SignUpPage
+    },
+    {
+        path: '/email-verification',
+        name: 'EmailVerification',
+        component: EmailVerificationPage
     },
     {
         path: '/test',
