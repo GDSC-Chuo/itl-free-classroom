@@ -1,4 +1,4 @@
-import { authState, LocalStorageKeys } from "@/const";
+import { app } from "@/firebase";
 import { applyActionCode, createUserWithEmailAndPassword, getAuth, sendEmailVerification, signInWithEmailAndPassword, signOut as Loggout } from "@firebase/auth";
 
 /**
@@ -7,7 +7,7 @@ import { applyActionCode, createUserWithEmailAndPassword, getAuth, sendEmailVeri
  * @throws { error } error.code 例外時のメッセージ
  */
 export async function emailVerify(oobCode) {
-    const auth = getAuth();
+    const auth = getAuth(app);
     await applyActionCode(auth, oobCode)
     return true
 }
@@ -16,19 +16,13 @@ export async function emailVerify(oobCode) {
  * Create user with email and password, and then send verify email via Firebase auth
  * @param {string} email 
  * @param {string} password 
- * @returns {boolean}
+ * @returns {Promise<boolean>}
  */
-export async function signup(email, password, store) {
-    const auth = getAuth();
+export async function signup(email, password) {
+    const auth = getAuth(app);
 
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     await sendEmailVerification(userCredential.user);
-
-    const body = {
-        state: authState.unVerified,
-        expired: new Date().toISOString()
-    }
-    store.save(body, LocalStorageKeys.auth);
 
     return true
 }
@@ -38,10 +32,10 @@ export async function signup(email, password, store) {
  * @param {string} email 
  * @param {string} password 
  * @param {object} store 
- * @returns {boolean}
+ * @returns {Promise<boolean>}
  */
-export async function signin(email, password, store) {
-    const auth = getAuth();
+export async function signin(email, password) {
+    const auth = getAuth(app);
 
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
 
@@ -53,11 +47,8 @@ export async function signin(email, password, store) {
         return false
     }
 
-    // COMMENT: storeの状態をsigninにする
-    const body = {
-        state: authState.loggedIn,
-        expired: new Date().toISOString()
-    }
+    return true
+}
 
 export async function verifyEmail(oobCode) {
     const auth = getAuth(app);
@@ -66,7 +57,7 @@ export async function verifyEmail(oobCode) {
 }
 
 export function isSignedIn() {
-    
+
     const auth = getAuth(app)
     return auth.currentUser && auth.currentUser.emailVerified
 }
