@@ -112,18 +112,14 @@ const router = createRouter({
     routes,
 })
 
-const store = new Store(LocalStorageKeys.auth);
-
 router.beforeEach((to, from, next) => {
 
   try {
-    if (['Home', 'SignIn', 'SignUp', 'Test'].includes(to.name)) {
-      console.log("許可されたパスです！")
+    if (['Home', 'SignIn', 'SignUp', 'Test', 'EmailVerification'].includes(to.name)) {
       return next()
     }
 
-    if (isSignedIn(store)) {
-      console.log("ログイン中")
+    if (isSignedIn()) {
       return next()
     } 
     
