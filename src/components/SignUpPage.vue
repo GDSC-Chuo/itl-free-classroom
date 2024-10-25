@@ -160,6 +160,7 @@ export default {
 
             try {
                 await signup(this.email, this.password1);
+                this.validationMessage = null;
                 this.confirmMessage = "認証メールを送信しました。メールのリンクからアカウントを有効化してください。"
             } catch (error) {
                 console.error(error);

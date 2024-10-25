@@ -89,6 +89,7 @@ export default {
         const isVerified = await signin(this.email, this.password);
 
         if (!isVerified) {
+          this.validationMessage = null;
           this.unVerified = "認証メールを送信しました。メールのリンクから認証を行ってください"
         }
 
