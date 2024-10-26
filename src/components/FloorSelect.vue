@@ -27,12 +27,8 @@ export default {
 
 <style scoped>
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh;
   margin: 0;
+  height: 100%;
 }
 
 .title {
