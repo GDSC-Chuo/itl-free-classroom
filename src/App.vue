@@ -41,22 +41,9 @@ body {
   background: #FFFFFF;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   color: #3A3E3B;
   overflow: auto;
 }
-
-/* .main-area::-webkit-scrollbar {
-  background: white;
-  width: 10px;
-  border-radius: 30px;
-}
-
-.main-area::-webkit-scrollbar-thumb {
-  background-color: gray;
-  border-radius: 30px;
-} */
 
 .special-area {
   position: absolute;
@@ -69,14 +56,11 @@ body {
   background: #FFFFFF;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   color: #3A3E3B;
 }
 
 .contents {
   width: calc(100% - 40px);
-  height: calc(100% - 100px);
   display: flex;
   justify-content: center;
   align-items: center;
