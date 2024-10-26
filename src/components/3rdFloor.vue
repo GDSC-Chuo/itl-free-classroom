@@ -153,7 +153,7 @@ export default {
 }
 
 img {
-  max-width: 70%;
+  width: clamp(250px, 100%, 450px);
   height: auto;
   border-radius: 10px;
   margin-bottom: 100px;
@@ -210,7 +210,6 @@ img {
   }
 
   .img-and-button img {
-    max-width: 70%;
     margin-bottom: 50px;
   }
 }
