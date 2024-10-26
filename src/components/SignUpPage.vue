@@ -34,7 +34,6 @@
 .signup-title {
   position: relative;
   text-align: center;
-  padding-top: 20vh;
   display: inline-block;
   font-size: 40px;
   line-height: 50px
@@ -100,8 +99,7 @@
 .return {
   position: relative;
   text-align: center;
-  margin-top: 10vh;
-  /* ログインボタン最下部からの距離 */
+  margin-top: 100px;
 }
 
 .return-box {
@@ -123,6 +121,10 @@
   .mail,
   .password {
     width: 80%;
+  }
+
+  .return {
+    margin-top: 60px;
   }
 }
 </style>
@@ -152,7 +154,7 @@ export default {
       this.clearErrors();
 
       // メアド検証
-      if (!this.email.endsWith('@g.chuo-u.ac.jp')){
+      if (!this.email.endsWith('@g.chuo-u.ac.jp')) {
         this.emailError = '中央大学のメールアドレスで登録してください';
       }
 

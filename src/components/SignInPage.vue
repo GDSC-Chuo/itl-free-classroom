@@ -25,7 +25,6 @@
 .signin-title {
   position: relative;
   text-align: center;
-  padding-top: 20vh;
   display: inline-block;
   font-size: 40px;
   line-height: 50px
@@ -86,7 +85,6 @@
   position: relative;
   text-align: center;
   margin-top: 150px;
-  /* ログインボタン最下部からの距離 */
 }
 
 .return-box {
@@ -111,11 +109,7 @@
   }
 
   .return {
-    margin-top: 70px;
-  }
-
-  .signin-title {
-    padding-top: 30vh;
+    margin-top: 150px;
   }
 
   .login {

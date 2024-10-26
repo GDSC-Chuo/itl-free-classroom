@@ -18,7 +18,7 @@ export default {
   justify-content: center;
   text-align: center;
   max-width: 500px;
-  margin: 0 auto;
+  margin: 10% auto;
 }
 
 .choice-box {
