@@ -102,6 +102,11 @@ export default {
 </script>
 
 <style>
+
+.floor-container {
+  height: 100%;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -112,15 +117,11 @@ export default {
 }
 
 .floor-title {
-  position: fixed;
-  top: 20px;
-  left: 20px;
   padding: 10px 40px;
   border: 2px solid #747578;
   border-radius: 80px;
   width: fit-content;
   background-color: white;
-  z-index: 10;
 }
 
 /* titleの中にあるpタグの設定  */

@@ -1,6 +1,6 @@
 <!-- スタイルは全て3thFloor.vueで設定 -->
 <template>
-  <div>
+  <div class="floor-container">
     <div class="floor-wrap">
       <div class="floor-title">
         <p>5F</p>

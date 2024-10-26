@@ -1,6 +1,6 @@
 <!-- TODO: デザイン修正、4Fに合わせる -->
 <template>
-  <div>
+  <div class="floor-container">
     <div class="floor-wrap">
       <div class="floor-title">
         <p>4F</p>
