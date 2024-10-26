@@ -160,9 +160,8 @@ img {
 }
 
 .floor-back {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
+  position: sticky;
+  bottom: 10px;
   padding: 10px 40px;
   border: 2px solid #747578;
   border-radius: 80px;
@@ -172,6 +171,7 @@ img {
   background-color: #fff;
   text-decoration: none;
   z-index: 10;
+  margin-left: auto;
 }
 
 /* hoverとは、マウスカーソルを対象物に重ねた時の挙動のこと  */
