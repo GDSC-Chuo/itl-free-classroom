@@ -123,7 +123,7 @@ export default {
 .back-floor {
   position: relative;
   text-align: center;
-  margin-top: 50px;
+  margin: 50px 0;
 }
 
 .back-floor-box {

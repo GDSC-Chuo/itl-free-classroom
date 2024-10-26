@@ -27,7 +27,8 @@
   text-align: center;
   display: inline-block;
   font-size: 40px;
-  line-height: 50px
+  line-height: 50px;
+  padding: 20px 0;
 }
 
 .info {

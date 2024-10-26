@@ -23,11 +23,8 @@ export default {
 h1 {
   color: #030000;
   font-weight: 700;
+  padding: 20px 0;
   font-size: 40px;
-}
-
-.home-title {
-  margin-top: 100px;
 }
 
 .select {

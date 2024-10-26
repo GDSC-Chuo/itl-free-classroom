@@ -103,22 +103,24 @@ export default {
 
 <style>
 .container {
-  height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 .floor-wrap {
-  position: absolute;
-  margin-top: 100px;
-  left: 25px;
+  padding-top: 20px
 }
 
 .floor-title {
+  position: fixed;
+  top: 20px;
+  left: 20px;
   padding: 10px 40px;
   border: 2px solid #747578;
   border-radius: 80px;
   width: fit-content;
+  background-color: white;
+  z-index: 10;
 }
 
 /* titleの中にあるpタグの設定  */
@@ -146,23 +148,21 @@ export default {
   justify-content: center;
   margin-top: 50px;
   gap: 20px;
+  position: relative;
 }
 
 img {
-  max-width: 80%;
+  max-width: 70%;
   height: auto;
   border-radius: 10px;
   margin-bottom: 100px;
 }
 
 .floor-back {
-  position: absolute;
-  right: 25px;
-  bottom: 25px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 40px;
-  padding-right: 40px;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  padding: 10px 40px;
   border: 2px solid #747578;
   border-radius: 80px;
   color: #ff0000;
@@ -179,16 +179,6 @@ img {
 }
 
 @media (max-width: 1300px) {
-  .floor-wrap {
-    position: static;
-    margin-top: 10vh;
-  }
-
-  .floor-title {
-    display: block;
-    width: fit-content;
-  }
-
   .floor-info {
     text-align: center;
   }
@@ -197,29 +187,12 @@ img {
     margin-top: 30px;
 
     img {
-      max-width: 70%;
       margin-bottom: 20px;
     }
-  }
-
-  .floor-back {
-    display: block;
-    margin: 0 auto;
-    text-align: center;
   }
 }
 
 @media (max-width: 600px) {
-
-  .floor-wrap {
-    position: static;
-    margin-top: 5vh;
-  }
-
-  .img-and-button img {
-    max-width: 60%;
-    margin-bottom: 50px;
-  }
 
   .floor-title {
     padding: 8px 30px;
@@ -233,6 +206,11 @@ img {
   .floor-back {
     font-size: 14px;
     font-weight: 500;
+  }
+
+  .img-and-button img {
+    max-width: 70%;
+    margin-bottom: 50px;
   }
 }
 </style>

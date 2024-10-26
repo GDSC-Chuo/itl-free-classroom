@@ -101,7 +101,6 @@ input {
 .search-area {
   display: flex;
   flex-direction: column;
-  height: 100vh;
   overflow-y: auto;
   padding: 10px;
   box-sizing: border-box;
@@ -131,14 +130,12 @@ h3 {
 
 /*検索結果の要素の設定*/
 .result {
-  margin-top: 50px;
   font-size: 24px;
   text-align: center;
   color: black;
   border: 2px solid black;
   border-radius: 15px;
   width: 100%;
-  margin-bottom: 10px;
 }
 
 .result td {
@@ -173,6 +170,7 @@ input[type="text"] {
 @media (max-width: 600px) {
   h1 {
     font-size: 32px;
+    margin: 20px;
   }
 
   .search-area {

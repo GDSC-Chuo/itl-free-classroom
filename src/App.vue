@@ -64,7 +64,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 0px 20px 0;
 }
 
 p {
