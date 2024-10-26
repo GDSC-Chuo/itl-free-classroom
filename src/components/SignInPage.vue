@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="signin-container">
     <div>
       <h1 class="signin-title">Sign in</h1>
     </div>
@@ -22,6 +22,10 @@
 </template>
 
 <style scoped>
+.signin-container {
+  height: 100%;
+}
+
 .signin-title {
   position: relative;
   text-align: center;
@@ -83,9 +87,11 @@
 }
 
 .return {
-  position: relative;
+  position: absolute;
   text-align: center;
-  margin-top: 150px;
+  left: 50%;
+  bottom: -100px;
+  transform: translateX(-50%);
 }
 
 .return-box {
@@ -100,6 +106,8 @@
   text-decoration: none;
   text-align: center;
   display: inline-block;
+  margin-bottom: 50px;
+  transform: translateY(50%);
 }
 
 @media (max-width: 600px) {

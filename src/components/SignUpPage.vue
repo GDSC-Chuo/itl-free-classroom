@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="signup-container">
     <div>
       <h1 class="signup-title">Sign Up</h1>
     </div>
@@ -31,6 +31,10 @@
 </template>
 
 <style scoped>
+.signup-container {
+  height: 100%;
+}
+
 .signup-title {
   position: relative;
   text-align: center;
@@ -98,9 +102,11 @@
 }
 
 .return {
-  position: relative;
+  position: absolute;
   text-align: center;
-  margin-top: 100px;
+  left: 50%;
+  bottom: -100px;
+  transform: translateX(-50%);
 }
 
 .return-box {
@@ -115,6 +121,8 @@
   text-decoration: none;
   text-align: center;
   display: inline-block;
+  margin-bottom: 50px;
+  transform: translateY(50%);
 }
 
 @media (max-width: 600px) {
