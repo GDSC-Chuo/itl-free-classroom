@@ -124,6 +124,10 @@
   .login {
     margin-top: 20px;
   }
+
+  .return-box {
+    padding: 10px 35px;
+  }
 }
 </style>
 

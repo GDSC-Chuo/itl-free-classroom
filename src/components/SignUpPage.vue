@@ -135,6 +135,10 @@
   .return {
     margin-top: 60px;
   }
+
+  .return-box {
+    padding: 10px 35px;
+  }
 }
 </style>
 
