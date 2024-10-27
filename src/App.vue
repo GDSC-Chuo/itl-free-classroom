@@ -48,11 +48,11 @@ body {
 .special-area {
   position: absolute;
   text-align: center;
-  top: 50%;
+  top: 5vh;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90vw;
-  height: 90vh;
+  transform: translate(-50%, 0);
+  width: 500px;
+  height: 550px;
   background: #FFFFFF;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
@@ -70,6 +70,15 @@ body {
 
 p {
   margin: 0;
+}
+
+/* スマホ版のスタイル */
+@media (max-width: 600px) {
+  .special-area {
+    width: 80%;
+    transform: translate(-50%, 10%);
+    height: 450px;
+  }
 }
 
 </style>
