@@ -1,8 +1,9 @@
 <template>
   <div class="home">
 
-    <h1 class="home-title">iTL</h1>
-    <h1 class="home-title">Free Classroom</h1>
+    <h1 class="home-title">iTL
+      <br>Free Classroom
+    </h1>
 
     <div class="name">
       <P><router-link to='/signin' class="select">sign in</router-link></P>
@@ -19,11 +20,11 @@ export default {
 </script>
 
 <style scoped>
-.home-title {
+h1 {
   color: #030000;
   font-weight: 700;
+  padding: 20px 0;
   font-size: 40px;
-  margin: 0s;
 }
 
 .select {
@@ -37,7 +38,7 @@ export default {
   vertical-align: middle;
   background-color: #ffffff;
   text-decoration: none;
-  margin: 40px;
+  margin: 30px;
   text-align: center;
   display: inline-block;
   line-height: 50px
@@ -54,15 +55,15 @@ export default {
   vertical-align: middle;
   background-color: #ff0000;
   text-decoration: none;
-  margin: 40px;
+  margin: 30px;
   text-align: center;
   display: inline-block;
   line-height: 50px
 }
 
-@media (max-width: 400px) {
-  h1 {
-    font-size: 24px;
+@media (max-width: 600px) {
+  .home-title {
+    font-size: 32px;
   }
 
   .button {

@@ -1,8 +1,7 @@
-<!-- TODO: デザイン修正-->
 <template>
-  <div>
-    <div class="floor">
-      <div class="title">
+  <div class="floor-container">
+    <div class="floor-wrap">
+      <div class="floor-title">
         <p>3F</p>
       </div>
       <div class="floor-info">
@@ -26,7 +25,7 @@
     </div>
     <div class="img-and-button">
       <img src="@/assets/3F.png" alt="3F">
-      <router-link to="/floor-select" class="back">フロア選択へ戻る</router-link>
+      <router-link to="/floor-select" class="floor-back">フロア選択へ戻る</router-link>
     </div>
   </div>
 </template>
@@ -108,25 +107,31 @@ export default {
 }
 </script>
 
-<style scoped>
-.floor {
-  position: absolute;
-  left: 25px;
-  top: 25px;
+<style>
+
+.floor-container {
+  height: 100%;
 }
 
-.title {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 40px;
-  padding-right: 40px;
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.floor-wrap {
+  padding-top: 20px
+}
+
+.floor-title {
+  padding: 10px 40px;
   border: 2px solid #747578;
   border-radius: 80px;
-  width: 38px;
+  width: fit-content;
+  background-color: white;
 }
 
 /* titleの中にあるpタグの設定  */
-.title>p {
+.floor-title>p {
   color: #ff0000;
   font-weight: 700;
   font-size: 32px;
@@ -143,19 +148,27 @@ export default {
   margin: 15px 0;
 }
 
-img {
-  max-width: calc(90vw - 40px);
-  max-height: calc(90vh - 40px);
+.img-and-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  gap: 20px;
+  position: relative;
 }
 
-.back {
-  position: absolute;
-  right: 25px;
-  bottom: 25px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 40px;
-  padding-right: 40px;
+img {
+  width: clamp(250px, 100%, 450px);
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 100px;
+}
+
+.floor-back {
+  position: sticky;
+  bottom: 10px;
+  padding: 10px 40px;
   border: 2px solid #747578;
   border-radius: 80px;
   color: #ff0000;
@@ -163,70 +176,47 @@ img {
   font-size: 16px;
   background-color: #fff;
   text-decoration: none;
+  z-index: 10;
+  margin-left: auto;
 }
 
 /* hoverとは、マウスカーソルを対象物に重ねた時の挙動のこと  */
-.back:hover {
+.floor-back:hover {
   background-color: #f5f5f5;
 }
 
 @media (max-width: 1300px) {
-  .floor {
-    position: static;
-    margin-bottom: 20px;
-    margin-top: 50px;
-  }
-
-  .title {
-    display: block;
-    width: fit-content;
-  }
-
   .floor-info {
     text-align: center;
   }
 
-  .image-and-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  .img-and-button {
+    margin-top: 30px;
 
-  img {
-    display: block;
-    margin: 0 auto;
-    width: 80%;
-    max-width: 80%;
-    margin-bottom: 200px;
-  }
-
-  .back {
-    display: block;
-    margin: 0 auto;
-    text-align: center;
+    img {
+      margin-bottom: 20px;
+    }
   }
 }
 
 @media (max-width: 600px) {
-  img {
-    width: 60%;
+
+  .floor-title {
+    padding: 8px 30px;
   }
 
-  .title {
-    padding-top: 8px;
-    padding-bottom: 8px;
-    padding-left: 30px;
-    padding-right: 30px;
-    width: 24px;
-  }
-
-  .title>p {
-    font-weight: 500;
+  .floor-title>p {
     font-size: 24px;
+    font-weight: 500;
   }
 
-  .back {
+  .floor-back {
+    font-size: 14px;
     font-weight: 500;
+  }
+
+  .img-and-button img {
+    margin-bottom: 50px;
   }
 }
 </style>
