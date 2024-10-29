@@ -81,6 +81,11 @@ export default {
       const currentDay = daysInJapanese[dayIndex];
       return currentDay;
     },
+    //現在の学期を取得
+    currentSemester(){
+      const month = new Date().getMonth() + 1;
+      return month >= 4 && month <= 8 ? '前期' : '後期';
+    },
     currentClass() {
       const now = new Date();
       // 現在の時間がどの授業時間（period）に該当するかを見つける
@@ -91,11 +96,12 @@ export default {
       });
       if (!currentPeriod) return null;
       const periodIndex = this.periods.indexOf(currentPeriod);
+      const currentSemester = this.currentSemester;
 
       // 時間割、曜日、階数、前期後期で授業情報を絞り込み
       return this.classes.filter((c) => {
         const classroomStr = String(c.classroom);
-        return c.period === periodIndex + 1 && c.day === this.currentDay && classroomStr.startsWith('11') && c.semester === '前期';
+        return c.period === periodIndex + 1 && c.day === this.currentDay && classroomStr.startsWith('11') && c.semester === currentSemester;
       });
     },
   }
