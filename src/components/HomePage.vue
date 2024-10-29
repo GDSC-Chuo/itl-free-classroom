@@ -5,7 +5,7 @@
       <br>Free Classroom
     </h1>
 
-    <div v-if="errorMessage">
+    <div v-if="errorMessage" class="error-message">
       {{ errorMessage }}
     </div>
 
@@ -76,6 +76,13 @@ h1 {
   text-align: center;
   display: inline-block;
   line-height: 50px
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  display: block;
+  text-align: center;
 }
 
 @media (max-width: 600px) {
