@@ -1,11 +1,9 @@
-<!-- TODO: デザイン修正、ログインする/ログインせずに使うというリンクを用意する -->
 <template>
   <div class="search-area">
     <h1>授業情報検索</h1>
 
     <form @submit.prevent="search">
-      <div class="search-box"> <input v-model="searchKeyword" type="text" name="subject"
-          placeholder="「教員名」もしくは「授業名」を完全一致で検索">
+      <div class="search-box"> <input v-model="searchKeyword" type="text" name="subject" placeholder="キーワードを入力">
         <img src="@/assets/search-icon.svg" width="53" height="53" @click="search">
       </div>
     </form>
@@ -23,8 +21,6 @@
       <h3>※完全一致での検索となります</h3>
     </div>
 
-
-    <!--検索した時だけの表示はこれ-->
     <div v-if="isSearchExecuted">
       <table class="result">
         <tr>
@@ -90,8 +86,6 @@ export default {
     },
   }
 };
-
-
 </script>
 
 <style scoped>
@@ -107,6 +101,10 @@ input {
 .search-area {
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  padding: 10px;
+  box-sizing: border-box;
+  max-height: 90vh;
 }
 
 /*Class Informationの設定*/
@@ -118,8 +116,9 @@ h1 {
 /*検索の虫眼鏡の画像の設定*/
 img {
   position: absolute;
-  top: 8px;
+  top: 15px;
   right: 10px;
+  width: 40px;
 }
 
 /*検索方法の例の設定*/
@@ -131,14 +130,12 @@ h3 {
 
 /*検索結果の要素の設定*/
 .result {
-  margin-top: 50px;
   font-size: 24px;
   text-align: center;
   color: black;
   border: 2px solid black;
   border-radius: 15px;
   width: 100%;
-  margin-bottom: 50px;
 }
 
 .result td {
@@ -151,7 +148,7 @@ li {
 }
 
 ::placeholder {
-  font-size: 24px;
+  font-size: 16px;
   color: rgb(177, 169, 169);
   transform: translateY(0px);
   text-align: left;
@@ -167,51 +164,47 @@ input[type="text"] {
   top: 2px;
   text-align: center;
   font-family: "Zen Kaku Gothic New", sans-serif;
-  font-size: 32px;
-}
-
-.search-area {
-  max-height: 80vh;
-  
+  font-size: 24px;
 }
 
 @media (max-width: 600px) {
   h1 {
-     
-     font-size: 36px;
-     
+    font-size: 32px;
+    margin: 20px;
   }
-  
- .search-area{
-    position:fixed; 
-    top:0%;
-    
+
+  .search-area {
+    position: fixed;
+    top: 0%;
   }
+
   .search-box {
-  text-align: center;
-  ;
- }
+    text-align: center;
+    font-size: 24px;
+    width: 100%;
+  }
 
+  input[type="text"] {
+    font-size: 16px;
+    width: 100%
+  }
 
- h2{
+  img {
+    top: 20px;
+    width: 32px;
+  }
+
+  h2 {
     text-align: center;
     font-size: 30px;
   }
-  h3{
-     font-size: 16px;
+
+  h3 {
+    font-size: 16px;
   }
- 
+
+  .result {
+    font-size: 16px;
+  }
 }
-.result{
-  margin-top: 0px;
-  flex-direction: column;
-}
-
-  
-
-
-
-
-
-
 </style>

@@ -14,11 +14,11 @@ export default {
 <style scoped>
 .top-change {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
-  text-align: center;
-  max-width: 500px;
-  margin: 0 auto;
+  align-items: center;
+  min-height: 80vh;
+  margin: 0;
 }
 
 .choice-box {
