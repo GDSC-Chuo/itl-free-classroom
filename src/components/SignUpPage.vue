@@ -6,9 +6,6 @@
 
     <form @submit.prevent="validateAndRegister">
       <div class="info">
-        <small v-if="validationMessage" class="error-message">
-          {{ validationMessage }}
-        </small>
         <small v-if="confirmMessage" style="color: blue;">
           {{ confirmMessage }}
         </small>
@@ -24,6 +21,9 @@
             autocomplete="current-password" placeholder="パスワード確認" :class="{ 'error': !passwordsMatch }">
 
           <span v-if="!passwordsMatch || passwordError" class="error-message">{{ passwordError }}</span>
+          <small v-if="validationMessage" class="error-message">
+            {{ validationMessage }}
+          </small>
         </p>
       </div>
       <div>

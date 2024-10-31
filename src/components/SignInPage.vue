@@ -6,9 +6,6 @@
 
     <form @submit.prevent="loginUser">
       <div class="info">
-        <small v-if="validationMessage" class="error-message">
-          {{ validationMessage }}
-        </small>
         <small v-if="unVerified" style="color: blue;">
           {{ unVerified }}
         </small>
