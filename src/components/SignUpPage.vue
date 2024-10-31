@@ -221,6 +221,7 @@ export default {
       clearErrors() {
         this.emailError = '';
         this.passwordError = '';
+        this.validationMessage = null;
       },
     }
 };
