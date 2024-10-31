@@ -150,6 +150,9 @@ export default {
   },
   methods: {
     async loginUser() {
+
+      this.clearMessages();
+
       try {
         const isVerified = await signin(this.email, this.password);
 
@@ -191,6 +194,11 @@ export default {
         }
       }
     },
+
+    clearMessages() {
+      this.validationMessage = null;
+      this.unVerified = null;
+    }
   },
 };
 
