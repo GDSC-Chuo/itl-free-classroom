@@ -6,11 +6,14 @@
 
     <form @submit.prevent="loginUser">
       <div class="info">
+        <small v-if="unVerified" style="color: blue;">
+          {{ unVerified }}
+        </small>
         <p id="info">
           <input class="mail" type="email" v-model="email" placeholder="メールアドレス">
 
           <input class="password" type="password" v-model="password" placeholder="パスワード">
-          <span v-if="credentialsError" class="error-message">{{ credentialsError }}</span>
+          <span v-if="validationMessage" class="error-message">{{ validationMessage }}</span>
         </p>
       </div>
       <div><input type="submit" id="login" class="login" value="ログイン"></div>
@@ -133,8 +136,7 @@
 
 
 <script>
-import { app } from '../firebase';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { signin } from '@/lib/auth';
 
 export default {
   name: "SignIn",
@@ -142,34 +144,61 @@ export default {
     return {
       email: '',
       password: '',
-      credentialsError: '',
+      validationMessage: null,
+      unVerified: null,
     };
   },
   methods: {
-    loginUser() {
-      this.clearErrors();
+    async loginUser() {
 
-      const auth = getAuth(app);
-      signInWithEmailAndPassword(auth, this.email, this.password)
-        .then(() => {
-          this.$router.push('/floor-select');
-        })
-        .catch((error) => {
-          console.log("Failure...");
-          this.handleLoginError(error);
-        });
-    },
+      this.clearMessages();
 
-    clearErrors() {
-      this.credentialsError = '';
-    },
-    handleLoginError(error) {
-      if (error.code === 'auth/invalid-login-credentials') {
-        this.credentialsError = 'メールアドレスまたはパスワードが正しくありません';
-      } else {
-        alert('不明なエラーが発生しました: ' + error.message);
+      try {
+        const isVerified = await signin(this.email, this.password);
+
+        if (!isVerified) {
+          this.validationMessage = null;
+          this.unVerified = "認証メールを送信しました。メールのリンクから認証を行ってください"
+          return 
+        }
+
+        this.$router.push('/floor-select')
+
+      } catch (error) {
+        console.error(error)
+        
+        switch (error.code) {
+          case "auth/user-not-found":
+            this.validationMessage = "ユーザーが登録されていません。"
+            break;
+        
+          case "auth/invalid-email":
+            this.validationMessage = "メールアドレスが正しくありません。"
+            break;
+
+          case "auth/wrong-password":
+            this.validationMessage = "パスワードが一致しません。"
+            break;
+          
+          case "auth/invalid-credential":
+            this.validationMessage = "メールアドレス又はパスワードが異なります。"
+            break;
+  
+          case "auth/too-many-requests":
+            this.validationMessage = "認証メールを送信できませんでした。1分後に再度サインインを行い認証メールを送信してください。"
+            break;
+            
+          default:
+            this.validationMessage = "サインインに失敗しました。もう一度サインインを行ってください。"
+            break;
+        }
       }
     },
+
+    clearMessages() {
+      this.validationMessage = null;
+      this.unVerified = null;
+    }
   },
 };
 

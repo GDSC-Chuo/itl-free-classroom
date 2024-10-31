@@ -1,11 +1,14 @@
 <template>
   <div class="signup-container">
     <div>
-      <h1 class="signup-title">Sign Up</h1>
+        <h1 class="signup-title">Sign Up</h1>
     </div>
 
     <form @submit.prevent="validateAndRegister">
       <div class="info">
+        <small v-if="confirmMessage" style="color: blue;">
+          {{ confirmMessage }}
+        </small>
         <p id="info">
           <input v-model="email" class="mail" type="email" id="signup-id" autocomplete="username" placeholder="メールアドレス"
             :class="{ 'error': emailError }">
@@ -17,7 +20,10 @@
           <input v-model="password2" class="password" type="password" id="signup-password2"
             autocomplete="current-password" placeholder="パスワード確認" :class="{ 'error': !passwordsMatch }">
 
-          <span v-if="!passwordsMatch || passwordError" class="error-message">{passwordError}</span>
+          <span v-if="!passwordsMatch || passwordError" class="error-message">{{ passwordError }}</span>
+          <small v-if="validationMessage" class="error-message">
+            {{ validationMessage }}
+          </small>
         </p>
       </div>
       <div>
@@ -143,66 +149,80 @@
 </style>
 
 <script>
-import { app } from '../firebase';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { signup } from '@/lib/auth';
 
 export default {
-  name: "SignIn",
-  data() {
-    return {
-      email: '',
-      password1: '',
-      password2: '',
-      emailError: '',
-      passwordError: '',
-    };
-  },
-  computed: {
-    passwordsMatch() {
-      return this.password1 === this.password2;
+    name: "SignUp",
+    data() {
+        return {
+            email: '',
+            password1: '',
+            password2: '',
+            validationMessage: null,
+            confirmMessage: null,
+            emailError: '',
+            passwordError: '',
+        };
     },
-  },
-  methods: {
-    validateAndRegister() {
-      this.clearErrors();
-
-      // メアド検証
-      if (!this.email.endsWith('@g.chuo-u.ac.jp')) {
-        this.emailError = '中央大学のメールアドレスで登録してください';
-      }
-
-      // パスワード検証
-      if (!this.passwordsMatch) {
-        this.passwordError = 'パスワードが一致しません';
-      }
-
-      // エラーがある場合は処理を中断
-      if (this.emailError || this.passwordError) {
-        return;
-      }
-
-      const auth = getAuth(app);
-      createUserWithEmailAndPassword(auth, this.email, this.password1)
-        .then(() => {
-          this.$router.push('/floor-select');
-        })
-        .catch((error) => {
-          this.handleLoginError(error);
-        });
+    computed: {
+      passwordsMatch() {
+        return this.password1 === this.password2;
+      },
     },
-    clearErrors() {
-      this.emailError = '';
-      this.passwordError = '';
-    },
-    handleLoginError(error) {
-      if (error.code === 'auth/email-already-in-use') {
-        this.emailError = 'このメールアドレスは既に使用されています';
-      } else if (error.code === 'auth/weak-password') {
-        this.passwordError = '6文字以上のパスワードを設定してください';
-      } else {
-        alert('登録に失敗しました: ' + error.message);
-      }
-    },
-  },
+    methods: {
+      async validateAndRegister() {
+            this.clearErrors();
+
+            // メアド検証
+            if (!this.email.endsWith('@g.chuo-u.ac.jp')) {
+              this.emailError = '中央大学のメールアドレスで登録してください';
+            }
+
+            // パスワード検証
+            if (!this.passwordsMatch) {
+              this.passwordError = 'パスワードが一致しません';
+            }
+
+            // エラーがある場合は処理を中断
+            if (this.emailError || this.passwordError) {
+              return;
+            }
+
+            try {
+                await signup(this.email, this.password1);
+                this.validationMessage = null;
+                this.confirmMessage = "認証メールを送信しました。メールのリンクからアカウントを有効化してください。"
+            } catch (error) {
+                console.error(error);
+
+                switch (error.code) {
+                    case "auth/email-already-in-use":
+                        this.validationMessage = "既にこのメールアドレスは登録されています。"
+                        break;
+                
+                    case "auth/password-does-not-meet-requirements":
+                        this.validationMessage = "パスワードの形式が正しくありません。"
+                        break;
+
+                    case "auth/weak-password":
+                        this.validationMessage = "パスワードは６文字以上で設定してください。"
+                        break;
+                    
+                    case "auth/user-disabled":
+                        this.validationMessage = "このメールアドレスではサインアップができません。別のメールアドレスでお試しください"
+                        break;
+
+                    default:
+                        this.validationMessage = "サインアップに失敗しました。別のメールアドレスでお試しください"
+                        break;
+                }
+            }
+      },
+      clearErrors() {
+        this.emailError = '';
+        this.passwordError = '';
+        this.validationMessage = null;
+      },
+    }
 };
 </script>

@@ -15,6 +15,8 @@ import Floor11th from '../components/11thFloor.vue'
 import FloorSelect from '../components/FloorSelect.vue'
 import ClassInfo from '../components/ClassInfo.vue'
 import SearchClass from '../components/SearchClass.vue'
+import { isSignedIn } from '@/lib/auth'
+import EmailVerificationPage from '@/components/EmailVerificationPage.vue'
 
 const routes = [
     {
@@ -36,6 +38,11 @@ const routes = [
         path: '/signup',
         name: 'SignUp',
         component: SignUpPage
+    },
+    {
+        path: '/email-verification',
+        name: 'EmailVerification',
+        component: EmailVerificationPage
     },
     {
         path: '/test',
@@ -103,6 +110,29 @@ const routes = [
 const router = createRouter({
     history: createWebHistory('/'),
     routes,
+})
+
+router.beforeEach((to, from, next) => {
+
+  try {
+    if (['Home', 'SignIn', 'SignUp', 'Test', 'EmailVerification'].includes(to.name)) {
+      return next()
+    }
+
+    if (isSignedIn()) {
+      return next()
+    } 
+    
+    throw new Error("サインアップ又はサインインが必要です");
+    
+
+  } catch (error) {
+    console.error(error.message); 
+    next({
+      name: "Home",
+      query: {error: error.message}
+    })
+  }
 })
 
 export default router

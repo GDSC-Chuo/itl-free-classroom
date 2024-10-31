@@ -52,7 +52,7 @@ body {
   left: 50%;
   transform: translate(-50%, 0);
   width: 500px;
-  height: 550px;
+  height: fit-content;
   background: #FFFFFF;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
@@ -65,7 +65,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0px 20px 0;
+  padding: 0px 20px 10px;
 }
 
 p {
@@ -77,7 +77,6 @@ p {
   .special-area {
     width: 80%;
     transform: translate(-50%, 10%);
-    height: 450px;
   }
 }
 
