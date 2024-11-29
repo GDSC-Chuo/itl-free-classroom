@@ -26,9 +26,9 @@ export default {
 </script>
 
 <style scoped>
-* {
-  box-sizing: border-box;
-  /* すべての要素でbox-sizingを適用 */
+.wrapper {
+  margin: 0;
+  height: 100%;
 }
 
 .title {
@@ -36,12 +36,12 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin: 20px;
+  padding-top: 1vh;
 }
 
 h1 {
   margin: 20px 100px 20px;
-  font-size: 48px;
+  font-size: 40px;
   text-align: center;
   color: #3A3B3E;
 }
@@ -68,7 +68,6 @@ h1 {
 }
 
 .floor-change {
-  /* 折り返し */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -89,17 +88,13 @@ h1 {
   border-radius: 80px;
   color: #ff0000;
   font-weight: 500;
-  font-size: 56px;
+  font-size: 48px;
   vertical-align: middle;
   background-color: #fff;
   text-decoration: none;
 
   text-align: center;
   line-height: 100px;
-}
-
-.return-top {
-  font-size: 56px;
 }
 
 .floor-box:hover {
@@ -133,10 +128,6 @@ h1 {
 
 @media (max-width: 600px) {
 
-  .wrapper {
-    padding: 20px;
-  }
-
   .floor-change {
     max-width: 800px;
   }
@@ -147,12 +138,6 @@ h1 {
     height: 60px;
     font-size: 24px;
     line-height: 60px;
-  }
-}
-
-@media (max-width: 400px) {
-  h1 {
-    margin: 300px 100px 20px;
   }
 }
 </style>

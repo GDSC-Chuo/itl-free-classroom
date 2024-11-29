@@ -1,165 +1,228 @@
 <template>
+  <div class="signup-container">
     <div>
-        <div>
-            <h1 class="signup-title">Sign Up</h1>
-        </div>
-
-        <form @submit.prevent="validateAndRegister">
-            <div class="info">
-                <p id="info">
-
-                    <input v-model="email" class="id" type="email" id="signup-id" autocomplete="username"
-                        placeholder="メールアドレス" :class="{ 'error': emailError }">
-                    <span v-if="emailError" class="error-message">中央大学のメールアドレスで登録してください</span>
-
-                    <input v-model="password1" class="password" type="password" id="signup-password1"
-                        autocomplete="current-password" placeholder="パスワード" :class="{ 'error': !passwordsMatch }">
-
-                    <input v-model="password2" class="password" type="password" id="signup-password2"
-                        autocomplete="current-password" placeholder="確認用パスワード" :class="{ 'error': !passwordsMatch }">
-
-                    <span v-if="!passwordsMatch" class="error-message">パスワードが一致しません</span>
-                </p>
-            </div>
-            <div>
-                <input type="submit" id="signup-button" class="register" value="登録">
-            </div>
-        </form>
-        <div class="return">
-            <router-link to="/" class="return-box">戻る</router-link>
-        </div>
+        <h1 class="signup-title">Sign Up</h1>
     </div>
+
+    <form @submit.prevent="validateAndRegister">
+      <div class="info">
+        <small v-if="confirmMessage" style="color: blue;">
+          {{ confirmMessage }}
+        </small>
+        <p id="info">
+          <input v-model="email" class="mail" type="email" id="signup-id" autocomplete="username" placeholder="メールアドレス"
+            :class="{ 'error': emailError }">
+          <span v-if="emailError" class="error-message">{{ emailError }}</span>
+
+          <input v-model="password1" class="password" type="password" id="signup-password1"
+            autocomplete="current-password" placeholder="パスワード" :class="{ 'error': passwordError || !passwordsMatch }">
+
+          <input v-model="password2" class="password" type="password" id="signup-password2"
+            autocomplete="current-password" placeholder="パスワード確認" :class="{ 'error': !passwordsMatch }">
+
+          <span v-if="!passwordsMatch || passwordError" class="error-message">{{ passwordError }}</span>
+          <small v-if="validationMessage" class="error-message">
+            {{ validationMessage }}
+          </small>
+        </p>
+      </div>
+      <div>
+        <input type="submit" id="signup-button" class="register" value="登録">
+      </div>
+    </form>
+    <div class="return">
+      <router-link to="/" class="return-box">戻る</router-link>
+    </div>
+  </div>
 </template>
 
-<style>
+<style scoped>
+.signup-container {
+  height: 100%;
+}
+
 .signup-title {
-    position: relative;
-    text-align: center;
-    padding-top: 15vh;
-    display: inline-block;
-    font-size: 40px;
-    line-height: 50px
+  position: relative;
+  text-align: center;
+  display: inline-block;
+  font-size: 40px;
+  line-height: 50px;
+  padding: 20px 0;
 }
 
 .info {
-    padding-top: 30px;
-    text-align: center;
+  text-align: center;
 }
 
-.id,
+.mail,
 .password {
-    position: relative;
-    font-size: 20px;
-    width: 300px;
-    height: 30px;
-    display: flex;
-    border-radius: 30px;
-    gap: 0 .7em;
-    margin-bottom: .6em;
-    padding: .7em .9em;
-    border-color: #747578;
-    background-color: white;
-    text-align: center;
-    display: inline-block;
-}
-
-.id {
-    margin-bottom: 50px;
+  position: relative;
+  font-size: 20px;
+  width: 300px;
+  height: 30px;
+  display: flex;
+  border-radius: 30px;
+  gap: 0 .7em;
+  margin-bottom: .6em;
+  padding: .7em .9em;
+  border-color: #747578;
+  background-color: white;
+  text-align: center;
+  display: inline-block;
 }
 
 .password.error,
 .id.error {
-    border-color: red;
+  border-color: red;
 }
 
 .error-message {
-    color: red;
-    font-size: 14px;
-    display: block;
-    margin-top: 10px;
+  color: red;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .register {
-    position: relative;
-    font-size: 22px;
-    width: 200px;
-    height: 50px;
-    border-radius: 30px;
-    background-color: #FF0000;
-    color: white;
-    border-color: #FF0000;
-    text-align: center;
-    display: inline-block;
-    margin-top: 5vh;
+  position: relative;
+  font-size: 22px;
+  width: 200px;
+  height: 50px;
+  border-radius: 30px;
+  background-color: #FF0000;
+  color: white;
+  border-color: #FF0000;
+  text-align: center;
+  display: inline-block;
+  margin-top: 20px;
 }
 
 .register:hover {
-    opacity: .8;
+  opacity: .8;
 }
 
 .register:disabled {
-    background-color: #FF8888;
-    border-color: #FF8888;
+  background-color: #FF8888;
+  border-color: #FF8888;
 }
 
 .return {
-    position: relative;
-    text-align: center;
-    margin-top: 100px;
-    /* ログインボタン最下部からの距離 */
+  position: absolute;
+  text-align: center;
+  left: 50%;
+  bottom: -100px;
+  transform: translateX(-50%);
 }
 
 .return-box {
-    position: relative;
-    padding: 10px 50px;
-    border: 3px solid white;
-    border-radius: 30px;
-    color: white;
-    font-size: 22px;
-    vertical-align: middle;
-    background-color: none;
-    text-decoration: none;
-    text-align: center;
-    display: inline-block;
+  position: relative;
+  padding: 10px 50px;
+  border: 3px solid white;
+  border-radius: 30px;
+  color: white;
+  font-size: 22px;
+  vertical-align: middle;
+  background-color: none;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  margin-bottom: 50px;
+  transform: translateY(50%);
+}
+
+@media (max-width: 600px) {
+
+  .mail,
+  .password {
+    width: 80%;
+  }
+
+  .return {
+    margin-top: 60px;
+  }
+
+  .return-box {
+    padding: 10px 35px;
+  }
 }
 </style>
 
 <script>
-import { app } from '../firebase';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { signup } from '@/lib/auth';
 
 export default {
-    name: "SignIn",
+    name: "SignUp",
     data() {
         return {
             email: '',
             password1: '',
             password2: '',
-            emailError: false,
+            validationMessage: null,
+            confirmMessage: null,
+            emailError: '',
+            passwordError: '',
         };
     },
     computed: {
-        passwordsMatch() {
-            return this.password1 === this.password2;
-        },
+      passwordsMatch() {
+        return this.password1 === this.password2;
+      },
     },
     methods: {
-        validateAndRegister() {
-            this.emailError = !this.email.endsWith('@g.chuo-u.ac.jp');
+      async validateAndRegister() {
+            this.clearErrors();
 
-            if (!this.passwordsMatch || this.emailError) {
-                return;
+            // メアド検証
+            if (!this.email.endsWith('@g.chuo-u.ac.jp')) {
+              this.emailError = '中央大学のメールアドレスで登録してください';
             }
 
-            const auth = getAuth(app);
-            createUserWithEmailAndPassword(auth, this.email, this.password1)
-                .then(() => {
-                    this.$router.push('/floor-select');
-                })
-                .catch((error) => {
-                    alert('Failure...(' + error.message + ')');
-                });
-        },
-    },
+            // パスワード検証
+            if (!this.passwordsMatch) {
+              this.passwordError = 'パスワードが一致しません';
+            }
+
+            // エラーがある場合は処理を中断
+            if (this.emailError || this.passwordError) {
+              return;
+            }
+
+            try {
+                await signup(this.email, this.password1);
+                this.validationMessage = null;
+                this.confirmMessage = "認証メールを送信しました。メールのリンクからアカウントを有効化してください。"
+            } catch (error) {
+                console.error(error);
+
+                switch (error.code) {
+                    case "auth/email-already-in-use":
+                        this.validationMessage = "既にこのメールアドレスは登録されています。"
+                        break;
+                
+                    case "auth/password-does-not-meet-requirements":
+                        this.validationMessage = "パスワードの形式が正しくありません。"
+                        break;
+
+                    case "auth/weak-password":
+                        this.validationMessage = "パスワードは６文字以上で設定してください。"
+                        break;
+                    
+                    case "auth/user-disabled":
+                        this.validationMessage = "このメールアドレスではサインアップができません。別のメールアドレスでお試しください"
+                        break;
+
+                    default:
+                        this.validationMessage = "サインアップに失敗しました。別のメールアドレスでお試しください"
+                        break;
+                }
+            }
+      },
+      clearErrors() {
+        this.emailError = '';
+        this.passwordError = '';
+        this.validationMessage = null;
+      },
+    }
 };
 </script>
