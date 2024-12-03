@@ -115,6 +115,11 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
 
   try {
+    // COMMENT: 開発環境時はAuth Gardを無効にする
+    if (process.env.NODE_ENV === "development") {
+        return next()
+    }
+
     if (['Home', 'SignIn', 'SignUp', 'Test', 'EmailVerification'].includes(to.name)) {
       return next()
     }
