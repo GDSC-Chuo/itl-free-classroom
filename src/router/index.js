@@ -15,6 +15,7 @@ import Floor11th from '../components/11thFloor.vue'
 import FloorSelect from '../components/FloorSelect.vue'
 import ClassInfo from '../components/ClassInfo.vue'
 import SearchClass from '../components/SearchClass.vue'
+import FreeclassroomInfo from '../components/FreeclassroomInfo.vue'
 import { isSignedIn } from '@/lib/auth'
 import EmailVerificationPage from '@/components/EmailVerificationPage.vue'
 
@@ -104,7 +105,13 @@ const routes = [
         path: '/search-class',
         name: 'SearchClass',
         component: SearchClass,
+    },
+    {
+        path: '/FreeclassroomInfo',
+        name: 'FreeclassroomInfo',
+        component: FreeclassroomInfo,
     }
+
 ]
 
 const router = createRouter({
