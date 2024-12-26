@@ -16,6 +16,7 @@ import FloorSelect from '../components/FloorSelect.vue'
 import ClassInfo from '../components/ClassInfo.vue'
 import SearchClass from '../components/SearchClass.vue'
 import FreeclassroomInfo from '../components/FreeclassroomInfo.vue'
+import FreeclassroomInfotest from '@/components/FreeclassroomInfotest.vue'
 import { isSignedIn } from '@/lib/auth'
 import EmailVerificationPage from '@/components/EmailVerificationPage.vue'
 
@@ -110,6 +111,12 @@ const routes = [
         path: '/FreeclassroomInfo',
         name: 'FreeclassroomInfo',
         component: FreeclassroomInfo,
+    },
+    {
+        path: '/FreeclassroomInfotest',
+        name: 'FreeclassroomInfotest',
+        component: FreeclassroomInfotest,
+
     }
 
 ]
