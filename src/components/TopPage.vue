@@ -2,6 +2,7 @@
   <div class="top-change">
     <router-link to="/floor-select" class="choice-box">空き教室情報</router-link>
     <router-link to="/search-class" class="choice-box">授業情報</router-link>
+    <router-link to="/FreeclassroomInfo" class="choice-box">空き教室一括情報</router-link>
   </div>
 </template>
 

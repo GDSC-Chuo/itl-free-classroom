@@ -4,10 +4,9 @@
       <h1>空き教室情報</h1>
       <div class="date-display">{{ currentDate }}</div>
     </div>
-    <div class="date-display">{{ currentDate }}</div>
 
     <div class="content">
-      <div class="time-selector">
+      <div class="time-selector" v-if="!isClosed">
         <h2>時間帯を選択</h2>
         <ul>
           <li
@@ -32,8 +31,8 @@
           <tbody>
             <tr v-for="room in classrooms" :key="room">
               <td>{{ room }}</td>
-              <td :class="{'available': isAvailable(room), 'occupied': !isAvailable(room)}">
-                {{ isAvailable(room) ? '空き' : '使用中' }}
+              <td :class="{'closed': isClosed, 'available': !isClosed && isAvailable(room), 'occupied': !isClosed && !isAvailable(room)}">
+                {{ isClosed ? '閉館' : isAvailable(room) ? '空き' : '使用中' }}
               </td>
             </tr>
           </tbody>
@@ -44,6 +43,8 @@
 </template>
 
 <script>
+import { fetchDataFromGAS } from "../lib/gas";
+
 export default {
   name: "FreeclassroomInfo",
   data() {
@@ -51,19 +52,15 @@ export default {
       classrooms: [
         "301", "401", "501", "502 (WS)", "701", "702",
         "801", "802", "901", "902", "1001", "1002", "1003", "1004",
-        "1101", "1102", "1103", "1104"
+        "1101", "1102", "1103", "1104",
       ],
       times: [
-        "1限前", "1限", "2限", "昼休み", "3限", "4限", "5限", "6限", "6限後"
+        "1限前", "1限", "2限", "昼休み", "3限", "4限", "5限", "6限", "6限後",
       ],
-      selectedTime: "1限前", // 初期選択の時間帯
-      freeClassroomData: {
-        "301": ["1限前", "昼休み", "5限"],
-        "401": ["1限", "3限", "4限"],
-        "501": ["1限", "2限", "6限"],
-        // 以下に他の教室のデータを追加
-      },
-      currentDate: "", // 現在の日付を格納
+      selectedTime: "1限前",
+      freeClassroomData: null,
+      currentDate: "",
+      isClosed: false, // 閉館状態を管理
     };
   },
   methods: {
@@ -71,7 +68,8 @@ export default {
       this.selectedTime = time;
     },
     isAvailable(room) {
-      return this.freeClassroomData[room]?.includes(this.selectedTime) || false;
+      // 部屋のステータスを確認
+      return this.freeClassroomData?.[room]?.includes(this.selectedTime) || false;
     },
     getCurrentDate() {
       const today = new Date();
@@ -79,11 +77,32 @@ export default {
       const month = String(today.getMonth() + 1).padStart(2, "0");
       const day = String(today.getDate()).padStart(2, "0");
       this.currentDate = `${year}-${month}-${day}`;
-    }
+    },
+    async fetchData() {
+      try {
+        const data = await fetchDataFromGAS();
+        if (data[1][2] === "閉館") {
+          this.isClosed = true;
+        } else {
+          this.freeClassroomData = {};
+          for (let i = 1; i < data.length; i++) {
+            const room = data[i][1];
+            this.freeClassroomData[room] = {};
+            for (let j = 2; j < data[0].length; j++) {
+              const timeSlot = data[0][j];
+              this.freeClassroomData[room][timeSlot] = data[i][j] ? "使用中" : "空き";
+            }
+          }
+        }
+      } catch (error) {
+        console.error("データ取得エラー:", error);
+      }
+    },
   },
-  mounted() {
+  async mounted() {
     this.getCurrentDate();
-  }
+    await this.fetchData();
+  },
 };
 </script>
 
@@ -141,7 +160,8 @@ table {
   border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
   border: 1px solid #ddd;
   text-align: center;
   padding: 8px;
@@ -159,5 +179,10 @@ th {
 .occupied {
   background-color: #f2dede;
   color: #a94442;
+}
+
+.closed {
+  background-color: #ddd;
+  color: #555;
 }
 </style>
