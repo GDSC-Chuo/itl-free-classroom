@@ -23,5 +23,5 @@ pnpm-debug.log*
 
 yarn.lock
 
-# Firebase directory
-.firebase
+.env
+

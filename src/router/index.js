@@ -15,6 +15,8 @@ import Floor11th from '../components/11thFloor.vue'
 import FloorSelect from '../components/FloorSelect.vue'
 import ClassInfo from '../components/ClassInfo.vue'
 import SearchClass from '../components/SearchClass.vue'
+import FreeclassroomInfo from '../components/FreeclassroomInfo.vue'
+import FreeclassroomInfotest from '@/components/FreeclassroomInfotest.vue'
 import { isSignedIn } from '@/lib/auth'
 import EmailVerificationPage from '@/components/EmailVerificationPage.vue'
 
@@ -104,7 +106,19 @@ const routes = [
         path: '/search-class',
         name: 'SearchClass',
         component: SearchClass,
+    },
+    {
+        path: '/FreeclassroomInfo',
+        name: 'FreeclassroomInfo',
+        component: FreeclassroomInfo,
+    },
+    {
+        path: '/FreeclassroomInfotest',
+        name: 'FreeclassroomInfotest',
+        component: FreeclassroomInfotest,
+
     }
+
 ]
 
 const router = createRouter({
@@ -115,6 +129,11 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
 
   try {
+    // COMMENT: 開発環境時はAuth Gardを無効にする
+    if (process.env.NODE_ENV === "development") {
+        return next()
+    }
+
     if (['Home', 'SignIn', 'SignUp', 'Test', 'EmailVerification'].includes(to.name)) {
       return next()
     }
