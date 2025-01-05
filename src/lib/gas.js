@@ -24,7 +24,6 @@ async function fetchDataFromGAS() {
   }
 }
 
-module.exports = { fetchDataFromGAS };
-
 // テスト呼び出し
-//fetchDataFromGAS();
+// fetchDataFromGAS();
+
