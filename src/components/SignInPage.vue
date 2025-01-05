@@ -162,7 +162,7 @@ export default {
           return 
         }
 
-        this.$router.push('/floor-select')
+        this.$router.push('/top')
 
       } catch (error) {
         console.error(error)
