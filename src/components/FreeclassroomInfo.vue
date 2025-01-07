@@ -64,45 +64,41 @@ export default {
     };
   },
   methods: {
-    selectTime(time) {
-      this.selectedTime = time;
-    },
-    isAvailable(room) {
-      // 部屋のステータスを確認
-      return this.freeClassroomData?.[room]?.includes(this.selectedTime) || false;
-    },
-    getCurrentDate() {
-      const today = new Date();
-      const year = today.getFullYear();
-      const month = String(today.getMonth() + 1).padStart(2, "0");
-      const day = String(today.getDate()).padStart(2, "0");
-      this.currentDate = `${year}-${month}-${day}`;
-    },
-    async fetchData() {
-      try {
-        const data = await fetchDataFromGAS();
-        if (data[1][2] === "閉館") {
-          this.isClosed = true;
-        } else {
-          this.freeClassroomData = {};
-          for (let i = 1; i < data.length; i++) {
-            const room = data[i][1];
-            this.freeClassroomData[room] = {};
-            for (let j = 2; j < data[0].length; j++) {
-              const timeSlot = data[0][j];
-              this.freeClassroomData[room][timeSlot] = data[i][j] ? "使用中" : "空き";
-            }
+  selectTime(time) {
+    this.selectedTime = time;
+  },
+  isAvailable(room) {
+    // 部屋のステータスを確認し、"空き"かどうかを判定
+    return this.freeClassroomData?.[room]?.[this.selectedTime] === "空き";
+  },
+  getCurrentDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+    this.currentDate = `${year}-${month}-${day}`;
+  },
+  async fetchData() {
+    try {
+      const data = await fetchDataFromGAS();
+      if (data[1][2] === "閉館") {
+        this.isClosed = true;
+      } else {
+        this.freeClassroomData = {};
+        for (let i = 1; i < data.length; i++) {
+          const room = data[i][1];
+          this.freeClassroomData[room] = {};
+          for (let j = 2; j < data[0].length; j++) {
+            const timeSlot = data[0][j];
+            this.freeClassroomData[room][timeSlot] = data[i][j] ? "使用中" : "空き";
           }
         }
-      } catch (error) {
-        console.error("データ取得エラー:", error);
       }
-    },
+    } catch (error) {
+      console.error("データ取得エラー:", error);
+    }
   },
-  async mounted() {
-    this.getCurrentDate();
-    await this.fetchData();
-  },
+},
 };
 </script>
 

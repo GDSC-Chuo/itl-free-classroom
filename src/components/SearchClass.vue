@@ -3,7 +3,8 @@
     <h1>授業情報検索</h1>
 
     <form @submit.prevent="search">
-      <div class="search-box"> <input v-model="searchKeyword" type="text" name="subject" placeholder="キーワードを入力">
+      <div class="search-box">
+        <input v-model="searchKeyword" type="text" name="subject" placeholder="キーワードを入力">
         <img src="@/assets/search-icon.svg" width="53" height="53" @click="search">
       </div>
     </form>
@@ -23,20 +24,24 @@
 
     <div v-if="isSearchExecuted">
       <table class="result">
-        <tr>
-          <th>授業名</th>
-          <th>教員</th>
-          <th>クラス</th>
-          <th>曜日</th>
-          <th>学期</th>
-        </tr>
-        <tr v-for="(result, index) in searchResults" :key="index">
-          <td>{{ result.subject }}</td>
-          <td>{{ result.teacher }}</td>
-          <td>{{ result.classroom }}</td>
-          <td>{{ result.day }}</td>
-          <td>{{ result.semester }}</td>
-        </tr>
+        <thead>
+          <tr>
+            <th>授業名</th>
+            <th>教員</th>
+            <th>クラス</th>
+            <th>曜日</th>
+            <th>学期</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(result, index) in searchResults" :key="index">
+            <td>{{ result.subject }}</td>
+            <td>{{ result.teacher }}</td>
+            <td>{{ result.classroom }}</td>
+            <td>{{ result.day }}</td>
+            <td>{{ result.semester }}</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
