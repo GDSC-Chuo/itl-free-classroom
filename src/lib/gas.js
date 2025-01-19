@@ -1,5 +1,8 @@
 // GASのWebアプリURL
-const GAS_API_URL ="https://script.google.com/macros/s/AKfycbxY0Zr3nad7TKnKlN8S7u1BtwX8a63QzvATciGhVhy6J9owJswGaBAmC235-yHXrGpu/exec";
+const GAS_API_URL = "https://script.google.com/macros/s/AKfycbxY0Zr3nad7TKnKlN8S7u1BtwX8a63QzvATciGhVhy6J9owJswGaBAmC235-yHXrGpu/exec";
+
+// 必要なモジュールを読み込む
+const fetch = require('node-fetch');
 
 // データを取得する関数
 async function fetchDataFromGAS() {
@@ -24,6 +27,4 @@ async function fetchDataFromGAS() {
   }
 }
 
-// テスト呼び出し
-// fetchDataFromGAS();
-
+module.exports = { fetchDataFromGAS };

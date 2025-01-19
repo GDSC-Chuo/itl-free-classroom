@@ -24,8 +24,8 @@
         <table>
           <thead>
             <tr>
-              <th>Classroom</th>
-              <th>Status</th>
+              <th>教室</th>
+              <th>使用状況</th>
             </tr>
           </thead>
           <tbody>
@@ -47,6 +47,7 @@ import { fetchDataFromGAS } from "../lib/gas";
 
 export default {
   name: "FreeclassroomInfo",
+
   data() {
     return {
       classrooms: [
@@ -60,17 +61,19 @@ export default {
       selectedTime: "1限前",
       freeClassroomData: null,
       currentDate: "",
-      isClosed: false, // 閉館状態を管理
+      isClosed: false,
     };
   },
+
   methods: {
     selectTime(time) {
       this.selectedTime = time;
     },
+
     isAvailable(room) {
-      // 部屋のステータスを確認
-      return this.freeClassroomData?.[room]?.includes(this.selectedTime) || false;
+      return this.freeClassroomData?.[room]?.[this.selectedTime] === "空き";
     },
+
     getCurrentDate() {
       const today = new Date();
       const year = today.getFullYear();
@@ -78,19 +81,33 @@ export default {
       const day = String(today.getDate()).padStart(2, "0");
       this.currentDate = `${year}-${month}-${day}`;
     },
+
     async fetchData() {
       try {
         const data = await fetchDataFromGAS();
+        console.log("取得した二次元配列データ:", data);
+
         if (data[1][2] === "閉館") {
           this.isClosed = true;
         } else {
+          this.isClosed = false;
           this.freeClassroomData = {};
-          for (let i = 1; i < data.length; i++) {
-            const room = data[i][1];
+
+          for (let i = 1; i <= 18; i++) {
+            const room = this.classrooms[i - 1];
             this.freeClassroomData[room] = {};
-            for (let j = 2; j < data[0].length; j++) {
-              const timeSlot = data[0][j];
-              this.freeClassroomData[room][timeSlot] = data[i][j] ? "使用中" : "空き";
+
+            for (let j = 2; j <= 10; j++) {
+              const timeIndex = j - 2;
+              const timeSlot = this.times[timeIndex];
+              const status = data[i][j];
+
+              this.freeClassroomData[room][timeSlot] = status ? "使用中" : "空き";
+            }
+
+            // 特殊ケース対応: "502 (WS)" の教室
+            if (i === 4 && room === "502 (WS)") {
+              console.log("特殊な教室名のデータを処理:", room);
             }
           }
         }
@@ -99,6 +116,7 @@ export default {
       }
     },
   },
+
   async mounted() {
     this.getCurrentDate();
     await this.fetchData();
