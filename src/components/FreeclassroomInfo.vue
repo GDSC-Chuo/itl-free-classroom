@@ -126,81 +126,245 @@ export default {
 
 <style scoped>
 .freeclassroom-info {
-  font-family: Arial, sans-serif;
-  margin: 20px;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh; /* 最小高さを画面の高さに */
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 20px 0 30px;
+  width: 100%;
+  position: relative;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 20px;
+  text-align: center;
 }
 
 .date-display {
-  font-size: 1.2em;
-  color: #555;
+  font-size: 24px;
+  color: #3A3B3E;
+  padding: 10px 20px;
+  background-color: #f5f5f5;
+  border-radius: 20px;
 }
 
 .content {
   display: flex;
+  gap: 30px;
+  margin: 0 auto;
+  flex: 1; /* 残りのスペースを埋める */
+  width: 100%;
 }
 
 .time-selector {
-  width: 30%;
-  margin-right: 20px;
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.time-selector h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .time-selector ul {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .time-selector li {
-  padding: 10px;
-  border: 1px solid #ddd;
-  margin-bottom: 5px;
+  padding: 12px 8px;
+  border: 2px solid #747578;
+  border-radius: 15px;
   cursor: pointer;
   text-align: center;
+  font-size: 16px;
+  color: #ff0000;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.time-selector li:hover {
+  background-color: #fff0f0;
 }
 
 .time-selector li.selected {
-  background-color: #007bff;
+  background-color: #ff0000;
   color: white;
+  border-color: #ff0000;
 }
 
 .classroom-status {
-  width: 70%;
+  flex: 1;
+  min-width: 0; /* flexboxのバグ防止 */
+}
+
+.classroom-status h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 table {
   width: 100%;
-  border-collapse: collapse;
-}
-
-th,
-td {
-  border: 1px solid #ddd;
-  text-align: center;
-  padding: 8px;
+  border-collapse: separate;
+  border-spacing: 0 8px;
 }
 
 th {
+  padding: 12px;
   background-color: #f4f4f4;
+  color: #3A3B3E;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 8px;
+}
+
+td {
+  padding: 12px;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 8px;
 }
 
 .available {
-  background-color: #dff0d8;
-  color: #3c763d;
+  background-color: #e8f5e9;
+  color: #2e7d32;
 }
 
 .occupied {
-  background-color: #f2dede;
-  color: #a94442;
+  background-color: #ffebee;
+  color: #c62828;
 }
 
 .closed {
-  background-color: #ddd;
-  color: #555;
+  background-color: #f5f5f5;
+  color: #747578;
+}
+
+@media (max-width: 768px) {
+  .freeclassroom-info {
+    padding: 10px;
+  }
+
+  .header {
+    margin: 10px 0 20px;
+  }
+
+  h1 {
+    font-size: 32px;
+    margin: 0 0 15px;
+  }
+
+  .date-display {
+    font-size: 20px;
+    padding: 8px 16px;
+  }
+
+  .content {
+    gap: 15px;
+  }
+
+  .time-selector {
+    width: 150px;
+  }
+
+  .time-selector h2,
+  .classroom-status h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .time-selector li {
+    padding: 8px 4px;
+    font-size: 14px;
+  }
+
+  th {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  td {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .freeclassroom-info {
+    padding: 5px;
+  }
+
+  .header {
+    margin: 5px 0 15px;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin: 0 0 10px;
+  }
+
+  .date-display {
+    font-size: 16px;
+    padding: 6px 12px;
+  }
+
+  .content {
+    gap: 10px;
+  }
+
+  .time-selector {
+    width: 100px;
+  }
+
+  .time-selector h2,
+  .classroom-status h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .time-selector li {
+    padding: 6px 2px;
+    font-size: 12px;
+    border-width: 1px;
+  }
+
+  th {
+    font-size: 12px;
+    padding: 6px 4px;
+  }
+
+  td {
+    font-size: 12px;
+    padding: 6px 4px;
+  }
+
+  td:first-child {
+    width: 30%;
+  }
+
+  td:last-child {
+    width: 70%;
+  }
 }
 </style>
