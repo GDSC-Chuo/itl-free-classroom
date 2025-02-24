@@ -139,9 +139,9 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px 0 30px;
+  padding-top: 600px;/* ヘッダーを表示されるように */
+  margin-bottom: 40px;
   width: 100%;
-  position: relative;
 }
 
 h1 {
@@ -163,8 +163,8 @@ h1 {
 .content {
   display: flex;
   gap: 30px;
-  margin: 0 auto;
-  flex: 1; /* 残りのスペースを埋める */
+  padding: 20px 0;
+  flex: 1;
   width: 100%;
 }
 
@@ -267,7 +267,8 @@ td {
   }
 
   .header {
-    margin: 10px 0 20px;
+    padding-top: 20px;
+    margin-bottom: 30px;
   }
 
   h1 {
@@ -316,7 +317,8 @@ td {
   }
 
   .header {
-    margin: 5px 0 15px;
+    padding-top: 100px;
+    margin-bottom: 20px;
   }
 
   h1 {
