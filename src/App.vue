@@ -33,7 +33,7 @@ body {
 
 .main-area {
   position: absolute;
-  top: 50%;
+  top: 5%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90vw;
@@ -75,9 +75,8 @@ p {
 /* スマホ版のスタイル */
 @media (max-width: 600px) {
   .special-area {
-    width: 80%;
-    transform: translate(-50%, 10%);
+    width: fit-content;
+    height: auto;
   }
 }
-
 </style>
