@@ -144,6 +144,8 @@ export default {
 
 .content {
   display: flex;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
 }
 
 .time-selector {
