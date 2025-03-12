@@ -1,7 +1,7 @@
 <template>
   <div class="signup-container">
     <div>
-        <h1 class="signup-title">Sign Up</h1>
+      <h1 class="signup-title">Sign Up</h1>
     </div>
 
     <form @submit.prevent="validateAndRegister">
@@ -135,7 +135,7 @@
 
   .mail,
   .password {
-    width: 80%;
+    width: 60%;
   }
 
   .return {
@@ -152,77 +152,77 @@
 import { signup } from '@/lib/auth';
 
 export default {
-    name: "SignUp",
-    data() {
-        return {
-            email: '',
-            password1: '',
-            password2: '',
-            validationMessage: null,
-            confirmMessage: null,
-            emailError: '',
-            passwordError: '',
-        };
+  name: "SignUp",
+  data() {
+    return {
+      email: '',
+      password1: '',
+      password2: '',
+      validationMessage: null,
+      confirmMessage: null,
+      emailError: '',
+      passwordError: '',
+    };
+  },
+  computed: {
+    passwordsMatch() {
+      return this.password1 === this.password2;
     },
-    computed: {
-      passwordsMatch() {
-        return this.password1 === this.password2;
-      },
-    },
-    methods: {
-      async validateAndRegister() {
-            this.clearErrors();
+  },
+  methods: {
+    async validateAndRegister() {
+      this.clearErrors();
 
-            // メアド検証
-            if (!this.email.endsWith('@g.chuo-u.ac.jp')) {
-              this.emailError = '中央大学のメールアドレスで登録してください';
-            }
+      // メアド検証
+      if (!this.email.endsWith('@g.chuo-u.ac.jp')) {
+        this.emailError = '中央大学のメールアドレスで登録してください';
+      }
 
-            // パスワード検証
-            if (!this.passwordsMatch) {
-              this.passwordError = 'パスワードが一致しません';
-            }
+      // パスワード検証
+      if (!this.passwordsMatch) {
+        this.passwordError = 'パスワードが一致しません';
+      }
 
-            // エラーがある場合は処理を中断
-            if (this.emailError || this.passwordError) {
-              return;
-            }
+      // エラーがある場合は処理を中断
+      if (this.emailError || this.passwordError) {
+        return;
+      }
 
-            try {
-                await signup(this.email, this.password1);
-                this.validationMessage = null;
-                this.confirmMessage = "認証メールを送信しました。メールのリンクからアカウントを有効化してください。"
-            } catch (error) {
-                console.error(error);
-
-                switch (error.code) {
-                    case "auth/email-already-in-use":
-                        this.validationMessage = "既にこのメールアドレスは登録されています。"
-                        break;
-                
-                    case "auth/password-does-not-meet-requirements":
-                        this.validationMessage = "パスワードの形式が正しくありません。"
-                        break;
-
-                    case "auth/weak-password":
-                        this.validationMessage = "パスワードは６文字以上で設定してください。"
-                        break;
-                    
-                    case "auth/user-disabled":
-                        this.validationMessage = "このメールアドレスではサインアップができません。別のメールアドレスでお試しください"
-                        break;
-
-                    default:
-                        this.validationMessage = "サインアップに失敗しました。別のメールアドレスでお試しください"
-                        break;
-                }
-            }
-      },
-      clearErrors() {
-        this.emailError = '';
-        this.passwordError = '';
+      try {
+        await signup(this.email, this.password1);
         this.validationMessage = null;
-      },
-    }
+        this.confirmMessage = "認証メールを送信しました。メールのリンクからアカウントを有効化してください。"
+      } catch (error) {
+        console.error(error);
+
+        switch (error.code) {
+          case "auth/email-already-in-use":
+            this.validationMessage = "既にこのメールアドレスは登録されています。"
+            break;
+
+          case "auth/password-does-not-meet-requirements":
+            this.validationMessage = "パスワードの形式が正しくありません。"
+            break;
+
+          case "auth/weak-password":
+            this.validationMessage = "パスワードは６文字以上で設定してください。"
+            break;
+
+          case "auth/user-disabled":
+            this.validationMessage = "このメールアドレスではサインアップができません。別のメールアドレスでお試しください"
+            break;
+
+          default:
+            this.validationMessage = "サインアップに失敗しました。別のメールアドレスでお試しください"
+            break;
+        }
+      }
+    },
+    clearErrors() {
+      this.emailError = '';
+      this.passwordError = '';
+      this.validationMessage = null;
+    },
+  }
 };
 </script>
