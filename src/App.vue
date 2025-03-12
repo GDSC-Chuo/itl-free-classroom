@@ -33,7 +33,7 @@ body {
 
 .main-area {
   position: absolute;
-  top: 5%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90vw;
