@@ -1,5 +1,5 @@
 // GASのWebアプリURL
-const GAS_API_URL = "https://script.google.com/macros/s/AKfycbxY0Zr3nad7TKnKlN8S7u1BtwX8a63QzvATciGhVhy6J9owJswGaBAmC235-yHXrGpu/exec";
+const GAS_API_URL = process.env.VUE_APP_GAS_API_URL;
 
 // 必要なモジュールを読み込む
 const fetch = require('node-fetch');
