@@ -6,28 +6,57 @@
 
     <form @submit.prevent="validateAndRegister">
       <div class="info">
-        <small v-if="confirmMessage" style="color: blue;">
+        <small v-if="confirmMessage" style="color: blue">
           {{ confirmMessage }}
         </small>
         <p id="info">
-          <input v-model="email" class="mail" type="email" id="signup-id" autocomplete="username" placeholder="メールアドレス"
-            :class="{ 'error': emailError }">
+          <input
+            v-model="email"
+            class="mail"
+            type="email"
+            id="signup-id"
+            autocomplete="username"
+            placeholder="メールアドレス"
+            :class="{ error: emailError }"
+          />
           <span v-if="emailError" class="error-message">{{ emailError }}</span>
 
-          <input v-model="password1" class="password" type="password" id="signup-password1"
-            autocomplete="current-password" placeholder="パスワード" :class="{ 'error': passwordError || !passwordsMatch }">
+          <input
+            v-model="password1"
+            class="password"
+            type="password"
+            id="signup-password1"
+            autocomplete="current-password"
+            placeholder="パスワード"
+            :class="{ error: passwordError || !passwordsMatch }"
+          />
 
-          <input v-model="password2" class="password" type="password" id="signup-password2"
-            autocomplete="current-password" placeholder="パスワード確認" :class="{ 'error': !passwordsMatch }">
+          <input
+            v-model="password2"
+            class="password"
+            type="password"
+            id="signup-password2"
+            autocomplete="current-password"
+            placeholder="パスワード確認"
+            :class="{ error: !passwordsMatch }"
+          />
 
-          <span v-if="!passwordsMatch || passwordError" class="error-message">{{ passwordError }}</span>
+          <span v-if="!passwordsMatch || passwordError" class="error-message">{{
+            passwordError
+          }}</span>
           <small v-if="validationMessage" class="error-message">
             {{ validationMessage }}
           </small>
         </p>
       </div>
       <div>
-        <input type="submit" id="signup-button" class="register" value="登録">
+        <input
+          type="submit"
+          id="signup-button"
+          class="register"
+          :disabled="isSubmitting"
+          value="登録"
+        />
       </div>
     </form>
     <div class="return">
@@ -62,9 +91,9 @@
   height: 30px;
   display: flex;
   border-radius: 30px;
-  gap: 0 .7em;
-  margin-bottom: .6em;
-  padding: .7em .9em;
+  gap: 0 0.7em;
+  margin-bottom: 0.6em;
+  padding: 0.7em 0.9em;
   border-color: #747578;
   background-color: white;
   text-align: center;
@@ -90,21 +119,21 @@
   width: 200px;
   height: 50px;
   border-radius: 30px;
-  background-color: #FF0000;
+  background-color: #ff0000;
   color: white;
-  border-color: #FF0000;
+  border-color: #ff0000;
   text-align: center;
   display: inline-block;
   margin-top: 20px;
 }
 
 .register:hover {
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .register:disabled {
-  background-color: #FF8888;
-  border-color: #FF8888;
+  background-color: #ff8888;
+  border-color: #ff8888;
 }
 
 .return {
@@ -132,7 +161,6 @@
 }
 
 @media (max-width: 600px) {
-
   .mail,
   .password {
     width: 60%;
@@ -149,19 +177,20 @@
 </style>
 
 <script>
-import { signup } from '@/lib/auth';
+import { signup } from "@/lib/auth";
 
 export default {
   name: "SignUp",
   data() {
     return {
-      email: '',
-      password1: '',
-      password2: '',
+      email: "",
+      password1: "",
+      password2: "",
       validationMessage: null,
       confirmMessage: null,
-      emailError: '',
-      passwordError: '',
+      emailError: "",
+      passwordError: "",
+      isSubmitting: false,
     };
   },
   computed: {
@@ -174,13 +203,13 @@ export default {
       this.clearErrors();
 
       // メアド検証
-      if (!this.email.endsWith('@g.chuo-u.ac.jp')) {
-        this.emailError = '中央大学のメールアドレスで登録してください';
+      if (!this.email.endsWith("@g.chuo-u.ac.jp")) {
+        this.emailError = "中央大学のメールアドレスで登録してください";
       }
 
       // パスワード検証
       if (!this.passwordsMatch) {
-        this.passwordError = 'パスワードが一致しません';
+        this.passwordError = "パスワードが一致しません";
       }
 
       // エラーがある場合は処理を中断
@@ -189,40 +218,51 @@ export default {
       }
 
       try {
+        this.isSubmitting = true;
         await signup(this.email, this.password1);
         this.validationMessage = null;
-        this.confirmMessage = "認証メールを送信しました。メールのリンクからアカウントを有効化してください。"
+        this.confirmMessage =
+          "認証メールを送信しました。メールのリンクからアカウントを有効化してください。";
+
+        //入力リセット
+        this.email = "";
+        this.password1 = "";
+        this.password2 = "";
       } catch (error) {
         console.error(error);
 
         switch (error.code) {
           case "auth/email-already-in-use":
-            this.validationMessage = "既にこのメールアドレスは登録されています。"
+            this.validationMessage =
+              "既にこのメールアドレスは登録されています。";
             break;
 
           case "auth/password-does-not-meet-requirements":
-            this.validationMessage = "パスワードの形式が正しくありません。"
+            this.validationMessage = "パスワードの形式が正しくありません。";
             break;
 
           case "auth/weak-password":
-            this.validationMessage = "パスワードは６文字以上で設定してください。"
+            this.validationMessage =
+              "パスワードは６文字以上で設定してください。";
             break;
 
           case "auth/user-disabled":
-            this.validationMessage = "このメールアドレスではサインアップができません。別のメールアドレスでお試しください"
+            this.validationMessage =
+              "このメールアドレスではサインアップができません。別のメールアドレスでお試しください";
             break;
 
           default:
-            this.validationMessage = "サインアップに失敗しました。別のメールアドレスでお試しください"
+            this.validationMessage =
+              "サインアップに失敗しました。別のメールアドレスでお試しください";
             break;
         }
       }
     },
     clearErrors() {
-      this.emailError = '';
-      this.passwordError = '';
+      this.emailError = "";
+      this.passwordError = "";
       this.validationMessage = null;
     },
-  }
+  },
 };
 </script>
