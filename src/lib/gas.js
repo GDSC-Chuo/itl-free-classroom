@@ -2,7 +2,7 @@
 const GAS_API_URL = process.env.VUE_APP_GAS_API_URL;
 
 // 必要なモジュールを読み込む
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
 
 // データを取得する関数
 async function fetchDataFromGAS() {
