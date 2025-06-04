@@ -256,6 +256,8 @@ export default {
               "サインアップに失敗しました。別のメールアドレスでお試しください";
             break;
         }
+      }finally {
+        this.isSubmitting = false;
       }
     },
     clearErrors() {
