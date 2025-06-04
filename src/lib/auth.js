@@ -6,7 +6,7 @@ import {
   sendEmailVerification,
   signInWithEmailAndPassword,
   signOut as Loggout,
-} from "@firebase/auth";
+} from "firebase/auth";
 
 /**
  * Verify Email via firebase authentication
