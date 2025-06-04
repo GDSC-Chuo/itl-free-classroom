@@ -1,39 +1,35 @@
 <template>
   <div class="home">
-
-    <h1 class="home-title">iTL
-      <br>Free Classroom
-    </h1>
+    <h1 class="home-title">iTL <br />Free Classroom</h1>
 
     <div v-if="errorMessage" class="error-message">
       {{ errorMessage }}
     </div>
 
     <div class="name">
-      <P><router-link to='/signin' class="select">sign in</router-link></P>
-      <router-link to='/signup' class="choice">sign up</router-link>
+      <p><router-link to="/signin" class="select">sign in</router-link></p>
+      <router-link to="/signup" class="choice">sign up</router-link>
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'HomePage',
+  name: "HomePage",
   data() {
     return {
-      errorMessage: null
-    }
+      errorMessage: null,
+    };
   },
   mounted() {
-    if (this.errorMessage) return 
-    console.log("コンポーネントがマウントされました")
+    if (this.errorMessage) return;
+    console.log("コンポーネントがマウントされました");
     if (this.$route.query?.error) {
-      console.log(this.$route.query.error)
-      this.errorMessage = this.$route.query.error
+      console.log(this.$route.query.error);
+      this.errorMessage = this.$route.query.error;
     }
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
@@ -58,7 +54,7 @@ h1 {
   margin: 30px;
   text-align: center;
   display: inline-block;
-  line-height: 50px
+  line-height: 50px;
 }
 
 .choice {
@@ -75,7 +71,7 @@ h1 {
   margin: 30px;
   text-align: center;
   display: inline-block;
-  line-height: 50px
+  line-height: 50px;
 }
 
 .error-message {
